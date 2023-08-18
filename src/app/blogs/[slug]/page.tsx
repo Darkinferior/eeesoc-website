@@ -16,8 +16,10 @@ interface Params {
 }
 
 export default function SingleBlog({ params }: Params) {
+  const rootDirectory = path.join(process.cwd(), "src", "data", "blogs");
+
   const markdownContent = fs.readFileSync(
-    path.join("src", "data", "blogs", params.slug + ".md")
+    path.join(rootDirectory, `${params.slug}.mdx`)
   );
 
   const matterMarkdown = matter(markdownContent);

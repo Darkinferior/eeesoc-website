@@ -7,10 +7,10 @@ import { RiLoader2Fill } from "react-icons/ri";
 
 export default function MailForm() {
   const [contactForm, setContactForm] = useState({
-    name: "Ankit",
-    email: "myselfankit51@gmail.com",
-    subject: "Test",
-    message: "Hello world",
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const [messageSent, setMessageSent] = useState(false);

@@ -10,12 +10,14 @@ export const metadata = {
 };
 
 export default function Blogs() {
-  const fileNames = fs.readdirSync(path.join("src", "data", "blogs"));
+  const rootDirectory = path.join(process.cwd(), "src", "data", "blogs");
+
+  const fileNames = fs.readdirSync(rootDirectory);
 
   const blogs = fileNames.map((fileName) => {
-    const slug = fileName.replace(".md", "");
+    const slug = fileName.replace(".mdx", "");
     const markdownContent = fs.readFileSync(
-      path.join("src", "data", "blogs", fileName),
+      path.join(rootDirectory, `${slug}.mdx`),
       "utf8"
     );
     const matterData = matter(markdownContent);
