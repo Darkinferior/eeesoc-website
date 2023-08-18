@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { Interview } from "@/types/types";
 import { getImageSrc } from "@/utils/getImageSrc";
 import Image from "next/image";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,14 +14,12 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../ui/dialog";
-import { useState } from "react";
 
 interface Props {
   interview: Interview;
-  interviewId: string;
 }
 
-export default function InterviewCard({ interview, interviewId }: Props) {
+export default function InterviewCard({ interview }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
