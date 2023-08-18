@@ -7,8 +7,6 @@ export const metadata = {
 };
 
 export default function Contact() {
-  const resendAPIKey = process.env.RESEND_API_KEY;
-
   return (
     <section className="items-start wrapper">
       <h1>Get in touch</h1>
@@ -20,7 +18,7 @@ export default function Contact() {
       </p>
 
       <div className="grid w-full grid-cols-12 mt-8">
-        <MailForm resendAPIKey={resendAPIKey} />
+        <MailForm />
         <ContactDetails />
       </div>
     </section>

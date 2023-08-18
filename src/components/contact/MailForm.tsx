@@ -1,54 +1,41 @@
 "use client";
 
-import { email, emailUrl } from "@/data/socialLinks";
-import { ChangeEvent, useState, useTransition } from "react";
+import { sendMail } from "@/utils/sendMail";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { RiLoader2Fill } from "react-icons/ri";
-import { Resend } from "resend";
 
-interface Props {
-  resendAPIKey: string | undefined;
-}
-
-export default function MailForm({ resendAPIKey }: Props) {
+export default function MailForm() {
   const [contactForm, setContactForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: "Ankit",
+    email: "myselfankit51@gmail.com",
+    subject: "Test",
+    message: "Hello world",
   });
 
   const [messageSent, setMessageSent] = useState(false);
   const [isPending, setIsPending] = useState(false);
 
-  const handleContactForm = (
-    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    setContactForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // setIsPending(true);
+    // try {
+    //   setIsPending(true);
 
-    // const resend = new Resend(resendAPIKey);
-    // await resend.emails.send({
-    //   from: contactForm.email,
-    //   to: email,
-    //   subject: contactForm.subject,
-    //   text: contactForm.message,
+    //   await sendMail(contactForm);
+
+    //   setIsPending(false);
+    //   setMessageSent(true);
+    // } catch (e) {
+    //   console.log("CLIENT", e);
+    // }
+
+    // setContactForm({
+    //   name: "",
+    //   email: "",
+    //   subject: "",
+    //   message: "",
     // });
-
-    // setIsPending(false);
-    // setMessageSent(true);
-
-    setContactForm({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
   };
 
   return (
@@ -74,7 +61,12 @@ export default function MailForm({ resendAPIKey }: Props) {
           className="col-span-2 p-2 border rounded xl:col-span-1 border-gray focus:ring focus:ring-light-purple"
           value={contactForm.name}
           placeholder="Name"
-          onChange={handleContactForm}
+          onChange={(e) =>
+            setContactForm((prev) => ({
+              ...prev,
+              [e.target.name]: e.target.value,
+            }))
+          }
           required
         />
         <input
@@ -83,7 +75,12 @@ export default function MailForm({ resendAPIKey }: Props) {
           value={contactForm.email}
           className="col-span-2 p-2 border rounded xl:col-span-1 border-gray focus:ring focus:ring-light-purple"
           placeholder="Email"
-          onChange={handleContactForm}
+          onChange={(e) =>
+            setContactForm((prev) => ({
+              ...prev,
+              [e.target.name]: e.target.value,
+            }))
+          }
           required
         />
       </div>
@@ -93,7 +90,12 @@ export default function MailForm({ resendAPIKey }: Props) {
         className="col-span-1 p-2 mt-4 border rounded border-gray focus:ring focus:ring-light-purple"
         placeholder="Subject"
         required
-        onChange={handleContactForm}
+        onChange={(e) =>
+          setContactForm((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+          }))
+        }
       />
       <textarea
         name="message"
@@ -101,7 +103,12 @@ export default function MailForm({ resendAPIKey }: Props) {
         value={contactForm.message}
         rows={6}
         placeholder="Message"
-        onChange={handleContactForm}
+        onChange={(e) =>
+          setContactForm((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+          }))
+        }
         required
       />
       <button

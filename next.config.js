@@ -8,6 +8,9 @@ const nextConfig = {
       "www.bitmesra.ac.in",
     ],
   },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;
