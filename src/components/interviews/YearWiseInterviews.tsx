@@ -20,7 +20,7 @@ export default function YearWiseInterviews({ yearWiseInterviews }: Props) {
 
           <div className="flex flex-wrap items-stretch justify-center w-full gap-4 mt-8">
             {singleYearInterviews.interviews.map((interview) => (
-              <InterviewCard key={id} interview={interview} interviewId={id} />
+              <InterviewCard key={id} interview={interview} />
             ))}
           </div>
         </div>
