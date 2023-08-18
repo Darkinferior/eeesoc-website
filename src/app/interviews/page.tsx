@@ -10,7 +10,7 @@ export default function Interviews() {
     <>
       <div className="wrapper">
         <h1 className="text-center">EEE Interviews</h1>
-        <p className="mt-4">
+        <p className="mt-4 text-justify">
           The society aims in passing on the interview knowledge of our alumni.
           Every year many students from EEE are placed in different companies
           related to Electrical, Electronics, Consultancy, Coding, etc. They

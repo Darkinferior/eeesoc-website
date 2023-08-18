@@ -106,7 +106,7 @@ export default function MailForm({ resendAPIKey }: Props) {
       />
       <button
         type="submit"
-        className="px-4 py-2 mt-8 text-sm text-white transition-all rounded xl:self-start bg-zinc-500 hover:bg-zinc-600"
+        className="px-4 py-2 mt-8 text-sm text-white transition-all rounded xl:self-start bg-neutral-600 hover:bg-neutral-700"
       >
         {isPending ? (
           <RiLoader2Fill className="animate-spin" />

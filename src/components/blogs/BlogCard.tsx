@@ -11,7 +11,7 @@ interface Props {
 
 export default function BlogCard({ blog }: Props) {
   return (
-    <div className="w-full shadow-container p-3 text-start mb-4 flex flex-col xl:w-[calc(33%-16px)]">
+    <div className="w-full shadow-container p-3 text-start mb-4 flex flex-col xl:w-[calc(33%-16px)] sm:w-[calc(50%-16px)]">
       {/* Blog thumbnail */}
       <Link href={`/blogs/${blog.slug}`}>
         <Image

@@ -1,6 +1,9 @@
+"use client";
+
 import { Project } from "@/types/types";
 import { getImageSrc } from "@/utils/getImageSrc";
 import Image from "next/image";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +17,8 @@ interface Props {
 }
 
 export default function ProjectCard({ project }: Props) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="flex flex-col justify-between p-3 mt-4 shadow-container">
       <Image
@@ -25,7 +30,7 @@ export default function ProjectCard({ project }: Props) {
         width={100}
       />
 
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
           <button className="w-full px-4 py-3 mt-8 text-sm font-medium uppercase transition-all rounded text-blue hover:bg-blue hover:text-white">
             {project.name}
@@ -79,7 +84,10 @@ export default function ProjectCard({ project }: Props) {
           <div className="w-full divider bg-gray" />
 
           <DialogFooter>
-            <button className="px-4 py-2 rounded text-neutral-500 hover:bg-neutral-500 hover:text-white">
+            <button
+              className="px-4 py-2 text-white rounded bg-blue hover:bg-blue/90"
+              onClick={() => setOpen(false)}
+            >
               Close
             </button>
           </DialogFooter>

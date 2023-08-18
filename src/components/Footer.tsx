@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="grid w-full grid-cols-3">
           <div className="flex flex-col items-center col-span-3 xl:col-span-1">
             <h3 className="mb-4">Find us here</h3>
-            <address className="font-normal">
+            <address className="font-normal text-center">
               Department of Electrical and Electronics Engineering,
               <br />
               Birla Institute of Technology, Mesra

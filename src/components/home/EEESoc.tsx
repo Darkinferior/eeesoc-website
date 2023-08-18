@@ -8,11 +8,11 @@ export default function EEESoc() {
       <div className="grid w-full grid-cols-2 mt-8">
         <div className="flex flex-col items-center col-span-2 xl:col-span-1">
           <h3 className="text-purple">How it all began?</h3>
-          <p className="mt-4">
+          <p className="mt-4 text-justify">
             EEESoc was established in the year 2013 to promote technical growth
             and overall development of the students of EEE department.
           </p>
-          <p className="mt-4">
+          <p className="mt-4 text-justify">
             The first president of the society was Jaivardhan Shivam under the
             patronage of Dr. T. Ghose and the faculty advisor Dr. R.C. Jha.
           </p>

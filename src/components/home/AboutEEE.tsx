@@ -13,7 +13,7 @@ export default function AboutEEE() {
           height={489}
           width={500}
         />
-        <p className="col-span-12 xl:col-span-7">
+        <p className="col-span-12 text-justify xl:col-span-7">
           The Department of Electrical & Electronics Engineering is dedicated to
           the current needs of industry with the flexibility to tune its
           programs according to different requirements. The application of new

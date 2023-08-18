@@ -11,7 +11,7 @@ export default function Gallery() {
     <div className="wrapper">
       <h1 className="text-center">Gallery</h1>
 
-      <section className="grid items-stretch grid-cols-3 mt-8">
+      <section className="grid items-stretch mt-8 sm:grid-cols-2 xl:grid-cols-3">
         {galleryPics.map((image, index) => (
           <GalleryLayout key={image} index={index} image={image} />
         ))}
