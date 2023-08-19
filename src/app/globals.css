@@ -58,39 +58,9 @@
   }
 
   code {
-    @apply font-code;
+    @apply font-code text-sm sm:text-base;
   }
 }
-
-code * {
-  font-family: var(--code-font);
-  font-size: 1rem;
-}
-
-/*
-
-.vertical-padding {
-  padding: 5rem 0;
-}
-
-
-.shadow-container {
-  background: #fff;
-  text-align: center;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  -webkit-box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2);
-}
-
-body.modal-open {
-  overflow: visible;
-}
-
-*/
 
 @layer components {
   .divider {

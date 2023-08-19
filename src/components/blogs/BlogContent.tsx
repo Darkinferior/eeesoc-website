@@ -42,7 +42,7 @@ export default function BlogContent({ content }: Props) {
                 width: 768,
                 alt: "image of blog",
                 height: 432,
-                className: "object-cover my-4 rounded",
+                className: "object-cover mx-auto my-4 rounded",
               },
             },
             code: Code,

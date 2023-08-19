@@ -1,28 +1,13 @@
 import BlogCard from "@/components/blogs/BlogCard";
 import { pageTitle } from "@/data/constants";
-import { Blog } from "@/types/types";
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
+import { getAllBlogs } from "@/utils/blogsParsing";
 
 export const metadata = {
   title: `${pageTitle} | Blogs`,
 };
 
 export default function Blogs() {
-  const rootDirectory = path.join(process.cwd(), "src", "data", "blogs");
-
-  const fileNames = fs.readdirSync(rootDirectory);
-
-  const blogs = fileNames.map((fileName) => {
-    const slug = fileName.replace(".mdx", "");
-    const markdownContent = fs.readFileSync(
-      path.join(rootDirectory, `${slug}.mdx`),
-      "utf8"
-    );
-    const matterData = matter(markdownContent);
-    return { slug, ...matterData.data } as Blog;
-  });
+  const blogs = getAllBlogs();
 
   return (
     <div className="wrapper">
