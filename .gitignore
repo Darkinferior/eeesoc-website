@@ -32,8 +32,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-.serverless_nextjs
-test.txt
-
-# Contentlayer
-.contentlayer
+.vscode
