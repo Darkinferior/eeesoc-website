@@ -4,10 +4,6 @@ import { pageTitle } from "@/data/constants";
 import { getAllBlogs, getBlogBySlug } from "@/utils/blogsParsing";
 import { Metadata } from "next";
 
-export const metadata = {
-  title: "EEESoc BIT Mesra | Blogs",
-};
-
 interface Params {
   params: {
     slug: string;
