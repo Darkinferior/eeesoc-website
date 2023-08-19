@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 import { Chivo, IBM_Plex_Mono, Poppins } from "next/font/google";
+import Head from "next/head";
 
 export const metadata = {
   title: "EEESoc BIT Mesra",
@@ -36,6 +37,9 @@ export default function RootLayout({ children }: Props) {
       lang="en"
       className={`${bodyFont.variable} ${headingsFont.variable} ${codeFont.variable}`}
     >
+      <Head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </Head>
       <body>
         <Navbar />
         <main>{children}</main>
