@@ -8,7 +8,7 @@ import { Mentor } from "@/lib/models/mentor"
 
 
 
-export async function GET(req, res) {
+export async function GET(request: Request) {
 
     await connectToDb();
     const data = await Mentor.find()

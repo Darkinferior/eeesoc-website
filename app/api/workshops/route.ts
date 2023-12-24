@@ -1,17 +1,18 @@
 // necessary query parameters = []
 // optional query parameters = []
 
+
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { NextResponse } from "next/server";
-import { President } from "@/lib/models/president"
+import {Workshop} from "@/lib/models/workshop"
 
 
 
 
-export async function GET(req, res) {
+export async function GET(request: Request) {
 
     await connectToDb();
-    const data = await President.find()
+    const data = await Workshop.find()
 
     return NextResponse.json({ result: data })
 }
