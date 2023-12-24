@@ -11,10 +11,10 @@ import { ElectricalInterview } from "@/lib/models/electricalInterviews"
 
 
 
-export async function GET(req, res) {
+export async function GET(request: Request) {
 
     await connectToDb();
-    const url = new URL(req.url)
+    const url = new URL(request.url)
     const year = url.searchParams.get("year")
     var prefix = url.searchParams.get("prefix")
 
