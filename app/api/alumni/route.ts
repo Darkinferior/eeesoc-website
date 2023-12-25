@@ -9,10 +9,10 @@ import { Alumni } from "@/lib/models/alumni"
 
 
 
-export async function GET(req, res) {
+export async function GET(request: Request) {
 
     await connectToDb();
-    const url = new URL(req.url)
+    const url = new URL(request.url)
     const year = url.searchParams.get("year")
     var data
     if (year) {
