@@ -5,7 +5,7 @@
 
 
 import { NextResponse } from 'next/server';
-import { ExecutiveBodyk21 } from "@/lib/models/executiveBodyk21";
+import { ExecutiveBodyFinalYear } from "@/lib/models/executiveBodyFinalYear";
 
 export async function DELETE(request: Request): Promise<NextResponse> {
     const url = new URL(request.url);
@@ -15,10 +15,10 @@ export async function DELETE(request: Request): Promise<NextResponse> {
         return NextResponse.json({ "msg": "Member ID parameter is missing", success: false });
     }
 
-    const existingMember = await ExecutiveBodyk21.findOne({ _id: member_id });
+    const existingMember = await ExecutiveBodyFinalYear.findOne({ _id: member_id });
 
     if (existingMember) {
-        await ExecutiveBodyk21.deleteOne({ _id: member_id });
+        await ExecutiveBodyFinalYear.deleteOne({ _id: member_id });
         return NextResponse.json({ "msg": "Member deleted successfully", success: true });
     } 
     else {
