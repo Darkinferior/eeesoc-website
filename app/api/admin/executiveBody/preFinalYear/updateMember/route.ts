@@ -8,7 +8,7 @@
 import { promises as fsPromises } from 'fs';
 import { dirname, join } from 'path';
 import { NextResponse } from 'next/server';
-import { ExecutiveBodyk21 } from "@/lib/models/executiveBodyk21"
+import { ExecutiveBodyPreFinalYear } from "@/lib/models/executiveBodyPreFinalYear"
 
 
 export async function PATCH(request: Request): Promise<NextResponse> {
@@ -31,7 +31,7 @@ export async function PATCH(request: Request): Promise<NextResponse> {
     }
 
 
-    const existingMember = await ExecutiveBodyk21.findOne({ _id: member_id });
+    const existingMember = await ExecutiveBodyPreFinalYear.findOne({ _id: member_id });
 
     if (existingMember) {
 
@@ -40,7 +40,7 @@ export async function PATCH(request: Request): Promise<NextResponse> {
         if (newImage instanceof File) {
             const byteData = await newImage.arrayBuffer();
             const buffer = Buffer.from(byteData);
-            path = `./public/executiveBody/k21/${newImage.name}`;
+            path = `./public/executiveBody/preFinalYear/${newImage.name}`;
             const directory = dirname(path);
             await fsPromises.mkdir(directory, { recursive: true });
             await fsPromises.writeFile(path, buffer);

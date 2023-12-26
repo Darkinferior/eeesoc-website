@@ -8,7 +8,7 @@
 import { promises as fsPromises } from 'fs';
 import { dirname, join } from 'path';
 import { NextResponse } from 'next/server';
-import { ExecutiveBodyk20 } from "@/lib/models/executiveBodyk20"
+import { ExecutiveBodyFinalYear } from "@/lib/models/executiveBodyFinalYear"
 
 
 export async function POST(request: Request): Promise<NextResponse> {
@@ -32,13 +32,13 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (image instanceof File) {
         const byteData = await image.arrayBuffer();
         const buffer = Buffer.from(byteData);
-        const path = `./public/executiveBody/k20/${image.name}`;
+        const path = `./public/executiveBody/finalYear/${image.name}`;
         const directory = dirname(path);
 
         await fsPromises.mkdir(directory, { recursive: true });
         await fsPromises.writeFile(path, buffer);
 
-        const newDocument = new ExecutiveBodyk20({
+        const newDocument = new ExecutiveBodyFinalYear({
             name: name,
             linkedinUrl: linkedinUrl,
             instagramUrl: instagramUrl,

@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     type: { type: String, required: true }, // "admin" or "member"
     EmailID: { type: String, required: true, unique: true },
     position: { type: String, required: true }, // position in the society
-    year: { type: String, required: true }, // "k21" or "k22"
+    year: { type: String, required: true }, // "pre-final" or "final"
     password: { type: String, required: true }
 });
 
