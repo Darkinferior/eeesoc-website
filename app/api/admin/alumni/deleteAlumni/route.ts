@@ -27,13 +27,15 @@ export async function DELETE(request: Request): Promise<NextResponse> {
         }) => alumni.name === name && alumni.workplace === workplace);
 
         if (existingAlumniIndex !== -1) {
-            console.log("entered");
-
             existingDocument.alumni.splice(existingAlumniIndex, 1);
             await existingDocument.save();
+            return NextResponse.json({ "msg": "Alumni data deleted successfully", success: true });
+        }
+        else{
+            return NextResponse.json({ "msg": "Alumni document not found", success: false });
         }
 
-        return NextResponse.json({ "msg": "Alumni data deleted successfully", success: true });
+        
     } else {
         return NextResponse.json({ "msg": "Alumni document not found", success: false });
     }

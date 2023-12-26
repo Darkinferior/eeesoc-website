@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 mongoose.pluralize(null)
 
-const executiveBodyk20Schema = new mongoose.Schema({
+const executiveBodyPreFinalYearSchema = new mongoose.Schema({
     "name": "String",
     "linkedinUrl": "String",
     "InstagramUrl": "String",
@@ -12,4 +12,4 @@ const executiveBodyk20Schema = new mongoose.Schema({
   }
   
   );
-  export const ExecutiveBodyk20 =mongoose.models.executiveBodyk20 || mongoose.model("executiveBodyk20", executiveBodyk20Schema)
+  export const ExecutiveBodyPreFinalYear =mongoose.models.executiveBodyPreFinalYear || mongoose.model("executiveBodyPreFinalYear", executiveBodyPreFinalYearSchema)
