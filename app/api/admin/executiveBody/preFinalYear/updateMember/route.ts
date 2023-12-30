@@ -49,10 +49,10 @@ export async function PATCH(request: Request): Promise<NextResponse> {
 
         if (newName) existingMember.name = newName;
         if (newLinkedinUrl) existingMember.linkedinUrl = newLinkedinUrl;
-        if (newLinkedinUrl) existingMember.instagramUrl = newInstagramUrl;
-        if (newLinkedinUrl) existingMember.facebookUrl = newFacebookUrl;
-        if (newLinkedinUrl) existingMember.emailID = newEmailID;
-        if (newLinkedinUrl) existingMember.designation = newDesignation;
+        if (newInstagramUrl) existingMember.instagramUrl = newInstagramUrl;
+        if (newFacebookUrl) existingMember.facebookUrl = newFacebookUrl;
+        if (newEmailID) existingMember.emailID = newEmailID;
+        if (newDesignation) existingMember.designation = newDesignation;
         if (newImage instanceof File) existingMember.image = path;
 
 
