@@ -1,5 +1,4 @@
-// necessary query parameters = []
-// optional query parameters = [year]
+
 
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { NextResponse } from "next/server";
