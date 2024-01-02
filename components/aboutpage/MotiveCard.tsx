@@ -14,7 +14,7 @@ export const MotiveCard: React.FC<DevelopmentCardProps> = ({
   bulletPoints,
 }) => {
   return (
-    <Card className="w-full sm:w-1/2 lg:w-1/3 xl:w-5/12 items-center py-4 px-4 justify-center transform hover:scale-105 transition-transform mb-4">
+    <Card className="w-full sm:w-1/2 lg:w-1/3 xl:w-5/12 items-center py-4 px-4 justify-center mx-4">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
         <Reveal>
           <h4 className="font-bold text-xl">{title}</h4>

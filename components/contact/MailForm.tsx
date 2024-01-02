@@ -69,7 +69,6 @@ export default function MailForm({ resendAPIKey }: Props) {
       setMessageSent(true);
     } catch (error) {
       console.error('Error sending email:', error);
-      // Handle error accordingly, e.g., show an error message to the user
     } finally {
       setIsPending(false);
     }

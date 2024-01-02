@@ -7,7 +7,7 @@ export const AboutDescription = () => {
   return (
     <Card
       isBlurred
-      className="border-none bg-background/60 dark:bg-default-100/50 w-full mt-8 mb-8 transform hover:scale-105 transition-transform "
+      className="border-none bg-background/60 dark:bg-default-100/50 w-full mt-16 mb-16 transform hover:scale-105 transition-transform hover:shadow-[0_0px_60px_5px_rgba(0.3)] hover:shadow-cyan-500/50"
       shadow="sm"
     >
       <CardBody>
@@ -28,7 +28,7 @@ export const AboutDescription = () => {
             <div className="flex justify-between items-start">
               <div className="flex flex-col gap-0">
                 <Reveal>
-                  <p className="text-lg text-foreground/80">
+                  <p className="text-lg text-justify">
                     The Department of Electrical & Electronics Engineering is
                     dedicated to the current needs of industry with the
                     flexibility to tune its programs according to different

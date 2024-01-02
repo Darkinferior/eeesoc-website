@@ -39,13 +39,13 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
     .slice()
     .sort((a, b) => b.year - a.year);
   return (
-    <Card className="py-4 px-8 mt-8 mb-8 text-center items-center justify-center">
+    <Card className="py-4 px-8 mt-16 mb-16 items-center justify-center transform hover:scale-105 transition-transform hover:shadow-[0_0px_60px_5px_rgba(0.3)] hover:shadow-cyan-500/50">
       <CardHeader className="pb-0 pt-2 px-4 flex-col">
         <Reveal>
           <h4 className="font-bold text-4xl mb-4">{heading}</h4>
         </Reveal>
       </CardHeader>
-      <CardBody className="overflow-visible my-4 text-start text-xl">
+      <CardBody className="overflow-visible my-4 text-justify text-xl">
         <Reveal>{description}</Reveal>
         <div>
           {sortedProjects.length > 0 && (

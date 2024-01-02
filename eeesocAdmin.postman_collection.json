@@ -1,0 +1,948 @@
+{
+	"info": {
+		"_postman_id": "02fbc37e-7c17-423c-9c1e-add9de77699f",
+		"name": "eeesocAdmin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31984186"
+	},
+	"item": [
+		{
+			"name": "addAlumni",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "workplace",
+							"value": "workplace",
+							"type": "text"
+						},
+						{
+							"key": "position",
+							"value": "position",
+							"type": "text"
+						},
+						{
+							"key": "linkedInUrl",
+							"value": "linkedInUrl",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/alumni/addAlumni?year=year&prevName=prevName&prevWorkplace=prevWorkplace",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"alumni",
+						"addAlumni"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "year"
+						},
+						{
+							"key": "prevName",
+							"value": "prevName"
+						},
+						{
+							"key": "prevWorkplace",
+							"value": "prevWorkplace"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAlumni",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/alumni/deleteAlumni",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"alumni",
+						"deleteAlumni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAlumni",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "workplace",
+							"value": "workplace",
+							"type": "text"
+						},
+						{
+							"key": "position",
+							"value": "position",
+							"type": "text"
+						},
+						{
+							"key": "linkedInUrl",
+							"value": "linkedInUrl",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/alumni/updateAlumni?year=year&prevName=prevName&prevWorkplace=prevWorkplace",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"alumni",
+						"updateAlumni"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "year"
+						},
+						{
+							"key": "prevName",
+							"value": "prevName"
+						},
+						{
+							"key": "prevWorkplace",
+							"value": "prevWorkplace"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMemberFinal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "linkedInUrl",
+							"value": "linkedInUrl",
+							"type": "text"
+						},
+						{
+							"key": "EmailID",
+							"value": "EmailID",
+							"type": "text"
+						},
+						{
+							"key": "designation",
+							"value": "designation",
+							"type": "text"
+						},
+						{
+							"key": "facebookUrl",
+							"value": "facebookUrl",
+							"type": "text"
+						},
+						{
+							"key": "instagramUrl",
+							"value": "instagramUrl",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/executiveBody/finalYear/addMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"executiveBody",
+						"finalYear",
+						"addMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMemberFinal",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/executiveBody/finalYear/deleteMember?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"executiveBody",
+						"finalYear",
+						"deleteMember"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMemberFinal",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "linkedInUrl",
+							"value": "linkedInUrl",
+							"type": "text"
+						},
+						{
+							"key": "EmailID",
+							"value": "EmailID",
+							"type": "text"
+						},
+						{
+							"key": "designation",
+							"value": "designation",
+							"type": "text"
+						},
+						{
+							"key": "facebookUrl",
+							"value": "facebookUrl",
+							"type": "text"
+						},
+						{
+							"key": "instagramUrl",
+							"value": "instagramUrl",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/executiveBody/finalYear/updateMember?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"executiveBody",
+						"finalYear",
+						"updateMember"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMemberPreFinal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "linkedInUrl",
+							"value": "linkedInUrl",
+							"type": "text"
+						},
+						{
+							"key": "EmailID",
+							"value": "EmailID",
+							"type": "text"
+						},
+						{
+							"key": "designation",
+							"value": "designation",
+							"type": "text"
+						},
+						{
+							"key": "facebookUrl",
+							"value": "facebookUrl",
+							"type": "text"
+						},
+						{
+							"key": "instagramUrl",
+							"value": "instagramUrl",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/executiveBody/preFinalYear/addMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"executiveBody",
+						"preFinalYear",
+						"addMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMemberPreFinal",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/executiveBody/preFinalYear/deleteMember?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"executiveBody",
+						"preFinalYear",
+						"deleteMember"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMemberPreFinal",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "linkedInUrl",
+							"value": "linkedInUrl",
+							"type": "text"
+						},
+						{
+							"key": "EmailID",
+							"value": "EmailID",
+							"type": "text"
+						},
+						{
+							"key": "designation",
+							"value": "designation",
+							"type": "text"
+						},
+						{
+							"key": "facebookUrl",
+							"value": "facebookUrl",
+							"type": "text"
+						},
+						{
+							"key": "instagramUrl",
+							"value": "instagramUrl",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/executiveBody/preFinalYear/updateMember?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"executiveBody",
+						"preFinalYear",
+						"updateMember"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProjectSMP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"type": "text"
+						},
+						{
+							"key": "reportLink",
+							"value": "reportLink",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/projectPrograms/SMP/addProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"projectPrograms",
+						"SMP",
+						"addProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProjectSPP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"type": "text"
+						},
+						{
+							"key": "reportLink",
+							"value": "reportLink",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/projectPrograms/SPP/addProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"projectPrograms",
+						"SPP",
+						"addProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProjectSMP",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/projectPrograms/SMP/deleteProject?projectName=projectName&year=year",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"projectPrograms",
+						"SMP",
+						"deleteProject"
+					],
+					"query": [
+						{
+							"key": "projectName",
+							"value": "projectName"
+						},
+						{
+							"key": "year",
+							"value": "year"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProjectSPP",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/projectPrograms/SPP/deleteProject?projectName=projectName&year=year",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"projectPrograms",
+						"SPP",
+						"deleteProject"
+					],
+					"query": [
+						{
+							"key": "projectName",
+							"value": "projectName"
+						},
+						{
+							"key": "year",
+							"value": "year"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProjectSMP",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"type": "text"
+						},
+						{
+							"key": "reportLink",
+							"value": "reportLink",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/projectPrograms/SMP/updateProject?prevName=prevName&year=year",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"projectPrograms",
+						"SMP",
+						"updateProject"
+					],
+					"query": [
+						{
+							"key": "prevName",
+							"value": "prevName"
+						},
+						{
+							"key": "year",
+							"value": "year"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProjectSPP",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"type": "text"
+						},
+						{
+							"key": "reportLink",
+							"value": "reportLink",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/projectPrograms/SPP/updateProject?year=year&prevName=prevName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"projectPrograms",
+						"SPP",
+						"updateProject"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "year"
+						},
+						{
+							"key": "prevName",
+							"value": "prevName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addWorkshop",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "content",
+							"type": "text"
+						},
+						{
+							"key": "contentImage",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/workshops/addWorkshop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"workshops",
+						"addWorkshop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteWorkshop",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/workshops/deleteWorkshop?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"workshops",
+						"deleteWorkshop"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateWorkshop",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "content",
+							"type": "text"
+						},
+						{
+							"key": "contentImage",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/workshops/updateWorkshop?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"workshops",
+						"updateWorkshop"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

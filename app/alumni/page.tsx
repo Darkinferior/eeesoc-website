@@ -13,10 +13,9 @@ interface Alumni {
 }
 
 export default function AlumniPage() {
-  const [alumniData, setAlumniData] = useState([]);
+  const [alumniData, setAlumniData] = useState<any[]>([]);
 
   useEffect(() => {
-    // Fetch alumni data from the API
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/alumni');
@@ -28,20 +27,19 @@ export default function AlumniPage() {
       }
     };
 
-    // Call the fetchData function
     fetchData();
-  }, []); // Empty dependency array ensures the effect runs once when the component mounts
-
+  }, []);
   return (
-    <div className="wrapper">
+    <div>
       <h1 className={title()}>Alumni</h1>
-      {/* Render AlumniCards component with fetched alumniData */}
-      {alumniData.map((batchWiseAlumni) => (
-        <AlumniCards
-          key={batchWiseAlumni._id}
-          batchWiseAlumni={batchWiseAlumni}
-        />
-      ))}
+      <div className="mt-16 mb-16">
+        {alumniData.map((batchWiseAlumni) => (
+          <AlumniCards
+            key={batchWiseAlumni._id}
+            batchWiseAlumni={batchWiseAlumni}
+          />
+        ))}
+      </div>
     </div>
   );
 }
