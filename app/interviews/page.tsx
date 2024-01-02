@@ -53,7 +53,7 @@ export default function InterviewsPage() {
       <h1 className={title()}>Interviews</h1>
       <div className="mt-16 ">
         {apiData !== null ? (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
             {apiData.map((item, index) => {
               const sanitizedContent =
                 item.content && DOMPurify.sanitize(item.content);

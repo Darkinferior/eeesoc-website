@@ -24,7 +24,7 @@ export const MentorCard: React.FC<MentorCardProps> = ({
   areasOfInterest,
 }) => {
   return (
-    <Card className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 justify-center ms-center transform hover:scale-105 transition-transform">
+    <Card className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 justify-center ms-center transform hover:scale-105 transition-transform hover:shadow-[0_0px_60px_5px_rgba(0.3)] hover:shadow-cyan-500/50 ">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-center mt-4 mb-2">
         <Image
           alt="Card background"

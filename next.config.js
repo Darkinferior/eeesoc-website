@@ -3,7 +3,4 @@ const nextConfig = {};
 
 module.exports = {
   reactStrictMode: true,
-  images: {
-    domains: ['www.eeesocbit.com'],
-  },
 };

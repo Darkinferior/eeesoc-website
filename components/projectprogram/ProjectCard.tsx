@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Card
       radius="lg"
-      className="border-none sm:w-auto md:w-auto lg:w-auto transform hover:scale-105 transition-transform"
+      className="border-none sm:w-auto md:w-auto lg:w-auto transform hover:scale-105 transition-transform hover:shadow-[0_0px_60px_5px_rgba(0.3)] hover:shadow-cyan-500/50"
     >
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
         <Image
@@ -75,7 +75,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <>
               <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ScrollShadow>
-                <ModalBody className="text-lg">{description}</ModalBody>
+                <ModalBody className="text-lg text-justify">
+                  {description}
+                </ModalBody>
               </ScrollShadow>
               <ModalFooter>
                 <Button color="default" variant="light" onPress={onClose}>

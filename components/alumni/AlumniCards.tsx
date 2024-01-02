@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardHeader } from '@nextui-org/react';
 import AlumniCard from './AlumniCard';
 import { Reveal } from '../Reveal';
 
@@ -18,7 +18,7 @@ interface BatchAlumni {
 }
 
 interface AlumniCardsProps {
-  batchWiseAlumni: BatchAlumni; // Prop to receive the batch-wise alumni data
+  batchWiseAlumni: BatchAlumni;
 }
 const lastTwoDigits = (year: number) => {
   return year % 100;
@@ -26,8 +26,12 @@ const lastTwoDigits = (year: number) => {
 const AlumniCards: React.FC<AlumniCardsProps> = ({ batchWiseAlumni }) => {
   return (
     <>
-      <Card isBlurred className="w-full mt-10">
-        <CardHeader className="text-4xl font-bold justify-center">
+      <Card
+        isBlurred
+        shadow="sm"
+        className="border-none bg-background/60 dark:bg-default-100/50 w-full mt-16 mb-16 transform hover:scale-105 transition-transform hover:shadow-[0_0px_60px_5px_rgba(0.3)] hover:shadow-cyan-500/50"
+      >
+        <CardHeader className="text-4xl font-bold justify-center mt-8 mb-8">
           <Reveal> K&apos;{lastTwoDigits(batchWiseAlumni.year)} </Reveal>
         </CardHeader>
         <div className="flex flex-wrap items-center justify-center w-full">

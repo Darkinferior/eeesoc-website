@@ -95,7 +95,7 @@ export default function ProjectProgramPage() {
       <h1 className={title()}>Project Programs</h1>
       <div>
         <Reveal>
-          <h2 className="mt-16 mb-16 text-lg">
+          <h2 className="mt-16 text-lg text-justify">
             In collaboration with Mathworks, the Society conducts two major
             project programmes for First and Second-year students in every
             academic session. They are mentored by their seniors who constantly

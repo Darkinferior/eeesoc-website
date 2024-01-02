@@ -46,12 +46,11 @@ export default function TeamPage() {
     <div>
       <h1 className={title()}>Our Team</h1>
       {loading ? (
-        // Display a loading screen or spinner while data is being fetched
         <div className="items-center justify-center mt-64">
           <Spinner size="lg" />
         </div>
       ) : (
-        <div className="mt-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
           {members.map((member) => {
             console.log('Image URL:', member.image);
 
