@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       .then((body) => sendRouteSchema.parse(body));
 
     const { data, error } = await resend.emails.send({
-      from: "Contact Form<send@eeesocbit.com>",
+      from: "Contact Form<contact@eeesocbit.com>",
       to: process.env.EMAIL_TO as string,
       reply_to: emailAddress,
       subject: "New Message from Website",
