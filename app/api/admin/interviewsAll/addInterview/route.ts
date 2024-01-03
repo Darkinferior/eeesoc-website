@@ -1,6 +1,6 @@
 // necessary query parameters = []
 // optional query parameters = []
-// necessary data inputs from the form = [ name, workplace, position, linkedInUrl, year, image]
+// necessary data inputs from the form = [ name, company, mediumLink, year, image]
 
 
 
@@ -9,7 +9,7 @@ import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
 
 import { NextResponse } from 'next/server';
-import { Alumni } from "@/lib/models/alumni"
+import { InterviewsAll } from "@/lib/models/interviewsAll"
 import { connectToDb } from "@/lib/dbConnection/connect"
 
 cloudinary.config({
@@ -25,9 +25,8 @@ export async function POST(request: Request): Promise<NextResponse> {
     const data = await request.formData();
 
     const name = data.get('name')?.toString();
-    const workplace = data.get('workplace')?.toString();
-    const position = data.get('position')?.toString();
-    const linkedinUrl = data.get('linkedinUrl')?.toString();
+    const company = data.get('company')?.toString();
+    const mediumLink = data.get('mediumLink')?.toString();
     const year = data.get('year')?.toString()
     const image = data.get('image')
 
@@ -43,12 +42,12 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       var existingDocument
       if (year) {
-        existingDocument = await Alumni.findOne({ year: parseInt(year) });
+        existingDocument = await InterviewsAll.findOne({ year: parseInt(year) });
       }
 
       const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
-          { folder: `NewImages/alumni/${year}` },
+          { folder: `NewImages/interviews/${year}` },
           (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
             if (error) {
               console.error('Error uploading image:', error);
@@ -71,25 +70,23 @@ export async function POST(request: Request): Promise<NextResponse> {
       if (uploadResult) path = uploadResult.secure_url;
 
       if (existingDocument) {
-        existingDocument.alumni.push({
+        existingDocument.interviews.push({
           name: name,
-          workplace: workplace,
-          linkedinUrl: linkedinUrl,
+          company: company,
+          mediumLink: mediumLink,
           image: path,
-          position: position
         });
         await existingDocument.save();
       }
       else {
-        const newDocument = new Alumni({
+        const newDocument = new InterviewsAll({
           year: year,
-          alumni: [
+          interviews: [
             {
               name: name,
-              workplace: workplace,
-              linkedinUrl: linkedinUrl,
+              company: company,
+              mediumLink: mediumLink,
               image: path,
-              position: position
             },
           ],
         });
@@ -97,9 +94,9 @@ export async function POST(request: Request): Promise<NextResponse> {
       }
 
 
-      return NextResponse.json({ "msg": "alumni added successfully", success: true });
+      return NextResponse.json({ "msg": "interview added successfully", success: true });
     } else {
-      return NextResponse.json({ "msg": "couldn't add alumni", success: false });
+      return NextResponse.json({ "msg": "couldn't add interview", success: false });
     }
   }
   catch (error) {

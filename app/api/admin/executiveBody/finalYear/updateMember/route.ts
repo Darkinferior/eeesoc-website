@@ -5,63 +5,94 @@
 
 
 
-import { promises as fsPromises } from 'fs';
-import { dirname, join } from 'path';
+
+import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
+import { UploadApiErrorResponse } from 'cloudinary';
 import { NextResponse } from 'next/server';
-import {ExecutiveBodyFinalYear } from "@/lib/models/executiveBodyFinalYear"
+import { ExecutiveBodyFinalYear } from "@/lib/models/executiveBodyFinalYear"
+import { connectToDb } from "@/lib/dbConnection/connect"
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME as string,
+    api_key: process.env.API_KEY as string,
+    api_secret: process.env.API_SECRET as string
+});
 
 
 export async function PATCH(request: Request): Promise<NextResponse> {
 
-    const url = new URL(request.url);
-    const member_id = url.searchParams.get("id");
+    try {
+        await connectToDb();
+        const url = new URL(request.url);
+        const member_id = url.searchParams.get("id");
 
-    const data = await request.formData();
+        const data = await request.formData();
 
-    const newName = data.get('name')?.toString();
-    const newLinkedinUrl = data.get('linkedinUrl')?.toString();
-    const newInstagramUrl = data.get('instagramUrl')?.toString();
-    const newFacebookUrl = data.get('facebookUrl')?.toString();
-    const newEmailID = data.get('emailID')?.toString();
-    const newDesignation = data.get('designation')?.toString();
+        const newName = data.get('name')?.toString();
+        const newLinkedinUrl = data.get('linkedinUrl')?.toString();
+        const newInstagramUrl = data.get('instagramUrl')?.toString();
+        const newFacebookUrl = data.get('facebookUrl')?.toString();
+        const newEmailID = data.get('emailID')?.toString();
+        const newDesignation = data.get('designation')?.toString();
 
-    const newImage = data.get('image')
-    if (!member_id) {
-        return NextResponse.json({ "msg": "'id' parameter is missing", success: false });
-    }
-
-
-    const existingMember = await ExecutiveBodyFinalYear.findOne({ _id: member_id });
-
-    if (existingMember) {
-
-        var path;
-
-        if (newImage instanceof File) {
-            const byteData = await newImage.arrayBuffer();
-            const buffer = Buffer.from(byteData);
-            path = `./public/executiveBody/finalYear/${newImage.name}`;
-            const directory = dirname(path);
-            await fsPromises.mkdir(directory, { recursive: true });
-            await fsPromises.writeFile(path, buffer);
+        const newImage = data.get('image')
+        if (!member_id) {
+            return NextResponse.json({ "msg": "'id' parameter is missing", success: false });
         }
 
 
-        if (newName) existingMember.name = newName;
-        if (newLinkedinUrl) existingMember.linkedinUrl = newLinkedinUrl;
-        if (newInstagramUrl) existingMember.instagramUrl = newInstagramUrl;
-        if (newFacebookUrl) existingMember.facebookUrl = newFacebookUrl;
-        if (newEmailID) existingMember.emailID = newEmailID;
-        if (newDesignation) existingMember.designation = newDesignation;
-        if (newImage instanceof File) existingMember.image = path;
+        const existingMember = await ExecutiveBodyFinalYear.findOne({ _id: member_id });
+
+        if (existingMember) {
+
+            var path;
+
+            if (newImage instanceof File) {
+                const byteData = await newImage.arrayBuffer();
+                const buffer = Buffer.from(byteData);
+                const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
+                    cloudinary.uploader.upload_stream(
+                        { folder: `NewImages/executiveBody/finalYear` },
+                        (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+                            if (error) {
+                                console.error('Error uploading image:', error);
+                                reject(error);
+                            } else {
+                                if (result) {
+                                    resolve(result);
+                                } else {
+                                    reject(new Error('Upload result is undefined.'));
+                                }
+                            }
+                        }
+                    ).end(buffer);
+                });
+                if (uploadResult) path = uploadResult.secure_url;
+            }
+
+
+            if (newName) existingMember.name = newName;
+            if (newLinkedinUrl) existingMember.linkedinUrl = newLinkedinUrl;
+            if (newInstagramUrl) existingMember.instagramUrl = newInstagramUrl;
+            if (newFacebookUrl) existingMember.facebookUrl = newFacebookUrl;
+            if (newEmailID) existingMember.emailID = newEmailID;
+            if (newDesignation) existingMember.designation = newDesignation;
+            if (newImage instanceof File) existingMember.image = path;
 
 
 
-        await existingMember.save();
+            await existingMember.save();
 
-        return NextResponse.json({ "msg": "member data updated successfully", success: true });
+            return NextResponse.json({ "msg": "member data updated successfully", success: true });
+        }
+        else {
+            return NextResponse.json({ "msg": "no member found", success: false });
+        }
     }
-    else {
-        return NextResponse.json({ "msg": "no member found", success: false });
+    catch (error) {
+        console.error("Error processing request:", error);
+        return NextResponse.json({ "msg": "Internal server error", success: false });
     }
+
+
 }

@@ -5,27 +5,27 @@
 
 
 import { NextResponse } from 'next/server';
-import { Workshop } from "@/lib/models/workshop";
+import { President } from "@/lib/models/president";
 import { connectToDb } from "@/lib/dbConnection/connect"
 
 export async function DELETE(request: Request): Promise<NextResponse> {
     try {
         await connectToDb();
         const url = new URL(request.url);
-        const workshop_id = url.searchParams.get("id");
+        const president_id = url.searchParams.get("id");
 
-        if (!workshop_id) {
-            return NextResponse.json({ "msg": "Workshop ID parameter is missing", success: false });
+        if (!president_id) {
+            return NextResponse.json({ "msg": "President ID parameter is missing", success: false });
         }
 
-        const existingWorkshop = await Workshop.findOne({ _id: workshop_id });
+        const existingPresident = await President.findOne({ _id: president_id });
 
-        if (existingWorkshop) {
-            await Workshop.deleteOne({ _id: workshop_id });
-            return NextResponse.json({ "msg": "Workshop deleted successfully", success: true });
+        if (existingPresident) {
+            await President.deleteOne({ _id: president_id });
+            return NextResponse.json({ "msg": "President deleted successfully", success: true });
         }
         else {
-            return NextResponse.json({ "msg": "Workshop not found for deletion", success: false });
+            return NextResponse.json({ "msg": "President not found for deletion", success: false });
         }
     }
     catch (error) {
