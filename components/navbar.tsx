@@ -76,7 +76,8 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
+        style={{ overflowX: 'hidden' }}
+        className="hidden lg:flex basis-1/5 sm:basis-full"
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
@@ -108,12 +109,11 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
 
-        <NavbarItem className="hidden md:flex">
+        <NavbarItem>
           <Button
-            isExternal
             as={Link}
             className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.email}
+            href="/sponsor"
             startContent={<HeartFilledIcon className="text-danger" />}
             variant="flat"
           >
@@ -122,7 +122,7 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
         <Link
           isExternal
           href={siteConfig.links.instagram}

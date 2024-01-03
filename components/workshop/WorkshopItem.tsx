@@ -1,9 +1,5 @@
 import { Image } from '@nextui-org/react';
-import Bubble from '../BubbleText';
 import { Reveal } from '../Reveal';
-interface WorkshopApiResponse {
-  result: Workshop[];
-}
 
 interface Workshop {
   _id: string;
@@ -44,6 +40,8 @@ export default function WorkshopItem({ workshop, index }: Props) {
         } col-span-2 xl:col-span-1`}
       >
         <Image
+          isBlurred
+          isZoomed
           src={workshop.cardImage}
           alt={workshop.title}
           width={648}

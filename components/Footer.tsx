@@ -12,12 +12,12 @@ export default function Footer() {
       <h2 className="text-3xl font-semibold">Connect with us</h2>
 
       <div className="flex flex-col items-center w-full mx-auto mt-8 mb-8">
-        <div className="grid w-full grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-8 mx-auto">
+        <div className="grid w-full grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           <div className="flex flex-col items-center col-span-1">
             <h3 className="mb-4 text-xl font-bold">Find us here</h3>
 
             <address className="flex gap-1">
-              <LocationIcon />{' '}
+              <LocationIcon className="ml-4" />{' '}
               <Link
                 color="foreground"
                 href={siteConfig.links.location}
@@ -67,8 +67,9 @@ export default function Footer() {
         </div>
       </div>
       <Divider />
-      <div className="flex items-center justify-center w-full py-5 tracking-widest text-center">
-        Copyright &#169; {currentYear}
+      <div className="flex items-center justify-center w-full py-5 tracking-widest text-center px-8">
+        Created with 💖 by Shivesh, Aditi, Ved and Ankush | Copyright &#169;{' '}
+        {currentYear}
       </div>
     </div>
   );
