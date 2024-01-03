@@ -1,67 +1,100 @@
-// necessary query parameters = [year, prevName, prevWorkplace]
+// necessary query parameters = [year, name, workplace]
 // optional query parameters = []
 // necessary data inputs from the form = []
-// optional data inputs from the form = [ name, workplace, position, linkedInUrl, year, image]
+// optional data inputs from the form = [ name, workplace, position, linkedInUrl, image]
 
 
-import { promises as fsPromises } from 'fs';
-import { dirname } from 'path';
+
+import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
+import { UploadApiErrorResponse } from 'cloudinary';
 import { NextResponse } from 'next/server';
 import { Alumni } from "@/lib/models/alumni";
 
+import { connectToDb } from "@/lib/dbConnection/connect"
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME as string,
+    api_key: process.env.API_KEY as string,
+    api_secret: process.env.API_SECRET as string
+});
+
 export async function PATCH(request: Request): Promise<NextResponse> {
-    const url = new URL(request.url);
+    try {
+        await connectToDb();
+        
+        const url = new URL(request.url);
 
-    const prevName = url.searchParams.get("prevName");
-    const prevWorkplace = url.searchParams.get("prevWorkplace");
-    const year = url.searchParams.get("year");
+        const name = url.searchParams.get("name");
+        const workplace = url.searchParams.get("workplace");
+        const year = url.searchParams.get("year");
 
-    const data = await request.formData();
-    const newName = data.get('name')?.toString();
-    const newWorkplace = data.get('workplace')?.toString();
-    const newPosition = data.get('position')?.toString();
-    const linkedinUrl = data.get('linkedinUrl')?.toString();
+        const data = await request.formData();
+        const newName = data.get('name')?.toString();
+        const newWorkplace = data.get('workplace')?.toString();
+        const newPosition = data.get('position')?.toString();
+        const linkedinUrl = data.get('linkedinUrl')?.toString();
 
-    const newImage = data.get('image');
+        const newImage = data.get('image');
 
-    if (!year) {
-        return NextResponse.json({ "msg": "Year parameter is missing", success: false });
-    }
-
-    const existingDocument = await Alumni.findOne({ year: parseInt(year) });
-
-    if (existingDocument) {
-        const existingAlumni = existingDocument.alumni.find((alumni: {
-            name: string;
-            workplace: string;
-            position: string;
-            image: string;
-            linkedinUrl: string;
-        }) => alumni.name === prevName && alumni.workplace === prevWorkplace);
-
-        var path;
-
-        if (newImage instanceof File) {
-            const byteData = await newImage.arrayBuffer();
-            const buffer = Buffer.from(byteData);
-            path = `./public/alumni/${year}/${newImage.name}`;
-            const directory = dirname(path);
-            await fsPromises.mkdir(directory, { recursive: true });
-            await fsPromises.writeFile(path, buffer);
+        if (!year) {
+            return NextResponse.json({ "msg": "Year parameter is missing", success: false });
         }
 
-        if (existingAlumni) {
-            if (newName) existingAlumni.name = newName;
-            if (newWorkplace) existingAlumni.workplace = newWorkplace;
-            if (linkedinUrl) existingAlumni.linkedinUrl = linkedinUrl;
-            if (newImage instanceof File) existingAlumni.image = path;
-            if (newPosition) existingAlumni.position = newPosition;
+        const existingDocument = await Alumni.findOne({ year: parseInt(year) });
+
+        if (existingDocument) {
+            const existingAlumni = existingDocument.alumni.find((alumni: {
+                name: string;
+                workplace: string;
+                position: string;
+                image: string;
+                linkedinUrl: string;
+            }) => alumni.name === name && alumni.workplace === workplace);
+
+            var path;
+
+            if (newImage instanceof File) {
+                const byteData = await newImage.arrayBuffer();
+                const buffer = Buffer.from(byteData);
+                const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
+                    cloudinary.uploader.upload_stream(
+                        { folder: `NewImages/alumni/${year}` },
+                        (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+                            if (error) {
+                                console.error('Error uploading image:', error);
+                                reject(error);
+                            } else {
+                                if (result) {
+                                    resolve(result);
+                                } else {
+                                    reject(new Error('Upload result is undefined.'));
+                                }
+                            }
+                        }
+                    ).end(buffer);
+                });
+                if (uploadResult) path = uploadResult.secure_url;
+            }
+
+
+            if (existingAlumni) {
+                if (newName) existingAlumni.name = newName;
+                if (newWorkplace) existingAlumni.workplace = newWorkplace;
+                if (linkedinUrl) existingAlumni.linkedinUrl = linkedinUrl;
+                if (newImage instanceof File) existingAlumni.image = path;
+                if (newPosition) existingAlumni.position = newPosition;
+            }
+
+            await existingDocument.save();
+
+            return NextResponse.json({ "msg": "Alumni data updated successfully", success: true });
+        } else {
+            return NextResponse.json({ "msg": "Alumni document not found", success: false });
         }
-
-        await existingDocument.save();
-
-        return NextResponse.json({ "msg": "Alumni data updated successfully", success: true });
-    } else {
-        return NextResponse.json({ "msg": "Alumni document not found", success: false });
     }
+    catch (error) {
+        console.error("Error processing request:", error);
+        return NextResponse.json({ "msg": "Internal server error", success: false });
+    }
+
 }

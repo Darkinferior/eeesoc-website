@@ -29,8 +29,4 @@ export async function POST(request: Request): Promise<NextResponse> {
         return NextResponse.json({ "msg": "couldn't add response", success: false });
     }
 
-
-
-
-
 }
