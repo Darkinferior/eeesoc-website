@@ -15,7 +15,7 @@ import clsx from 'clsx';
 export default function Home() {
   return (
     <div>
-      <section className="w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mt-10 mx-auto justify-start">
+      <section className="font-josephin w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mt-10 mx-auto justify-start">
         <div>
           <div className="flex gap-4 mt-4 mb-4">
             <Image
@@ -32,17 +32,10 @@ export default function Home() {
             />
           </div>
           <Reveal>
-            <h2 className={clsx('text-3xl font-bold', fontMono.variable)}>
-              Welcome to
-            </h2>
+            <h2 className="text-3xl font-bold ">Welcome to</h2>
           </Reveal>
           <Reveal>
-            <h1
-              className={clsx(
-                'text-4xl md:text-6xl font-black justify-start mt-4 pb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 font-sans',
-                fontSans.variable
-              )}
-            >
+            <h1 className="font-montserrat text-4xl md:text-6xl font-black justify-start mt-4 pb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
               Electrical and Electronics Engineering Society
             </h1>
           </Reveal>

@@ -63,18 +63,18 @@ export default function AboutPage() {
   ));
   return (
     <div>
-      <h1 className={title()}>About</h1>
+      <h1 className={title()}>About.</h1>
 
       <AboutDescription />
 
-      <div className="mt-8 mb-8 mx-auto flex-wrap flex gap-12 justify-center">
+      <div className="mt-16 mb-16 mx-auto flex-wrap flex gap-12 justify-center">
         <HowItBegan />
         <PresidentCard />
       </div>
       <div>
         <Card
           isBlurred
-          className="border-none bg-background/60 dark:bg-default-100/50 w-full mt-4 mb-4 justify-center py-4"
+          className="border-none bg-background/60 dark:bg-default-100/50 w-full mt-16 mb-16 justify-center py-4 transform hover:scale-105 transition-transform hover:shadow-[0_0px_60px_5px_rgba(0.3)] hover:shadow-cyan-500/50 "
           shadow="sm"
         >
           <CardHeader className="px-4 flex-col mt-8 mb-8">
@@ -92,8 +92,8 @@ export default function AboutPage() {
           </div>
         </Card>
       </div>
-      <h4 className="font-bold text-2xl mt-16 mb-8">Our Mentors</h4>
-      <div className="flex flex-auto gap-8 justify-center flex-wrap">
+      <h4 className="font-bold text-2xl mt-16 mb-16">Our Mentors</h4>
+      <div className="flex flex-auto gap-16 justify-center flex-wrap">
         {mentorCards}
       </div>
     </div>

@@ -1,6 +1,4 @@
-// AlumniCard.tsx
-import React from 'react';
-import Image from 'next/image'; // Import the Alumni type
+import { Image } from '@nextui-org/react';
 import styles from './Alumni.module.css';
 
 interface Alumni {
@@ -31,10 +29,10 @@ const AlumniCard: React.FC<AlumniCardProps> = ({ senior, year }) => {
             alt={senior.name}
             height={375}
             width={375}
-            className="w-full rounded"
+            className="w-full rounded z-0"
           />
           <div
-            className={`${styles.contentDetails} sm-hidden rounded xl:flex flex-col justify-center ${styles.fadeInBottom}`}
+            className={`${styles.contentDetails} sm-hidden rounded xl:flex flex-col justify-center z-10 ${styles.fadeInBottom}`}
           >
             <h3>{senior.name}</h3>
             <p>{senior.workplace ?? `${year - 4} PASS OUT`}</p>
