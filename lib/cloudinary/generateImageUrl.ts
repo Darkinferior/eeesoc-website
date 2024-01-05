@@ -1,6 +1,6 @@
 import { UploadApiResponse, UploadApiErrorResponse } from 'cloudinary';
 import { v2 as cloudinary } from 'cloudinary';
-import { connectToDb } from "@/lib/dbConnection/connect"
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
@@ -9,7 +9,6 @@ cloudinary.config({
 });
 
 export async function uploadImageToCloudinary(image: File, folder: string): Promise<string> {
-    await connectToDb();
 
     return new Promise<string>(async (resolve, reject) => {
         const byteData = await image.arrayBuffer();
