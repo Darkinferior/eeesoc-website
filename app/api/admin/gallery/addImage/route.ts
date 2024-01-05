@@ -1,12 +1,13 @@
 // necessary query parameters = []
 // optional query parameters = []
-// necessary data inputs from the form = [title, content, contentImage]
+// necessary data inputs from the form = [title, image]
 // optional data inputs from the form = []
 
 import { NextResponse } from 'next/server';
-import { Workshop } from "@/lib/models/workshop"
+import { Card } from "@/lib/models/gallery/card"
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+
 
 export async function POST(request: Request): Promise<NextResponse> {
     try {
@@ -14,31 +15,27 @@ export async function POST(request: Request): Promise<NextResponse> {
         const data = await request.formData();
 
         const title = data.get('title')?.toString();
-        const cardImage = data.get('cardImage')?.toString();
-        const content = data.get('content')?.toString();
+        const image = data.get('image')
 
-        const contentImage = data.get('contentImage')
-
-        if (!contentImage) {
+        if (!image) {
             return NextResponse.json({ "msg": "no file found (check for 'contentImage' key in body)", success: false });
         }
 
-        if (contentImage instanceof File) {
-            const folderName = `NewImages/workshops`
-            const path = await uploadImageToCloudinary(contentImage, folderName);
+        if (image instanceof File) {
+            const folderName = `NewImages/gallery`
+            const path = await uploadImageToCloudinary(image, folderName);
 
-            const newDocument = new Workshop({
+
+            const newDocument = new Card({
                 title: title,
-                cardImage: path,
-                contentImage: path,
-                content: content
+                url: path,
             });
             await newDocument.save();
 
-            return NextResponse.json({ "msg": "workshop added successfully", success: true });
+            return NextResponse.json({ "msg": "image added successfully", success: true });
         }
         else {
-            return NextResponse.json({ "msg": "couldn't add workshop", success: false });
+            return NextResponse.json({ "msg": "couldn't add image", success: false });
         }
     }
     catch (error) {
