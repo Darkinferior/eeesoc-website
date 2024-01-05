@@ -1,10 +1,9 @@
-// Reveal.tsx
 'use client';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation, easeIn } from 'framer-motion';
 
 interface Props {
-  children: React.ReactNode; // Change the type of children
+  children: React.ReactNode;
   width?: 'fit-content' | '100%';
 }
 
@@ -23,7 +22,6 @@ export const Reveal = ({ children, width = 'fit-content' }: Props) => {
 
   return (
     <div style={{ position: 'relative', width, overflow: 'hidden' }} ref={ref}>
-      {/* Wrap children with motion.div */}
       <motion.div
         variants={{
           hidden: { opacity: 0, y: 75 },

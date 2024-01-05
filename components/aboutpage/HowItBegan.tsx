@@ -1,5 +1,5 @@
 'use client';
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
+import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { Reveal } from '../Reveal';
 
 export const HowItBegan = () => {

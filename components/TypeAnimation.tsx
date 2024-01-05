@@ -1,7 +1,5 @@
-// TypeAnimationComponent.tsx
-'use client';
-import React, { useState, useEffect } from 'react';
-import { TypeAnimation } from 'react-type-animation'; // Replace with the actual import
+import { useState, useEffect } from 'react';
+import { TypeAnimation } from 'react-type-animation';
 
 interface TypeAnimationComponentProps {
   text: string;
@@ -12,24 +10,46 @@ const TypeAnimationComponent: React.FC<TypeAnimationComponentProps> = ({
 }) => {
   const [animationKey, setAnimationKey] = useState(0);
   let timeoutId: NodeJS.Timeout | undefined;
+  const [responsiveStyles, setResponsiveStyles] = useState({
+    height: '4em',
+    overflow: 'hidden',
+  });
 
   const handleSequenceEnd = () => {
     timeoutId = setTimeout(() => {
       setAnimationKey((prevKey) => prevKey + 1);
-    }, 3000); // 2-second delay before restarting the animation
+    }, 3000);
   };
 
-  // Cleanup function to clear the timeout when the component unmounts
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 640) {
+        setResponsiveStyles({ height: '5em', overflow: 'hidden' });
+      } else if (window.innerWidth >= 768) {
+        setResponsiveStyles({ height: '3em', overflow: 'hidden' });
+      } else if (window.innerWidth < 640) {
+        setResponsiveStyles({ height: '7em', overflow: 'hidden' });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
+      window.removeEventListener('resize', handleResize);
     };
   }, [timeoutId]);
 
   return (
-    <div className="font-black text-5xl">
+    <div
+      className="font-black text-5xl"
+      style={{
+        ...responsiveStyles,
+      }}
+    >
       <TypeAnimation
         key={animationKey}
         sequence={[text, handleSequenceEnd]}
@@ -46,11 +66,11 @@ const TypeAnimationComponent: React.FC<TypeAnimationComponentProps> = ({
         {`
           @keyframes changeColors {
             0%, 100% {
-                background-position: 0% 50%;
-              }
-              50% {
-                background-position: 100% 50%;
-              }
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
           }
         `}
       </style>

@@ -1,7 +1,4 @@
-import React from 'react';
-import { Image } from '@nextui-org/image';
-import { Card, CardHeader, CardBody } from '@nextui-org/card';
-import { Link } from '@nextui-org/link';
+import { Card, CardHeader, CardBody, Link, Image } from '@nextui-org/react';
 import { Reveal } from '../Reveal';
 
 interface TeamCardProps {

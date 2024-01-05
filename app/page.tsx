@@ -3,19 +3,16 @@ import { Link } from '@nextui-org/link';
 import { button as buttonStyles } from '@nextui-org/theme';
 import { Button } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
-import { title, subtitle } from '@/components/primitives';
 import AboutPage from './about/page';
 import { Reveal } from '@/components/Reveal';
 import ShuffleGrid from '@/components/ShuffleGrid';
 import Image from 'next/image';
 import TypeAnimationComponent from '@/components/TypeAnimation';
-import { fontMono, fontSans } from '@/config/fonts';
-import clsx from 'clsx';
 
 export default function Home() {
   return (
     <div>
-      <section className="font-josephin w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mt-10 mx-auto justify-start">
+      <section className="font-josephin w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mx-auto justify-start">
         <div>
           <div className="flex gap-4 mt-4 mb-4">
             <Image
@@ -71,11 +68,11 @@ export default function Home() {
         <ShuffleGrid />
       </section>
 
-      <section className="mt-32 mb-32 text-center" id="about">
+      <section className="mt-32 text-center " id="about">
         <TypeAnimationComponent text="Electrifying the Future, One Connection at a Time" />
       </section>
 
-      <section className="my-32 text-center" id="about">
+      <section className="mb-32 text-center" id="about">
         <AboutPage />
       </section>
       <section className="flex flex-col items-center gap-4 mt-8 mb-16">

@@ -1,6 +1,5 @@
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
-import { Image } from '@nextui-org/image';
-import { Link } from '@nextui-org/link';
+import { Card, CardHeader, CardBody, Image, Link } from '@nextui-org/react';
+
 import { Reveal } from '../Reveal';
 
 interface InterviewCardProps {

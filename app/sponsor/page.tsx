@@ -1,12 +1,16 @@
 import { title } from '@/components/primitives';
-import React from 'react';
-import { Card, CardBody, Link, Slider } from '@nextui-org/react';
-import { Image } from '@nextui-org/react';
-import { Button } from '@nextui-org/react';
-import { Divider } from '@nextui-org/react';
+import {
+  Card,
+  CardBody,
+  Link,
+  Image,
+  Button,
+  Divider,
+} from '@nextui-org/react';
 import CompanySlider from '@/components/sponsor/CompanySlider';
 import { siteConfig } from '@/config/site';
 import { Reveal } from '@/components/Reveal';
+import VertialTimeline from '@/components/sponsor/VertialTimeline';
 
 const SponsorPage = () => {
   return (
@@ -101,6 +105,9 @@ const SponsorPage = () => {
           </Reveal>
         </div>
         <CompanySlider />
+      </div>
+      <div className="mt-8 mb-8">
+        <VertialTimeline />
       </div>
     </div>
   );

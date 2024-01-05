@@ -1,8 +1,6 @@
-import { Reveal } from '@/components/Reveal';
 import ContactDetails from '@/components/contact/ContactDetails';
 import MailForm from '@/components/contact/MailForm';
 import { title } from '@/components/primitives';
-import { Input, Textarea } from '@nextui-org/react';
 
 export default function ContactPage() {
   return (
@@ -11,7 +9,7 @@ export default function ContactPage() {
 
       <h1 className="mt-4 font-semibold text-2xl">
         Have a project on mind? Want to collaborate with us? <br />
-        Don't hesistate to contact us. Let's have a talk together.
+        Don&apos;t hesistate to contact us. Let&apos;s have a talk together.
       </h1>
       <div className="flex flex-wrap justify-center">
         <MailForm />

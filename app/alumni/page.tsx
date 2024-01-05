@@ -3,22 +3,13 @@ import { useState, useEffect } from 'react';
 import AlumniCards from '@/components/alumni/AlumniCards';
 import { title } from '@/components/primitives';
 
-interface Alumni {
-  _id: string;
-  name: string;
-  workplace?: string;
-  position?: string;
-  image: string;
-  linkedinUrl?: string;
-}
-
 export default function AlumniPage() {
   const [alumniData, setAlumniData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/alumni');
+        const response = await fetch('/api/alumni');
         const data = await response.json();
         console.log(data.result);
         setAlumniData(data.result);

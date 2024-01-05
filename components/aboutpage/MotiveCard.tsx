@@ -1,7 +1,4 @@
-// DevelopmentCard.tsx
-
-import React from 'react';
-import { Card, CardHeader, CardBody } from '@nextui-org/card';
+import { Card, CardHeader, CardBody } from '@nextui-org/react';
 import { Reveal } from '../Reveal';
 
 interface DevelopmentCardProps {

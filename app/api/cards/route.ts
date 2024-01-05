@@ -8,9 +8,13 @@ import { Card } from "@/lib/models/gallery/card"
 
 
 export async function GET(request: Request) {
-
-    await connectToDb();
-    const cards = await Card.find();
-    return NextResponse.json({ cards: cards })
+    try {
+        await connectToDb();
+        const cards = await Card.find();
+        return NextResponse.json({ cards: cards })
+    } catch (error) {
+        console.error("Error processing request:", error);
+        return NextResponse.json({ "msg": "Internal server error", success: false });
+    }
 
 }

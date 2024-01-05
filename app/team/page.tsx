@@ -17,9 +17,7 @@ export default function TeamPage() {
   useEffect(() => {
     const fetchTeamMembers = async (year: string) => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/executiveBody?year=${year}`
-        );
+        const response = await fetch(`/api/executiveBody?year=${year}`);
         const data = await response.json();
         return data.result as Member[];
       } catch (error: any) {

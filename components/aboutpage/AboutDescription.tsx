@@ -1,6 +1,5 @@
 'use client';
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
-import { Image } from '@nextui-org/image';
+import { Card, CardBody, Image } from '@nextui-org/react';
 import { Reveal } from '../Reveal';
 
 export const AboutDescription = () => {

@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { title } from '@/components/primitives';
 import WorkshopItem from '@/components/workshop/WorkshopItem';
 import { Fragment } from 'react';
-import { Spinner } from '@nextui-org/react';
-import { Divider } from '@nextui-org/divider';
+import { Spinner, Divider } from '@nextui-org/react';
 import { Reveal } from '@/components/Reveal';
 
 export default function WorkshopPage() {
@@ -12,7 +11,7 @@ export default function WorkshopPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/workshops')
+    fetch('/api/workshops')
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -38,7 +37,7 @@ export default function WorkshopPage() {
           </p>
         </Reveal>
       </section>
-      <Divider className="mt-8" />
+      <Divider className="mt-8 h-1 bg-gradient-to-r from-cyan-500 to-blue-500" />
 
       <div className="flex flex-col gap-5 pb-20">
         {loading ? (
@@ -49,7 +48,9 @@ export default function WorkshopPage() {
               <Fragment key={workshop._id}>
                 <WorkshopItem index={index} workshop={workshop} />
 
-                {index !== workshopsList.length - 1 && <Divider />}
+                {index !== workshopsList.length - 1 && (
+                  <Divider className="h-1 bg-gradient-to-r from-cyan-500 to-blue-500" />
+                )}
               </Fragment>
             ))}
           </div>

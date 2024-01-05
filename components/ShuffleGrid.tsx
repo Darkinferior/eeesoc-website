@@ -2,6 +2,11 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
+interface Square {
+  id: number;
+  src: string;
+}
+
 const shuffle = (array: any) => {
   let currentIndex = array.length,
     randomIndex;
@@ -18,7 +23,6 @@ const shuffle = (array: any) => {
 
   return array;
 };
-
 const squareData = [
   {
     id: 1,
@@ -87,7 +91,7 @@ const squareData = [
 ];
 
 const generateSquares = () => {
-  return shuffle(squareData).map((sq) => (
+  return shuffle(squareData).map((sq: Square) => (
     <motion.div
       key={sq.id}
       layout
@@ -127,7 +131,7 @@ const ShuffleGrid = () => {
 
   return (
     <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
-      {squares.map((sq) => sq)}
+      {squares.map((sq: Square) => sq)}
     </div>
   );
 };

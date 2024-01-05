@@ -9,9 +9,15 @@ import { President } from "@/lib/models/president"
 
 
 export async function GET(request: Request) {
+    try {
+        await connectToDb();
+        const data = await President.find()
 
-    await connectToDb();
-    const data = await President.find()
+        return NextResponse.json({ result: data })
+    } catch (error) {
+        console.error("Error processing request:", error);
+        return NextResponse.json({ "msg": "Internal server error", success: false });
+    }
 
-    return NextResponse.json({ result: data })
+
 }

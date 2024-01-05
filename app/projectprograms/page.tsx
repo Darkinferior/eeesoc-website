@@ -1,10 +1,10 @@
-// page.tsx
 'use client';
 import { useState, useEffect } from 'react';
 import { title } from '@/components/primitives';
 import ProgramCard from '@/components/projectprogram/ProgramCard';
 import { Spinner } from '@nextui-org/react';
 import { Reveal } from '@/components/Reveal';
+
 interface Project {
   _id: string;
   name: string;
@@ -47,7 +47,7 @@ export default function ProjectProgramPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/projects');
+        const response = await fetch('/api/projects');
         const data: ProjectListResponse = await response.json();
 
         setProgramData(data);
