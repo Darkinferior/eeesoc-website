@@ -19,11 +19,6 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 
-// necessary query parameters = [year, name, workplace]
-// optional query parameters = []
-// necessary data inputs from the form = []
-// optional data inputs from the form = [ name, workplace, position, linkedinUrl, image]
-
 interface Alumni {
   _id: string;
   name: string;
