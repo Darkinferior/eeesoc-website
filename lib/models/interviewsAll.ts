@@ -15,4 +15,4 @@ const interviewsAllSchema = new mongoose.Schema({
     ]
 }
 );
-export const InterviewsAll = mongoose.models.interviewsAlltest || mongoose.model("interviewsAlltest", interviewsAllSchema)
+export const InterviewsAll = mongoose.models.interviewsAll || mongoose.model("interviewsAll", interviewsAllSchema)

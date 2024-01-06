@@ -4,21 +4,11 @@
 // optional data inputs from the form = [ name, company, image, mediumLink]
 
 
-
-import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
-import { UploadApiErrorResponse } from 'cloudinary';
 import { NextResponse } from 'next/server';
 import { InterviewsAll } from "@/lib/models/interviewsAll";
-
 import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
 
-          
-
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
-    api_key: process.env.CLOUDINARY_API_KEY as string,
-    api_secret: process.env.CLOUDINARY_API_SECRET as string
-});
 
 export async function PATCH(request: Request): Promise<NextResponse> {
     try {
@@ -54,26 +44,8 @@ export async function PATCH(request: Request): Promise<NextResponse> {
             var path;
 
             if (newImage instanceof File) {
-                const byteData = await newImage.arrayBuffer();
-                const buffer = Buffer.from(byteData);
-                const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
-                    cloudinary.uploader.upload_stream(
-                        { folder: `NewImages/interviews/${year}` },
-                        (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
-                            if (error) {
-                                console.error('Error uploading image:', error);
-                                reject(error);
-                            } else {
-                                if (result) {
-                                    resolve(result);
-                                } else {
-                                    reject(new Error('Upload result is undefined.'));
-                                }
-                            }
-                        }
-                    ).end(buffer);
-                });
-                if (uploadResult) path = uploadResult.secure_url;
+                const folderName = `NewImages/interviews/${year}`
+                path = await uploadImageToCloudinary(newImage, folderName);
             }
 
 
