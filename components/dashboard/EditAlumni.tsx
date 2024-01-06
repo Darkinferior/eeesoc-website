@@ -71,7 +71,7 @@ const EditAlumni: React.FC = () => {
 
   const fetchAlumnis = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/alumni");
+      const response = await fetch("/api/alumni");
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.result)) {
@@ -94,13 +94,10 @@ const EditAlumni: React.FC = () => {
     });
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/admin/alumni/addAlumni",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/admin/alumni/addAlumni", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         fetchAlumnis();
@@ -135,7 +132,7 @@ const EditAlumni: React.FC = () => {
     });
 
     try {
-      const url = `http://localhost:3000/api/admin/alumni/updateAlumni?year=${alumniToEdit[1]}&name=${alumniToEdit[0][0].name}&workplace=${alumniToEdit[0][0].workplace}`;
+      const url = `/api/admin/alumni/updateAlumni?year=${alumniToEdit[1]}&name=${alumniToEdit[0][0].name}&workplace=${alumniToEdit[0][0].workplace}`;
       const response = await fetch(url, {
         method: "PATCH",
         body: formData,
@@ -201,7 +198,7 @@ const EditAlumni: React.FC = () => {
       ])
       .filter((alumni) => alumni[0].length > 0)[0];
     try {
-      const url = `http://localhost:3000/api/admin/alumni/deleteAlumni?year=${alumniToEdit[1]}&name=${alumniToEdit[0][0].name}&workplace=${alumniToEdit[0][0].workplace}`;
+      const url = `/api/admin/alumni/deleteAlumni?year=${alumniToEdit[1]}&name=${alumniToEdit[0][0].name}&workplace=${alumniToEdit[0][0].workplace}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
