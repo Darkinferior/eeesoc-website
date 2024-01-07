@@ -1,7 +1,6 @@
 // EditAlumni.tsx
 
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import {
   Modal,
   ModalContent,
@@ -9,12 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
-  Checkbox,
-  Image,
   Input,
-  Link,
-  Textarea,
   Card,
   CardHeader,
 } from "@nextui-org/react";
@@ -39,7 +33,6 @@ interface AlumniData {
 }
 
 const EditAlumni: React.FC = () => {
-  const router = useRouter();
   const [alumnis, setAlumnis] = useState<any[]>([]);
   const [alumniData, setAlumniData] = useState<AlumniData>({
     name: "",

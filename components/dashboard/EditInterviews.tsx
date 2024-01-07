@@ -1,7 +1,6 @@
 // EditInterviews.tsx
 
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import {
   Modal,
   ModalContent,
@@ -9,12 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
-  Checkbox,
-  Image,
   Input,
-  Link,
-  Textarea,
   Card,
   CardHeader,
 } from "@nextui-org/react";
@@ -36,13 +30,7 @@ interface InterviewData {
   image: File | null;
 }
 
-// necessary query parameters = [year, name, company]
-// optional query parameters = []
-// necessary data inputs from the form = []
-// optional data inputs from the form = [ name, company, image, mediumLink]
-
 const EditInterviews: React.FC = () => {
-  const router = useRouter();
   const [interviews, setInterviews] = useState<any[]>([]);
   const [InterviewData, setInterviewData] = useState<InterviewData>({
     name: "",

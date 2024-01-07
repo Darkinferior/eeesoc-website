@@ -1,7 +1,6 @@
 // EditGallery.tsx
 
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import {
   Modal,
   ModalContent,
@@ -9,12 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
-  Checkbox,
-  Image,
   Input,
-  Link,
-  Textarea,
   Card,
   CardHeader,
 } from "@nextui-org/react";
@@ -31,7 +25,6 @@ interface GalleryData {
 }
 
 const EditGallery: React.FC = () => {
-  const router = useRouter();
   const [gallery, setGallery] = useState<any[]>([]);
   const [galleryData, setGalleryData] = useState<GalleryData>({
     title: "",
