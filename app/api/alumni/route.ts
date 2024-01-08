@@ -16,7 +16,7 @@ export async function GET(request: Request) {
         const year = url.searchParams.get("year")
         var data
         if (year) {
-            data = await Alumni.find({ year: parseInt(year) }).sort({ year: -1 });
+            data = await Alumni.find({ year: parseInt(year) });
 
         }
         else {
