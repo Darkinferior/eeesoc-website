@@ -1,81 +1,88 @@
-'use client';
-import { title } from '@/components/primitives';
-import { useState, useEffect } from 'react';
-import DOMPurify from 'dompurify';
-import InterviewCard from '@/components/interviews/InterviewCard';
-import { Spinner } from '@nextui-org/react';
+"use client";
+
+import { title } from "@/components/primitives";
+import { useState, useEffect } from "react";
+import InterviewCard from "@/components/interviews/InterviewCard";
+import { Spinner } from "@nextui-org/react";
+
+interface Interviews {
+  _id: string;
+  name: string;
+  company: string;
+  image: string;
+  mediumLink?: string;
+}
 
 interface ApiResponse {
-  title: string;
-  link: string;
-  content: string;
+  _id: string;
+  year: string;
+  interviews: Interviews[];
 }
 
 export default function InterviewsPage() {
-  const [apiData, setApiData] = useState<ApiResponse[] | null>(null);
+  const [apiData, setApiData] = useState<ApiResponse[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const myHeaders = new Headers();
-      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append("Content-Type", "application/json");
 
       const requestOptions: RequestInit = {
-        method: 'get',
+        method: "get",
         headers: myHeaders,
-        redirect: 'follow',
+        redirect: "follow",
       };
 
       try {
-        const response = await fetch(
-          'https://v1.nocodeapi.com/cropoder/medium/lMTiDFdrQqoikOOI',
-          requestOptions
-        );
+        const response = await fetch("/api/interviewsAll", requestOptions);
 
         if (response.ok) {
-          const resultJson: ApiResponse[] = await response.json();
-          setApiData(resultJson);
+          const resultJson = await response.json();
+          setApiData(resultJson.result);
         } else {
           console.error(
-            'Error fetching data:',
+            "Error fetching data:",
             response.status,
             response.statusText
           );
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, []);
+
   return (
     <div>
       <h1 className={title()}>Interviews</h1>
-      <div className="mt-16 ">
+      <div className='mt-16 '>
         {apiData !== null ? (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-            {apiData.map((item, index) => {
-              const sanitizedContent =
-                item.content && DOMPurify.sanitize(item.content);
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(
-                sanitizedContent || '',
-                'text/html'
-              );
-              const imageElement = doc.querySelector('img');
-
-              return (
-                <InterviewCard
-                  key={index}
-                  title={item.title}
-                  link={item.link}
-                  image={imageElement ? imageElement.src : ''}
-                />
-              );
-            })}
+          <div className='m-6'>
+            {apiData.map((yearWiseInterviews) => (
+              <div key={yearWiseInterviews._id}>
+                <h3 className='font-semibold text-3xl mb-2'>
+                  {yearWiseInterviews.year}
+                </h3>
+                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
+                  {yearWiseInterviews.interviews.map(
+                    (interview: Interviews) => (
+                      <InterviewCard
+                        key={interview._id}
+                        name={interview.name}
+                        company={interview.company}
+                        link={interview.mediumLink ? interview.mediumLink : ""}
+                        image={interview.image ? interview.image : ""}
+                      />
+                    )
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
-          <Spinner size="lg" className="mt-32" />
+          <Spinner size='lg' className='mt-32' />
         )}
       </div>
     </div>
