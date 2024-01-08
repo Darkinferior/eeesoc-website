@@ -36,6 +36,9 @@ export async function DELETE(request: Request): Promise<NextResponse> {
             if (existingInterviewIndex !== -1) {
                 existingDocument.interviews.splice(existingInterviewIndex, 1);
                 await existingDocument.save();
+                if (existingDocument.alumni.length === 0) {
+                    await InterviewsAll.deleteOne({ _id: existingDocument._id });
+                }
                 return NextResponse.json({ "msg": "interview data deleted successfully", success: true });
             }
             else {
