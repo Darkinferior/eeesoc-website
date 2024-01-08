@@ -85,11 +85,15 @@ export async function DELETE(request: Request): Promise<NextResponse> {
             }) => alumni.name === name && alumni.workplace === workplace);
 
             if (existingAlumniIndex !== -1) {
-                existingDocument.alumni.splice(existingAlumniIndex, 1);
-                await existingDocument.save();
-                if (existingDocument.alumni.length === 0) {
+                if (existingDocument.alumni.length === 1) {
                     await Alumni.deleteOne({ _id: existingDocument._id });
                 }
+                else{
+                    existingDocument.alumni.splice(existingAlumniIndex, 1);
+                    await existingDocument.save();
+                }
+
+
                 return NextResponse.json({ "msg": "Alumni data deleted successfully", success: true });
             }
             else {

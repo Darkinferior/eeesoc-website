@@ -34,10 +34,12 @@ export async function DELETE(request: Request): Promise<NextResponse> {
             }) => interview.name === name && interview.company === company);
 
             if (existingInterviewIndex !== -1) {
-                existingDocument.interviews.splice(existingInterviewIndex, 1);
-                await existingDocument.save();
-                if (existingDocument.alumni.length === 0) {
+                if (existingDocument.alumni.length === 1) {
                     await InterviewsAll.deleteOne({ _id: existingDocument._id });
+                }
+                else{
+                    existingDocument.interviews.splice(existingInterviewIndex, 1);
+                    await existingDocument.save();
                 }
                 return NextResponse.json({ "msg": "interview data deleted successfully", success: true });
             }
