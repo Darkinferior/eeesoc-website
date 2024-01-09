@@ -4,7 +4,6 @@
 
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
@@ -20,15 +19,10 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
 =======
-=======
->>>>>>> Stashed changes
 import { NextResponse } from 'next/server';
 import { InterviewsAll } from "@/lib/models/interviewsAll"
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 
 export async function POST(request: Request): Promise<NextResponse> {
@@ -51,13 +45,8 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (image instanceof File) {
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       const byteData = await image.arrayBuffer();
       const buffer = Buffer.from(byteData);
-=======
-      const folderName = `NewImages/interviews/${year}`
-      const path = await uploadImageToCloudinary(image, folderName);
->>>>>>> Stashed changes
 =======
       const folderName = `NewImages/interviews/${year}`
       const path = await uploadImageToCloudinary(image, folderName);
@@ -67,7 +56,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       if (year) {
         existingDocument = await InterviewsAll.findOne({ year: parseInt(year) });
       }
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
       const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
@@ -94,8 +82,6 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       if (uploadResult) path = uploadResult.secure_url;
 
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       if (existingDocument) {

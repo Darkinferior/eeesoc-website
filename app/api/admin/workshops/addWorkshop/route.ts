@@ -4,7 +4,6 @@
 // optional data inputs from the form = []
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
 import { NextResponse } from 'next/server';
@@ -23,12 +22,6 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY as string,
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
-=======
-import { NextResponse } from 'next/server';
-import { Workshop } from "@/lib/models/workshop"
-import { connectToDb } from "@/lib/dbConnection/connect"
-import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
->>>>>>> Stashed changes
 
 export async function POST(request: Request): Promise<NextResponse> {
     try {
@@ -46,7 +39,6 @@ export async function POST(request: Request): Promise<NextResponse> {
         }
 
         if (contentImage instanceof File) {
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             const byteData = await contentImage.arrayBuffer();
             const buffer = Buffer.from(byteData);
@@ -71,10 +63,6 @@ export async function POST(request: Request): Promise<NextResponse> {
             var path;
 
             if (uploadResult) path = uploadResult.secure_url;
-=======
-            const folderName = `NewImages/workshops`
-            const path = await uploadImageToCloudinary(contentImage, folderName);
->>>>>>> Stashed changes
 =======
             const folderName = `NewImages/workshops`
             const path = await uploadImageToCloudinary(contentImage, folderName);

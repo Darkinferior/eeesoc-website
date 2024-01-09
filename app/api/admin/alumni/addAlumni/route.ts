@@ -4,7 +4,6 @@
 
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
@@ -18,13 +17,6 @@ import { NextResponse } from 'next/server';
 import { Alumni } from "@/lib/models/alumni"
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
-=======
-import { NextResponse } from 'next/server';
-import { Alumni } from "@/lib/models/alumni"
-import { connectToDb } from "@/lib/dbConnection/connect"
-import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
-
->>>>>>> Stashed changes
 
 >>>>>>> Stashed changes
 
@@ -55,19 +47,15 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (image instanceof File) {
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       const byteData = await image.arrayBuffer();
       const buffer = Buffer.from(byteData);
 
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       var existingDocument
       if (year) {
         existingDocument = await Alumni.findOne({ year: parseInt(year) });
       }
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
       const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
@@ -93,11 +81,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       var path;
 
       if (uploadResult) path = uploadResult.secure_url;
-=======
-      const folderName = `NewImages/alumni/${year}`
-      const path = await uploadImageToCloudinary(image, folderName);
-
->>>>>>> Stashed changes
 =======
       const folderName = `NewImages/alumni/${year}`
       const path = await uploadImageToCloudinary(image, folderName);
