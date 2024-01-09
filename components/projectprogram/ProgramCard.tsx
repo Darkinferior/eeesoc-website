@@ -1,8 +1,6 @@
-// ProgramCard.tsx
 import React from 'react';
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
+import { Card, CardHeader, CardBody, Tabs, Tab } from '@nextui-org/react';
 import ProjectCard from '@/components/projectprogram/ProjectCard';
-import { Tabs, Tab } from '@nextui-org/react';
 import { Reveal } from '../Reveal';
 
 interface ProjectCardProps {

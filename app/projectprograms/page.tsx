@@ -1,10 +1,10 @@
-// page.tsx
 'use client';
 import { useState, useEffect } from 'react';
 import { title } from '@/components/primitives';
 import ProgramCard from '@/components/projectprogram/ProgramCard';
 import { Spinner } from '@nextui-org/react';
 import { Reveal } from '@/components/Reveal';
+
 interface Project {
   _id: string;
   name: string;
@@ -47,7 +47,7 @@ export default function ProjectProgramPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/projects');
+        const response = await fetch('/api/projects');
         const data: ProjectListResponse = await response.json();
 
         setProgramData(data);
@@ -96,16 +96,13 @@ export default function ProjectProgramPage() {
       <div>
         <Reveal>
           <h2 className="mt-16 text-lg text-justify">
-            In collaboration with Mathworks, the Society conducts two major
-            project programmes for First and Second-year students in every
-            academic session. They are mentored by their seniors who constantly
-            monitor the progress and provide technical guidance. Some of the
-            best projects done by EEE students have, in fact, been done under
-            the umbrella of these project programmes, for some years now these
-            projects have filled the resumes of some of the best-placed students
-            in our department. Many of these projects had not been attempted
-            before and the knowledge that has been accumulated through research
-            and hard work is being passed on to the juniors too.
+            The society conducts 2 major project programs Summer Project Program
+            (SPP) and Summer Mentorship Program (SMP) for First and Second-year
+            students in every academic session. In these programs they get
+            technical guidance from their seniors. In these programmes/projects
+            there are projects related to electric core, software and
+            consultancy. These projects have filled the resumes of some of the
+            best-placed students in our department.
           </h2>
         </Reveal>
       </div>

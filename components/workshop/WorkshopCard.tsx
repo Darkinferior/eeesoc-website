@@ -1,7 +1,4 @@
 import { Image } from '@nextui-org/react';
-interface WorkshopApiResponse {
-  result: Workshop[];
-}
 
 interface Workshop {
   _id: string;

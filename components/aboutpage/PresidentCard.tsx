@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
+import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { Reveal } from '../Reveal';
 
 interface President {
@@ -15,7 +15,7 @@ export const PresidentCard = () => {
   useEffect(() => {
     const fetchPresidents = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/presidents');
+        const response = await fetch('/api/presidents');
         const data = await response.json();
         setPresidents(data.result.slice(0, 8) as President[]);
       } catch (error: any) {

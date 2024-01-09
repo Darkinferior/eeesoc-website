@@ -1,4 +1,4 @@
-export default function EventLayout({
+export default function WorkshopLayout({
   children,
 }: {
   children: React.ReactNode;

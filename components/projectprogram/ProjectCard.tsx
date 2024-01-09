@@ -1,8 +1,4 @@
 'use client';
-import { Card, CardHeader, CardBody } from '@nextui-org/card';
-import { Image } from '@nextui-org/image';
-import { Button } from '@nextui-org/button';
-import { Link, ScrollShadow } from '@nextui-org/react';
 import {
   Modal,
   ModalContent,
@@ -10,8 +6,14 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Image,
+  Button,
+  Link,
+  ScrollShadow,
+  Card,
+  CardBody,
+  CardHeader,
 } from '@nextui-org/react';
-import { Reveal } from '../Reveal';
 
 interface ProjectCardProps {
   name: string;
@@ -33,10 +35,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   demoLink,
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  // console.log('Name=' + name);
-  // console.log('Title=' + title);
-  // console.log('Description=' + description);
-  // console.log('reportlink=' + reportLink);
 
   return (
     <Card

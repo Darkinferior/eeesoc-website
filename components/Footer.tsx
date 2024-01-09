@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import { IconEmail, LocationIcon } from './icons';
-import { Link } from '@nextui-org/link';
-import { Divider } from '@nextui-org/react';
+import { IconEmail } from './icons';
+import { Link, Divider } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
-import { Reveal } from './Reveal';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -17,7 +16,6 @@ export default function Footer() {
             <h3 className="mb-4 text-xl font-bold">Find us here</h3>
 
             <address className="flex gap-1">
-              <LocationIcon className="ml-4" />{' '}
               <Link
                 color="foreground"
                 href={siteConfig.links.location}
@@ -68,7 +66,7 @@ export default function Footer() {
       </div>
       <Divider />
       <div className="flex items-center justify-center w-full py-5 tracking-widest text-center px-8">
-        Created with 💖 by Shivesh, Aditi, Ved and Ankush | Copyright &#169;{' '}
+        Created with 💖 by Shivesh, Aditi, and Ved | Copyright &#169;{' '}
         {currentYear}
       </div>
     </div>

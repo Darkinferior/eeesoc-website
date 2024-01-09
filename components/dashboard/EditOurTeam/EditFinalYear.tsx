@@ -13,10 +13,6 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 
-// necessary query parameters = [ id ]
-// optional query parameters = []
-// necessary data inputs from the form = []
-// optional data inputs from the form = [ name, linkedInUrl, EmailID, designation, facebookUrl, instagramUrl, image]
 interface FinalYear {
   _id: string;
   name: string;

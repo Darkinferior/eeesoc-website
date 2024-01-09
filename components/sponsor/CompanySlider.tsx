@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import './CompanySlider.css'; // Import the CSS file
+import './CompanySlider.css';
 import { Image } from '@nextui-org/image';
 
 function CompanySlider() {

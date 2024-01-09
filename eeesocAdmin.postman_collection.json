@@ -36,7 +36,7 @@
 						},
 						{
 							"key": "year",
-							"value": "year",
+							"value": "2029",
 							"type": "text"
 						},
 						{
@@ -47,7 +47,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/admin/alumni/addAlumni?year=year&prevName=prevName&prevWorkplace=prevWorkplace",
+					"raw": "http://localhost:3000/api/admin/alumni/addAlumni",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -58,20 +58,6 @@
 						"admin",
 						"alumni",
 						"addAlumni"
-					],
-					"query": [
-						{
-							"key": "year",
-							"value": "year"
-						},
-						{
-							"key": "prevName",
-							"value": "prevName"
-						},
-						{
-							"key": "prevWorkplace",
-							"value": "prevWorkplace"
-						}
 					]
 				}
 			},
@@ -87,7 +73,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/admin/alumni/deleteAlumni",
+					"raw": "http://localhost:3000/api/admin/alumni/deleteAlumni?year=year&name=name&workplace=workplace",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -98,6 +84,20 @@
 						"admin",
 						"alumni",
 						"deleteAlumni"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "year"
+						},
+						{
+							"key": "name",
+							"value": "name"
+						},
+						{
+							"key": "workplace",
+							"value": "workplace"
+						}
 					]
 				}
 			},
@@ -111,11 +111,6 @@
 				"body": {
 					"mode": "formdata",
 					"formdata": [
-						{
-							"key": "year",
-							"value": "year",
-							"type": "text"
-						},
 						{
 							"key": "name",
 							"value": "name",
@@ -144,7 +139,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/admin/alumni/updateAlumni?year=year&prevName=prevName&prevWorkplace=prevWorkplace",
+					"raw": "http://localhost:3000/api/admin/alumni/updateAlumni?year=year&name=name&workplace=workplace",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -162,12 +157,12 @@
 							"value": "year"
 						},
 						{
-							"key": "prevName",
-							"value": "prevName"
+							"key": "name",
+							"value": "name"
 						},
 						{
-							"key": "prevWorkplace",
-							"value": "prevWorkplace"
+							"key": "workplace",
+							"value": "workplace"
 						}
 					]
 				}
@@ -938,6 +933,416 @@
 						{
 							"key": "id",
 							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMentor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "designation",
+							"value": "designation",
+							"type": "text"
+						},
+						{
+							"key": "department",
+							"value": "department",
+							"type": "text"
+						},
+						{
+							"key": "areasOfInterest",
+							"value": "a,b",
+							"type": "text"
+						},
+						{
+							"key": "profileLink",
+							"value": "profileLink",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/mentors/addMentor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"mentors",
+						"addMentor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMentor",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "designation",
+							"value": "designation",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "department",
+							"value": "department",
+							"type": "text"
+						},
+						{
+							"key": "areasOfInterest",
+							"value": "a,b",
+							"type": "text"
+						},
+						{
+							"key": "profileLink",
+							"value": "link",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/mentors/updateMentor?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"mentors",
+						"updateMentor"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMentor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/mentors/deleteMentor?id=65953414d480b2969a27fefe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"mentors",
+						"deleteMentor"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "65953414d480b2969a27fefe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPresident",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "tenure",
+							"value": "tenure",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/presidents/addPresident",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"presidents",
+						"addPresident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePresident",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "nameup",
+							"type": "text"
+						},
+						{
+							"key": "tenure",
+							"value": "tenure",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/presidents/updatePresident?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"presidents",
+						"updatePresident"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePresident",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/presidents/deletePresident?id=65953c56d480b2969a27ff14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"presidents",
+						"deletePresident"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "65953c56d480b2969a27ff14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addInterview",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "cpmpany",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "mediumLink",
+							"value": "mediumLink",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "2029",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/interviewsAll/addInterview",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"interviewsAll",
+						"addInterview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateInterview",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "namenew",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "company",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "mediumLink",
+							"value": "mediumLink",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "year",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/interviewsAll/updateInterview?year=2029&name=name&company=company",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"interviewsAll",
+						"updateInterview"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2029"
+						},
+						{
+							"key": "name",
+							"value": "name"
+						},
+						{
+							"key": "company",
+							"value": "company"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteInterview",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/interviewsAll/deleteInterview?year=2029&name=namenew&company=company",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"interviewsAll",
+						"deleteInterview"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2029"
+						},
+						{
+							"key": "name",
+							"value": "namenew"
+						},
+						{
+							"key": "company",
+							"value": "company"
 						}
 					]
 				}

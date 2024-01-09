@@ -6,7 +6,6 @@ import EditOurTeam from "@/components/dashboard/EditOurTeam";
 import EditAlumni from "@/components/dashboard/EditAlumni";
 import EditInterviews from "@/components/dashboard/EditInterviews";
 import EditGallery from "@/components/dashboard/EditGallery";
-import EditSponsorUs from "@/components/dashboard/EditSponsorUs";
 import EditHome from "@/components/dashboard/EditHome";
 import EditProjectPrograms from "@/components/dashboard/EditProjectPrograms";
 
@@ -40,11 +39,6 @@ const DashboardPage = () => {
       id: "gallery",
       label: "Gallery",
     },
-
-    {
-      id: "sponsor",
-      label: "Sponsor Us",
-    },
   ];
   const renderTabContent = (tabId: string) => {
     switch (tabId) {
@@ -62,8 +56,6 @@ const DashboardPage = () => {
         return <EditInterviews />;
       case "gallery":
         return <EditGallery />;
-      case "sponsor":
-        return <EditSponsorUs />;
       default:
         return null;
     }
