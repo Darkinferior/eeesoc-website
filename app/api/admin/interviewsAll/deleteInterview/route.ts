@@ -34,7 +34,7 @@ export async function DELETE(request: Request): Promise<NextResponse> {
             }) => interview.name === name && interview.company === company);
 
             if (existingInterviewIndex !== -1) {
-                if (existingDocument.alumni.length === 1) {
+                if (existingDocument.interviews.length === 1) {
                     await InterviewsAll.deleteOne({ _id: existingDocument._id });
                 }
                 else{
