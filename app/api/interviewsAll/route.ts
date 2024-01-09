@@ -13,7 +13,7 @@ export async function GET(request: Request) {
         let data;
 
         if (year) {
-            data = await InterviewsAll.find({ year: parseInt(year) }).sort({ year: -1 });
+            data = await InterviewsAll.find({ year: parseInt(year) });
         } else {
             data = await InterviewsAll.find().sort({ year: -1 });
         }

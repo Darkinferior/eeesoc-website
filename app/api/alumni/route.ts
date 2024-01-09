@@ -16,11 +16,11 @@ export async function GET(request: Request) {
         const year = url.searchParams.get("year")
         var data
         if (year) {
-            data = await Alumni.find({ year: parseInt(year) })
+            data = await Alumni.find({ year: parseInt(year) });
 
         }
         else {
-            data = await Alumni.find()
+            data = await Alumni.find().sort({ year: -1 });
         }
         return NextResponse.json({ result: data })
     } catch (error) {
