@@ -1,9 +1,12 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react';
 
 const EditPresidents = () => {
   return <div>EditPresidents</div>;
 =======
+=======
+>>>>>>> Stashed changes
 // EditPresidents.tsx
 
 import React, { useState, useEffect, ChangeEvent } from "react";
@@ -279,6 +282,9 @@ const EditPresidents: React.FC = () => {
       </Modal>
     </div>
   );
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };
 

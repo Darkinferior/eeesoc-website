@@ -1,16 +1,22 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 'use client';
 import { ChangeEvent, useState } from 'react';
 import { Input, Textarea, Button } from '@nextui-org/react';
 import { Resend } from 'resend';
 import { RiLoader2Fill } from 'react-icons/ri';
 =======
+=======
+>>>>>>> Stashed changes
 "use client";
 import { ChangeEvent, useState } from "react";
 import { Input, Textarea } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { RiLoader2Fill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 export default function MailForm() {

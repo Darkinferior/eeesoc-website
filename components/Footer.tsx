@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 import Image from 'next/image';
 import { IconEmail } from './icons';
 import { Link, Divider } from '@nextui-org/react';
+=======
+import { IconEmail } from './icons';
+import { Link, Divider, Image } from '@nextui-org/react';
+>>>>>>> Stashed changes
 import { siteConfig } from '@/config/site';
 
 export default function Footer() {
@@ -33,7 +38,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center justify-center gap-6 mb-4 col-span-1 mx-8 sm:mx-4 lg:mx-auto">
             <Image
-              src="/bit-mesra-logo.png"
+              src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819982/logos/bit-mesra-logo.png"
               alt="bit logo"
               width={75}
               height={75}
@@ -45,7 +50,7 @@ export default function Footer() {
               </h1>
             </div>
             <Image
-              src="/eeesoc-logo.png"
+              src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819764/logos/eeesoc-logo.png"
               alt="eeesoc logo"
               width={75}
               height={75}

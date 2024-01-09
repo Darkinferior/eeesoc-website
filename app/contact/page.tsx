@@ -1,4 +1,8 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+'use client';
+>>>>>>> Stashed changes
 =======
 'use client';
 >>>>>>> Stashed changes

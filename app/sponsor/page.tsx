@@ -31,7 +31,7 @@ const SponsorPage = () => {
                 className="object-cover aspect-video"
                 height="100%"
                 shadow="md"
-                src="https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?q=80&w=1832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819237/sponsor-us/sponsor.jpg"
                 width="100%"
               />
             </div>
@@ -80,6 +80,7 @@ const SponsorPage = () => {
         <Reveal>
           <div className="text-justify mt-8 text-lg ">
             <li className="my-4">
+<<<<<<< Updated upstream
               To tap into the latest research and innovations: The EEE Society
               is known for its active research and innovation culture. By
               collaborating with our Society, companies can gain access to the
@@ -105,6 +106,34 @@ const SponsorPage = () => {
               companies can play a pivotal role in nurturing student potential
               and contributing to the cultivation of a highly skilled and
               exceptionally qualified workforce.
+=======
+              <strong>To tap into the latest research and innovations:</strong>{' '}
+              The EEE Society is known for its active research and innovation
+              culture. By collaborating with our Society, companies can gain
+              access to the latest research and innovations in the field of
+              engineering.
+            </li>
+            <li className="my-4">
+              <strong>To build brand awareness and goodwill:</strong> A
+              collaboration with the EEE Society can help companies build brand
+              awareness and goodwill among the engineering community.
+            </li>
+            <li className="my-4">
+              <strong>Access to a talented pool of students:</strong> EEESoc
+              serves as a talent pool for the brightest minds in electrical and
+              electronic engineering. Sponsoring us provides your organization
+              with direct access to a network of motivated and skilled
+              individuals who could be the future leaders of the industry.
+            </li>
+            <li className="my-4">
+              <strong>Opportunity to give back to the community:</strong> By
+              collaborating with the EEE Society, companies can give back to the
+              engineering community and help to develop the next generation of
+              engineers. Through a dynamic partnership with our Society,
+              forward-thinking companies can play a pivotal role in nurturing
+              student potential and contributing to the cultivation of a highly
+              skilled and exceptionally qualified workforce.
+>>>>>>> Stashed changes
             </li>
           </div>
         </Reveal>
@@ -119,7 +148,18 @@ const SponsorPage = () => {
             </h1>
           </Reveal>
         </div>
-        <CompanySlider />
+        <div
+          className="xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-md max-w-md overflow-hidden"
+          style={{
+            maskImage:
+              'linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 10%, hsl(0 0% 0% / 1) 90%, hsl(0 0% 0% / 0)',
+          }}
+        >
+          <CompanySlider />
+        </div>
+      </div>
+      <div className="mt-8 mb-8">
+        <VertialTimeline />
       </div>
       <div className="mt-8 mb-8">
         <VertialTimeline />

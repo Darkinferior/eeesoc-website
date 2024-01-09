@@ -32,6 +32,10 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<EventsIcon />}
+<<<<<<< Updated upstream
+=======
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+>>>>>>> Stashed changes
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               EVENTS
@@ -52,6 +56,10 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<SocialMediaIcon />}
+<<<<<<< Updated upstream
+=======
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+>>>>>>> Stashed changes
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               SOCIAL MEDIA
@@ -72,6 +80,10 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<PublicityIcon />}
+<<<<<<< Updated upstream
+=======
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+>>>>>>> Stashed changes
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               PUBLICITY
@@ -95,6 +107,10 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<AchievementsIcon />}
+<<<<<<< Updated upstream
+=======
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+>>>>>>> Stashed changes
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               ACHIEVEMENTS
@@ -115,6 +131,10 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<CollegeFestsIcon />}
+<<<<<<< Updated upstream
+=======
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+>>>>>>> Stashed changes
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               COLLEGE FESTS
@@ -141,6 +161,10 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<OfficialWearIcon />}
+<<<<<<< Updated upstream
+=======
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+>>>>>>> Stashed changes
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               OFFICIAL WEAR
