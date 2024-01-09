@@ -3,6 +3,7 @@
 // necessary data inputs from the form = [ name, company, mediumLink, year, image]
 
 
+<<<<<<< Updated upstream
 
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
@@ -17,6 +18,12 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY as string,
   api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
+=======
+import { NextResponse } from 'next/server';
+import { InterviewsAll } from "@/lib/models/interviewsAll"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+>>>>>>> Stashed changes
 
 export async function POST(request: Request): Promise<NextResponse> {
 
@@ -37,13 +44,19 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     if (image instanceof File) {
 
+<<<<<<< Updated upstream
       const byteData = await image.arrayBuffer();
       const buffer = Buffer.from(byteData);
+=======
+      const folderName = `NewImages/interviews/${year}`
+      const path = await uploadImageToCloudinary(image, folderName);
+>>>>>>> Stashed changes
 
       var existingDocument
       if (year) {
         existingDocument = await InterviewsAll.findOne({ year: parseInt(year) });
       }
+<<<<<<< Updated upstream
 
       const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
@@ -69,6 +82,8 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       if (uploadResult) path = uploadResult.secure_url;
 
+=======
+>>>>>>> Stashed changes
       if (existingDocument) {
         existingDocument.interviews.push({
           name: name,

@@ -3,6 +3,7 @@
 // optional data inputs from the form =[]
 // optional data inputs from the form = [year, name, title, image, description, reportLink]
 
+<<<<<<< Updated upstream
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
@@ -15,6 +16,12 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY as string,
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
+=======
+import { NextResponse } from 'next/server';
+import { Project } from "@/lib/models/project"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+>>>>>>> Stashed changes
 
 
 export async function PATCH(request: Request): Promise<NextResponse> {
@@ -51,6 +58,7 @@ export async function PATCH(request: Request): Promise<NextResponse> {
                 if (nameIndex !== -1) {
                     var path
                     if (newImage instanceof File) {
+<<<<<<< Updated upstream
                         const byteData = await newImage.arrayBuffer();
                         const buffer = Buffer.from(byteData);
                         const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
@@ -72,6 +80,10 @@ export async function PATCH(request: Request): Promise<NextResponse> {
                         });
 
                         if (uploadResult) path = uploadResult.secure_url;
+=======
+                        const folderName = `NewImages/projects/SPP/${year}`
+                        path = await uploadImageToCloudinary(newImage, folderName);
+>>>>>>> Stashed changes
                     }
                     if (newName) projectArray[nameIndex].name = newName;
                     if (newTitle) projectArray[nameIndex].title = newTitle;

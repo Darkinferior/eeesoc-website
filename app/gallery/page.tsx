@@ -1,3 +1,4 @@
+'use client';
 import Carousal from '@/components/gallery/HorizontalScrollCarousal';
 import { title } from '@/components/primitives';
 

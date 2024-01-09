@@ -1,15 +1,90 @@
 'use client';
-import { Link } from '@nextui-org/link';
+import { useState, useEffect } from 'react';
 import { button as buttonStyles } from '@nextui-org/theme';
-import { Button } from '@nextui-org/react';
+import { Link, Spinner } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
 import AboutPage from './about/page';
 import { Reveal } from '@/components/Reveal';
 import ShuffleGrid from '@/components/ShuffleGrid';
 import Image from 'next/image';
 import TypeAnimationComponent from '@/components/TypeAnimation';
+<<<<<<< Updated upstream
+=======
+
+interface Result {
+  title: string;
+  link: string;
+}
+
+interface Register {
+  title: string;
+  formLink: string;
+}
+>>>>>>> Stashed changes
 
 export default function Home() {
+  const [result, setResultData] = useState<Result>({
+    title: '',
+    link: '',
+  });
+  const [register, setRegisterData] = useState<Register>({
+    title: '',
+    formLink: '',
+  });
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+
+      const requestOptions: RequestInit = {
+        method: 'get',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+
+      try {
+        setLoading(true);
+        const responseResult = await fetch(
+          '/api/events/result',
+          requestOptions
+        );
+        const responseRegister = await fetch(
+          '/api/events/register',
+          requestOptions
+        );
+
+        if (responseResult.ok) {
+          const resultJson = await responseResult.json();
+          setResultData(resultJson.result);
+        } else {
+          console.error(
+            'Error fetching data:',
+            responseResult.status,
+            responseResult.statusText
+          );
+        }
+        if (responseRegister.ok) {
+          const registerJson = await responseRegister.json();
+          setRegisterData(registerJson.result);
+        } else {
+          console.error(
+            'Error fetching data:',
+            responseRegister.status,
+            responseRegister.statusText
+          );
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <section className="font-josephin w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mx-auto justify-start">
@@ -43,13 +118,26 @@ export default function Home() {
           </Reveal>
           <div className="flex gap-3">
             <Reveal>
-              <Button
-                variant="shadow"
-                radius="full"
-                className="bg-gradient-to-tr from-cyan-500 to-blue-500 text-white shadow-lg"
+              <Link
+                isExternal
+                className={`${buttonStyles({
+                  variant: 'shadow',
+                  radius: 'full',
+                })} bg-gradient-to-tr from-cyan-500 to-blue-500 text-white shadow-lg`}
+                href={
+                  register.formLink !== '/'
+                    ? register.formLink
+                    : siteConfig.links.instagram
+                }
               >
-                Recruitment
-              </Button>
+                {loading ? (
+                  <Spinner />
+                ) : register.title.toLowerCase() !== 'title' ? (
+                  register.title
+                ) : (
+                  'Recruitment'
+                )}
+              </Link>
             </Reveal>
             <Reveal>
               <Link
@@ -58,9 +146,17 @@ export default function Home() {
                   variant: 'bordered',
                   radius: 'full',
                 })}
-                href={siteConfig.navItems[1].href}
+                href={
+                  result.link !== '/' ? result.link : siteConfig.links.instagram
+                }
               >
-                SMP Results
+                {loading ? (
+                  <Spinner />
+                ) : result.title.toLowerCase() !== 'title' ? (
+                  result.title
+                ) : (
+                  'Results'
+                )}
               </Link>
             </Reveal>
           </div>

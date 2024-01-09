@@ -57,7 +57,7 @@ export default function TeamPage() {
                 key={member._id}
                 name={member.name}
                 position={member.designation}
-                imageUrl="https://www.eeesocbit.com/_next/image?url=%2Fimages%2Fseniors%2Fk19%2Fakshat_bhaiya_k19.jpg&w=384&q=75" //replace with {member.image}
+                imageUrl={member.image} //"https://www.eeesocbit.com/_next/image?url=%2Fimages%2Fseniors%2Fk19%2Fakshat_bhaiya_k19.jpg&w=384&q=75" //replace with {member.image}
                 linkedinUrl={member.linkedinUrl}
               />
             );

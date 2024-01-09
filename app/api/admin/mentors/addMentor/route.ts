@@ -5,6 +5,7 @@
 
 // for data input  "areasOfInterest"  send various interests as comma-separated string
 
+<<<<<<< Updated upstream
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
 import { NextResponse } from 'next/server';
@@ -17,6 +18,12 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY as string,
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
+=======
+import { NextResponse } from 'next/server';
+import { Mentor } from "@/lib/models/mentor"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+>>>>>>> Stashed changes
 
 export async function POST(request: Request): Promise<NextResponse> {
     try {
@@ -38,6 +45,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         }
 
         if (image instanceof File) {
+<<<<<<< Updated upstream
             const byteData = await image.arrayBuffer();
             const buffer = Buffer.from(byteData);
             const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
@@ -61,6 +69,10 @@ export async function POST(request: Request): Promise<NextResponse> {
             var path;
 
             if (uploadResult) path = uploadResult.secure_url;
+=======
+            const folderName = `NewImages/mentors`
+            const path = await uploadImageToCloudinary(image, folderName);
+>>>>>>> Stashed changes
 
             const newDocument = new Mentor({
                 name: name,

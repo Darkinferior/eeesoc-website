@@ -3,6 +3,7 @@
 // necessary data inputs from the form = [ name, linkedInUrl, EmailID, designation, image]
 // optional data inputs from the form = [facebookUrl, instagramUrl]
 
+<<<<<<< Updated upstream
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
@@ -15,6 +16,14 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY as string,
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
+=======
+import { NextResponse } from 'next/server';
+import { ExecutiveBodyFinalYear } from "@/lib/models/executiveBodyFinalYear"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+
+
+>>>>>>> Stashed changes
 
 
 export async function POST(request: Request): Promise<NextResponse> {
@@ -38,6 +47,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         }
     
         if (image instanceof File) {
+<<<<<<< Updated upstream
             const byteData = await image.arrayBuffer();
             const buffer = Buffer.from(byteData);
     
@@ -65,6 +75,10 @@ export async function POST(request: Request): Promise<NextResponse> {
     
             if (uploadResult) path = uploadResult.secure_url;
     
+=======
+            const folderName = `NewImages/executiveBody/finalYear`
+            const path = await uploadImageToCloudinary(image, folderName);
+>>>>>>> Stashed changes
             const newDocument = new ExecutiveBodyFinalYear({
                 name: name,
                 linkedinUrl: linkedinUrl,

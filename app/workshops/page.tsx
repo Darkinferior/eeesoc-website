@@ -29,11 +29,14 @@ export default function WorkshopPage() {
       <section>
         <h1 className={title()}>Workshops</h1>
         <Reveal>
-          <p className="mt-4 justify-center items-center text-lg">
-            The society aims in imparting branch-specific technical knowledge to
-            the students of EEE. We conduct various workshops related to various
-            fields of Electrical Engineering such as MATLAB, SIMULINK, Machine
-            Learning, and Image processing workshop.
+          <p className="mt-4 justify-center items-center text-lg text-justify">
+            As part of the society&apos;s mission, students of the EEE
+            department and enthusiasts will be given branch-specific technical
+            knowledge. A variety of workshops are conducted on MATLAB,
+            Micro-controllers like Arduino and Raspberry Pi Pico, Basic of AI &
+            ML, PCB Design and Power Converter Design and many more. Thus,
+            providing a deeper understanding of Electrical and Electronic
+            Engineering.
           </p>
         </Reveal>
       </section>

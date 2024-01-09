@@ -4,6 +4,7 @@
 // optional data inputs from the form = [ name, company, image, mediumLink]
 
 
+<<<<<<< Updated upstream
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
@@ -19,6 +20,13 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY as string,
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
+=======
+import { NextResponse } from 'next/server';
+import { InterviewsAll } from "@/lib/models/interviewsAll";
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+
+>>>>>>> Stashed changes
 
 export async function PATCH(request: Request): Promise<NextResponse> {
     try {
@@ -54,6 +62,7 @@ export async function PATCH(request: Request): Promise<NextResponse> {
             var path;
 
             if (newImage instanceof File) {
+<<<<<<< Updated upstream
                 const byteData = await newImage.arrayBuffer();
                 const buffer = Buffer.from(byteData);
                 const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
@@ -74,6 +83,10 @@ export async function PATCH(request: Request): Promise<NextResponse> {
                     ).end(buffer);
                 });
                 if (uploadResult) path = uploadResult.secure_url;
+=======
+                const folderName = `NewImages/interviews/${year}`
+                path = await uploadImageToCloudinary(newImage, folderName);
+>>>>>>> Stashed changes
             }
 
 

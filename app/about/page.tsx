@@ -23,15 +23,15 @@ export default function AboutPage() {
   const [mentors, setMentors] = useState<Mentor[]>([]);
 
   const academicBulletPoints = [
-    'Project Programs for first and second year students',
-    'EEESoc Sessions',
-    'Workshops',
+    'To instill practical knowledge in students',
+    'To creatively apply knowledge in real-life situations',
+    'To provide one to one mentorship for doubt solving',
   ];
 
   const personalBulletPoints = [
-    'Interviews of final year students',
-    'Pantheon & Bitotsav Events',
-    'Induction programs for new batches',
+    'To conduct fun and learning events during Pantheon and Bitotsav',
+    'Personal Development by taking interviews of final year students',
+    'To organize an induction program for new batches and interact with them',
   ];
 
   useEffect(() => {

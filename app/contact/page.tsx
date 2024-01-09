@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+'use client';
+>>>>>>> Stashed changes
 import ContactDetails from '@/components/contact/ContactDetails';
 import MailForm from '@/components/contact/MailForm';
 import { title } from '@/components/primitives';

@@ -3,6 +3,7 @@
 // necessary data inputs from the form = [ name, workplace, position, linkedInUrl, year, image]
 
 
+<<<<<<< Updated upstream
 
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
@@ -11,6 +12,13 @@ import { UploadApiErrorResponse } from 'cloudinary';
 import { NextResponse } from 'next/server';
 import { Alumni } from "@/lib/models/alumni"
 import { connectToDb } from "@/lib/dbConnection/connect"
+=======
+import { NextResponse } from 'next/server';
+import { Alumni } from "@/lib/models/alumni"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+
+>>>>>>> Stashed changes
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
@@ -38,13 +46,17 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     if (image instanceof File) {
 
+<<<<<<< Updated upstream
       const byteData = await image.arrayBuffer();
       const buffer = Buffer.from(byteData);
 
+=======
+>>>>>>> Stashed changes
       var existingDocument
       if (year) {
         existingDocument = await Alumni.findOne({ year: parseInt(year) });
       }
+<<<<<<< Updated upstream
 
       const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
@@ -69,6 +81,11 @@ export async function POST(request: Request): Promise<NextResponse> {
       var path;
 
       if (uploadResult) path = uploadResult.secure_url;
+=======
+      const folderName = `NewImages/alumni/${year}`
+      const path = await uploadImageToCloudinary(image, folderName);
+
+>>>>>>> Stashed changes
 
       if (existingDocument) {
         existingDocument.alumni.push({

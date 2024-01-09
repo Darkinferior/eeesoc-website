@@ -11,7 +11,7 @@ export default function AlumniPage() {
       try {
         const response = await fetch('/api/alumni');
         const data = await response.json();
-        console.log(data.result);
+        //console.log(data.result);
         setAlumniData(data.result);
       } catch (error) {
         console.error('Error fetching alumni data:', error);

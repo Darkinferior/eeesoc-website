@@ -6,9 +6,8 @@ import EditOurTeam from '@/components/dashboard/EditOurTeam';
 import EditAlumni from '@/components/dashboard/EditAlumni';
 import EditInterviews from '@/components/dashboard/EditInterviews';
 import EditGallery from '@/components/dashboard/EditGallery';
-import EditContactus from '@/components/dashboard/EditContactus';
-import EditSponsorUs from '@/components/dashboard/EditSponsorUs';
 import EditHome from '@/components/dashboard/EditHome';
+import EditProjectPrograms from '@/components/dashboard/EditProjectPrograms';
 
 const DashboardPage = () => {
   let tabs = [
@@ -19,6 +18,10 @@ const DashboardPage = () => {
     {
       id: 'workshops',
       label: 'Workshops',
+    },
+    {
+      id: 'projectPrograms',
+      label: 'Project Programs',
     },
     {
       id: 'team',
@@ -36,14 +39,6 @@ const DashboardPage = () => {
       id: 'gallery',
       label: 'Gallery',
     },
-    {
-      id: 'contact',
-      label: 'Contact Us',
-    },
-    {
-      id: 'sponsor',
-      label: 'Sponsor Us',
-    },
   ];
   const renderTabContent = (tabId: string) => {
     switch (tabId) {
@@ -51,6 +46,8 @@ const DashboardPage = () => {
         return <EditHome />;
       case 'workshops':
         return <EditWorkshops />;
+      case 'projectPrograms':
+        return <EditProjectPrograms />;
       case 'team':
         return <EditOurTeam />;
       case 'alumni':
@@ -59,17 +56,14 @@ const DashboardPage = () => {
         return <EditInterviews />;
       case 'gallery':
         return <EditGallery />;
-      case 'contact':
-        return <EditContactus />;
-      case 'sponsor':
-        return <EditSponsorUs />;
+
       default:
         return null;
     }
   };
   return (
     <div className="flex w-full flex-col items-center">
-      <Tabs aria-label="Dynamic tabs" items={tabs}>
+      <Tabs aria-label="Dynamic tabs" items={tabs} fullWidth>
         {(item) => (
           <Tab key={item.id} title={item.label}>
             <Card>

@@ -13,14 +13,18 @@ export const HowItBegan = () => {
       <CardBody className="overflow-visible py-2 text-lg text-justify">
         <Reveal>
           <p>
-            EEESoc was established in the year 2013 to promote technical growth
-            and overall development of the students of EEE department.
+            EEESoc was founded in 2013 with a dedication to imparting profound
+            technical wisdom to aspiring minds within the realm of Electrical
+            and Electronic Engineering (EEE), catering not only to students
+            within the EEE discipline but also welcoming enthusiasts from other
+            branches.
           </p>
         </Reveal>
+        <br />
         <Reveal>
           <p>
             The first president of the society was Jaivardhan Shivam under the
-            patronage of Dr. T. Ghose and the faculty advisor Dr. R.C. Jha.
+            guidance of Dr. T. Ghose and the faculty advisor Dr. R.C. Jha.
           </p>
         </Reveal>
       </CardBody>
