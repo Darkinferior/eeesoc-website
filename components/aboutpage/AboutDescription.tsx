@@ -1,6 +1,5 @@
 'use client';
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
-import { Image } from '@nextui-org/image';
+import { Card, CardBody, Image } from '@nextui-org/react';
 import { Reveal } from '../Reveal';
 
 export const AboutDescription = () => {
@@ -29,19 +28,19 @@ export const AboutDescription = () => {
               <div className="flex flex-col gap-0">
                 <Reveal>
                   <p className="text-lg text-justify">
-                    The Department of Electrical & Electronics Engineering is
-                    dedicated to the current needs of industry with the
-                    flexibility to tune its programs according to different
-                    requirements. The application of new technology in various
-                    fields is one of the main focuses on the activities of the
-                    department. Department of EEE has recently received grants
-                    amounting to Rs. 2.7 Crore from UGC, DST, AICTE, CDAC,
-                    TEQIP, etc. to strengthen the research facility for the
-                    development in the design and development of lightning
-                    protection systems, etc. The domain of Smart Grid, Energy
-                    Efficient Electrical Motor Drives, Department of EEE has
-                    MoUs with the University of Padova, Italy and with other
-                    Industries.
+                    Welcome to EEESoc, the Electrical and Electronic Engineering
+                    Society at Birla Institute of Technology - Mesra. Founded in
+                    2013 with a vision to cultivate innovation, collaboration,
+                    and excellence in the realm of electrical and electronic
+                    engineering, EEESoc has been dedicated to advancing these
+                    principles over the years, EEESoc is a dynamic community
+                    that brings together students, faculty, and industry
+                    professionals passionate about advancing technology and
+                    shaping the future. EEESoc organizes practical workshops,
+                    SPP(Summer Project Program) and SMP(Student Mentorship
+                    Program) to ensure that our members can apply their
+                    knowledge in real-world scenarios.Explore the possibilities
+                    with EEESoc, where innovation meets inspiration.
                   </p>
                 </Reveal>
               </div>

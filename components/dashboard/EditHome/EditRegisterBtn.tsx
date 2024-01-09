@@ -34,12 +34,8 @@ const EditRegisterBtn: React.FC = () => {
       const response = await fetch("/api/events/register");
       if (response.ok) {
         const data = await response.json();
-        if (Array.isArray(data.result)) {
-          setBtnData(data.result);
-          setEditBtnId(data.result._id);
-        } else {
-          console.error("Btn data is not an array:", data);
-        }
+        setBtnData(data.result);
+        setEditBtnId(data.result._id);
       } else {
         console.error("Failed to fetch Btn");
       }

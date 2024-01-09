@@ -61,13 +61,10 @@ const EditWorkshops: React.FC = () => {
     });
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/admin/workshops/addWorkshop",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/admin/workshops/addWorkshop", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         fetchWorkshops();
@@ -93,7 +90,7 @@ const EditWorkshops: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/admin/workshops/updateWorkshop?id=${id}`,
+        `/api/admin/workshops/updateWorkshop?id=${id}`,
         {
           method: "PATCH",
           body: formData,
@@ -121,7 +118,7 @@ const EditWorkshops: React.FC = () => {
 
   const fetchWorkshops = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/workshops");
+      const response = await fetch("/api/workshops");
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.result)) {
@@ -148,7 +145,7 @@ const EditWorkshops: React.FC = () => {
     setWorkshopData({
       title: workshopToEdit.title,
       content: workshopToEdit.content,
-      cardImage: null, // Assuming contentImage should not be edited in this example
+      cardImage: workshopToEdit.cardImage,
     });
 
     setEditWorkshopId(id);
@@ -164,7 +161,7 @@ const EditWorkshops: React.FC = () => {
   const handleDeleteWorkshop = async (id: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/admin/workshops/deleteWorkshop?id=${id}`,
+        `/api/admin/workshops/deleteWorkshop?id=${id}`,
         {
           method: "DELETE",
         }
@@ -289,7 +286,7 @@ const EditWorkshops: React.FC = () => {
               onChange={(e) =>
                 setWorkshopData((prevData) => ({
                   ...prevData,
-                  title: e.target.value,
+                  cardImage: e.target.files?.[0],
                 }))
               }
             />
@@ -306,7 +303,7 @@ const EditWorkshops: React.FC = () => {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>{" "}
+      </Modal>
     </div>
   );
 };
