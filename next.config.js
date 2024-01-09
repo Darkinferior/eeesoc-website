@@ -1,16 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: [
-      "miro.medium.com",
-      "images.weserv.nl",
-      "res.cloudinary.com",
-      "www.bitmesra.ac.in",
+const nextConfig = {};
+
+module.exports = {
+  reactStrictMode: true,
+  head: {
+    themeColor: [
+      { media: '(prefers-color-scheme: light)', color: 'white' },
+      { media: '(prefers-color-scheme: dark)', color: 'black' },
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
-
-module.exports = nextConfig;

@@ -1,34 +1,16 @@
+import { nextui } from '@nextui-org/theme';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
-    fontFamily: {
-      display: ["var(--headings-font)", "system-ui"],
-      body: ["var(--body-font)", "system-ui"],
-      code: ["var(--code-font)", "consolas"],
-    },
-    extend: {
-      backgroundImage: {
-        footer: "url('/images/footer_bg.png')",
-        banner: "url('/images/home/banner.jpg')",
-      },
-
-      listStyleType: {
-        square: "square",
-      },
-
-      colors: {
-        purple: "#635cdb",
-        "light-purple": "#e8f2ff",
-
-        gray: "#CCC",
-        "light-gray": "#eee",
-
-        blue: "#4990bd",
-        background: "#202a2d",
-        black: "#232323",
-      },
-    },
+    extend: {},
   },
-  plugins: [],
+  darkMode: 'class',
+  plugins: [nextui()],
 };
