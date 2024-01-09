@@ -3,6 +3,7 @@
 // necessary data inputs from the form = [year, name, title, image, description, reportLink]
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
@@ -16,6 +17,12 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
 
+=======
+import { NextResponse } from 'next/server';
+import { Project } from "@/lib/models/project"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+>>>>>>> Stashed changes
 =======
 import { NextResponse } from 'next/server';
 import { Project } from "@/lib/models/project"
@@ -43,6 +50,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         }
 
         if (image instanceof File) {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             const byteData = await image.arrayBuffer();
             const buffer = Buffer.from(byteData);
@@ -95,6 +103,38 @@ export async function POST(request: Request): Promise<NextResponse> {
                             }
                         ]
 
+=======
+            const folderName = `NewImages/projects/SMP/${year}`
+            const path = await uploadImageToCloudinary(image, folderName);
+
+            const existingDocument = await Project.findOne({ "type": "SMP" })
+
+            if (existingDocument) {
+                const yearIndex = existingDocument.yearWiseProjects.findIndex((item: { year: number }) => item.year === parseInt(year));
+                if (yearIndex !== -1) {
+                    existingDocument.yearWiseProjects[yearIndex].projects.push({
+                        name: name,
+                        title: title,
+                        reportLink: reportLink,
+                        image: path,
+                        description: description
+                    });
+                    await existingDocument.save();
+                }
+                else {
+                    existingDocument.yearWiseProjects.push({
+                        year: year,
+                        projects: [
+                            {
+                                name: name,
+                                title: title,
+                                reportLink: reportLink,
+                                image: path,
+                                description: description
+                            }
+                        ]
+
+>>>>>>> Stashed changes
 =======
             const folderName = `NewImages/projects/SMP/${year}`
             const path = await uploadImageToCloudinary(image, folderName);

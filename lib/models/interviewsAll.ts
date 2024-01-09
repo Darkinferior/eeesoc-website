@@ -16,7 +16,11 @@ const interviewsAllSchema = new mongoose.Schema({
 }
 );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export const InterviewsAll = mongoose.models.interviewsAlltest || mongoose.model("interviewsAlltest", interviewsAllSchema)
+=======
+export const InterviewsAll = mongoose.models.interviewsAll || mongoose.model("interviewsAll", interviewsAllSchema)
+>>>>>>> Stashed changes
 =======
 export const InterviewsAll = mongoose.models.interviewsAll || mongoose.model("interviewsAll", interviewsAllSchema)
 >>>>>>> Stashed changes

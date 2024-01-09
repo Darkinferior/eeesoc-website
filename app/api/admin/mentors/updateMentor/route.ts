@@ -6,6 +6,7 @@
 // for data input  "areasOfInterest"  send various interests as comma-separated string
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { UploadApiErrorResponse } from 'cloudinary';
@@ -20,10 +21,15 @@ cloudinary.config({
 });
 
 =======
+=======
+>>>>>>> Stashed changes
 import { NextResponse } from 'next/server';
 import { Mentor } from "@/lib/models/mentor"
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 
@@ -59,6 +65,7 @@ export async function PATCH(request: Request): Promise<NextResponse> {
 
             if (newImage instanceof File) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 const byteData = await newImage.arrayBuffer();
                 const buffer = Buffer.from(byteData);
                 const uploadResult: UploadApiResponse = await new Promise((resolve, reject) => {
@@ -83,6 +90,10 @@ export async function PATCH(request: Request): Promise<NextResponse> {
                 const folderName = `NewImages/mentors`
                 path = await uploadImageToCloudinary(newImage, folderName);
 >>>>>>> Stashed changes
+=======
+                const folderName = `NewImages/mentors`
+                path = await uploadImageToCloudinary(newImage, folderName);
+>>>>>>> Stashed changes
             }
 
 
@@ -94,10 +105,13 @@ export async function PATCH(request: Request): Promise<NextResponse> {
             if (formattedAreasOfInterest) existingMentor.areasOfInterest = formattedAreasOfInterest;
             
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
 
 
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 

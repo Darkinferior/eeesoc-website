@@ -5,6 +5,7 @@
 
 <<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
 
 
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
@@ -90,6 +91,9 @@ export async function PATCH(request: Request): Promise<NextResponse> {
             return NextResponse.json({ "msg": "no member found", success: false });
 =======
 import { NextResponse } from 'next/server';
+=======
+import { NextResponse } from 'next/server';
+>>>>>>> Stashed changes
 import {  ExecutiveBodyPreFinalYear } from "@/lib/models/executiveBodyPreFinalYear"
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
@@ -135,6 +139,9 @@ export async function POST(request: Request): Promise<NextResponse> {
         }
         else {
             return NextResponse.json({ "msg": "couldn't add member", success: false });
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     }

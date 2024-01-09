@@ -4,6 +4,7 @@
 // optional data inputs from the form = [ name, linkedInUrl, EmailID, designation, facebookUrl, instagramUrl, image]
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 
@@ -19,6 +20,12 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET as string
 });
 
+=======
+import { NextResponse } from 'next/server';
+import { ExecutiveBodyPreFinalYear } from "@/lib/models/executiveBodyPreFinalYear"
+import { connectToDb } from "@/lib/dbConnection/connect"
+import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
+>>>>>>> Stashed changes
 
 export async function PATCH(request: Request): Promise<NextResponse> {
     try{
@@ -34,6 +41,7 @@ import { ExecutiveBodyPreFinalYear } from "@/lib/models/executiveBodyPreFinalYea
 import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
 
+<<<<<<< Updated upstream
 export async function PATCH(request: Request): Promise<NextResponse> {
 
     try {
@@ -107,6 +115,22 @@ export async function PATCH(request: Request): Promise<NextResponse> {
         }
 =======
 
+=======
+    try {
+        await connectToDb();
+        const url = new URL(request.url);
+        const member_id = url.searchParams.get("id");
+
+        const data = await request.formData();
+
+        const newName = data.get('name')?.toString();
+        const newLinkedinUrl = data.get('linkedinUrl')?.toString();
+        const newInstagramUrl = data.get('instagramUrl')?.toString();
+        const newFacebookUrl = data.get('facebookUrl')?.toString();
+        const newEmailID = data.get('emailID')?.toString();
+        const newDesignation = data.get('designation')?.toString();
+
+>>>>>>> Stashed changes
         const newImage = data.get('image')
         if (!member_id) {
             return NextResponse.json({ "msg": "'id' parameter is missing", success: false });
@@ -144,13 +168,20 @@ export async function PATCH(request: Request): Promise<NextResponse> {
         else {
             return NextResponse.json({ "msg": "no member found", success: false });
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
     catch (error) {
         console.error("Error processing request:", error);
         return NextResponse.json({ "msg": "Internal server error", success: false });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       }
+=======
+    }
+>>>>>>> Stashed changes
 =======
     }
 >>>>>>> Stashed changes
