@@ -1,21 +1,15 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { button as buttonStyles } from '@nextui-org/theme';
-<<<<<<< Updated upstream
 import { Link, Spinner } from '@nextui-org/react';
-=======
-import { Link, Spinner, Image } from '@nextui-org/react';
->>>>>>> Stashed changes
 import { siteConfig } from '@/config/site';
 import AboutPage from './about/page';
 import { Reveal } from '@/components/Reveal';
 import ShuffleGrid from '@/components/ShuffleGrid';
+import Image from 'next/image';
 import TypeAnimationComponent from '@/components/TypeAnimation';
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =======
-=======
->>>>>>> Stashed changes
 
 interface Result {
   title: string;
@@ -26,9 +20,6 @@ interface Register {
   title: string;
   formLink: string;
 }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 
 export default function Home() {
@@ -100,13 +91,13 @@ export default function Home() {
         <div>
           <div className="flex gap-4 mt-4 mb-4">
             <Image
-              src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819982/logos/bit-mesra-logo.png"
+              src="/bit-mesra-logo.png"
               alt="bit logo"
               width={100}
               height={100}
             />
             <Image
-              src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819764/logos/eeesoc-logo.png"
+              src="/eeesoc-logo.png"
               alt="bit logo"
               width={100}
               height={100}
@@ -185,8 +176,7 @@ export default function Home() {
           <h1 className="text-2xl font-bold mb-8">In Collaboration with</h1>
         </Reveal>
         <Image
-          isBlurred
-          src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819764/logos/mathworks_logo.webp"
+          src="/mathworks_logo.webp"
           alt="mathworks logo"
           className="object-contain"
           width={615}

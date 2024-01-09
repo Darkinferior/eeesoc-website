@@ -1,11 +1,5 @@
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-=======
-// EditPreFinalYear.tsx
-
-import React, { useState, useEffect, ChangeEvent } from "react";
->>>>>>> Stashed changes
 =======
 // EditPreFinalYear.tsx
 
@@ -18,7 +12,6 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   useDisclosure,
   Checkbox,
@@ -35,8 +28,6 @@ interface TeamMember {
   EmailID: string;
   designation: string;
 =======
-=======
->>>>>>> Stashed changes
   Input,
   Card,
   CardHeader,
@@ -52,9 +43,6 @@ interface PreFinalYear {
   EmailID: string;
   designation: string;
   linkedinUrl: string;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   facebookUrl: string;
   instagramUrl: string;
@@ -62,23 +50,17 @@ interface PreFinalYear {
 }
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 interface TeamMemberData {
   name: string;
   linkedInUrl: string;
   EmailID: string;
   designation: string;
 =======
-=======
->>>>>>> Stashed changes
 interface PreFinalYearData {
   name: string;
   EmailID: string;
   designation: string;
   linkedinUrl: string;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   facebookUrl: string;
   instagramUrl: string;
@@ -86,7 +68,6 @@ interface PreFinalYearData {
 }
 
 const EditPreFinalYear: React.FC = () => {
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [teamMemberData, setTeamMemberData] = useState<TeamMemberData>({
@@ -105,8 +86,6 @@ const EditPreFinalYear: React.FC = () => {
   useEffect(() => {
     fetchTeamMembers();
 =======
-=======
->>>>>>> Stashed changes
   const [PreFinalYears, setPreFinalYears] = useState<any[]>([]);
   const [PreFinalYearData, setPreFinalYearData] = useState<PreFinalYearData>({
     name: "",
@@ -125,9 +104,6 @@ const EditPreFinalYear: React.FC = () => {
 
   useEffect(() => {
     fetchPreFinalYears();
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   }, []);
 
@@ -136,7 +112,6 @@ const EditPreFinalYear: React.FC = () => {
   ) => {
     const { name, value, type } = e.target;
 
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     setTeamMemberData((prevData) => ({
       ...prevData,
@@ -184,8 +159,6 @@ const EditPreFinalYear: React.FC = () => {
     const formData = new FormData();
     Object.entries(teamMemberData).forEach(([key, value]) => {
 =======
-=======
->>>>>>> Stashed changes
     setPreFinalYearData((prevData) => ({
       ...prevData,
       [name]:
@@ -214,9 +187,6 @@ const EditPreFinalYear: React.FC = () => {
   const handleAddPreFinalYear = async () => {
     const formData = new FormData();
     Object.entries(PreFinalYearData).forEach(([key, value]) => {
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
       formData.append(key, value);
     });
@@ -224,15 +194,9 @@ const EditPreFinalYear: React.FC = () => {
     try {
       const response = await fetch(
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         `http://localhost:3000/api/admin/executiveBody/preFinalYear/updateMember?id=${id}`,
         {
           method: 'PATCH',
-=======
-        "/api/admin/executiveBody/preFinalYear/addMember",
-        {
-          method: "POST",
->>>>>>> Stashed changes
 =======
         "/api/admin/executiveBody/preFinalYear/addMember",
         {
@@ -244,7 +208,6 @@ const EditPreFinalYear: React.FC = () => {
 
       if (response.ok) {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         fetchTeamMembers();
 
         setTeamMemberData({
@@ -255,8 +218,6 @@ const EditPreFinalYear: React.FC = () => {
           facebookUrl: '',
           instagramUrl: '',
 =======
-=======
->>>>>>> Stashed changes
         fetchPreFinalYears();
 
         setPreFinalYearData({
@@ -299,15 +260,11 @@ const EditPreFinalYear: React.FC = () => {
           linkedinUrl: "",
           facebookUrl: "",
           instagramUrl: "",
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
           image: null,
         });
 
         setIsModalOpen(false);
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         setEditMemberId(null);
       } else {
@@ -336,23 +293,17 @@ const EditPreFinalYear: React.FC = () => {
     } catch (error) {
       console.error('Error fetching team members:', error);
 =======
-=======
->>>>>>> Stashed changes
         setEditPreFinalYearId(null);
       } else {
         console.error("Failed to edit PreFinalYear");
       }
     } catch (error) {
       console.error("Error editing PreFinalYear:", error);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     }
   };
 
   const openModalForEdit = (id: string) => {
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     const memberToEdit = teamMembers.find((member) => member.id === id);
 
@@ -374,8 +325,6 @@ const EditPreFinalYear: React.FC = () => {
     setEditMemberId(id);
 
 =======
-=======
->>>>>>> Stashed changes
     const PreFinalYearToEdit = PreFinalYears.find(
       (PreFinalYear) => PreFinalYear._id === id
     );
@@ -396,16 +345,12 @@ const EditPreFinalYear: React.FC = () => {
     });
 
     setEditPreFinalYearId(id);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     setEditMemberId(null);
   };
@@ -427,8 +372,6 @@ const EditPreFinalYear: React.FC = () => {
     } catch (error) {
       console.error('Error deleting team member:', error);
 =======
-=======
->>>>>>> Stashed changes
     setEditPreFinalYearId(null);
   };
 
@@ -446,16 +389,12 @@ const EditPreFinalYear: React.FC = () => {
       }
     } catch (error) {
       console.error("Error deleting PreFinalYear:", error);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     }
   };
 
   return (
     <div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <Card isBlurred className="mt-4 mb-4">
         <CardHeader className="items-center text-center justify-center text-xl font-bold">
@@ -470,8 +409,6 @@ const EditPreFinalYear: React.FC = () => {
               name="name"
               label="Enter Member Name"
 =======
-=======
->>>>>>> Stashed changes
       <Card isBlurred className='mt-4 mb-4'>
         <CardHeader className='items-center text-center justify-center text-xl font-bold'>
           Add Pre Final Year Executive Body
@@ -483,15 +420,11 @@ const EditPreFinalYear: React.FC = () => {
               type='text'
               name='name'
               label='Enter Name'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onChange={handleInputChange}
               required
             />
           </div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <div className="mt-4 mb-4">
             <Input
@@ -500,23 +433,17 @@ const EditPreFinalYear: React.FC = () => {
               name="linkedInUrl"
               label="Enter LinkedIn URL"
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <Input
               isRequired
               type='text'
               name='EmailID'
               label='Enter Email ID'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onChange={handleInputChange}
               required
             />
           </div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <div className="mt-4 mb-4">
             <Input
@@ -525,23 +452,17 @@ const EditPreFinalYear: React.FC = () => {
               name="EmailID"
               label="Enter Email ID"
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <Input
               isRequired
               type='text'
               name='designation'
               label='Enter Designation'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onChange={handleInputChange}
               required
             />
           </div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <div className="mt-4 mb-4">
             <Input
@@ -550,23 +471,17 @@ const EditPreFinalYear: React.FC = () => {
               name="designation"
               label="Enter Designation"
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <Input
               isRequired
               type='text'
               name='linkedinUrl'
               label='Enter LinkedIn Url'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onChange={handleInputChange}
               required
             />
           </div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
           <div className="mt-4 mb-4">
@@ -596,8 +511,6 @@ const EditPreFinalYear: React.FC = () => {
                   className="mx-2"
                   onClick={() => openModalForEdit(member.id)}
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <Input
               isRequired
@@ -645,9 +558,6 @@ const EditPreFinalYear: React.FC = () => {
                 <Button
                   className='mx-2'
                   onClick={() => openModalForEdit(PreFinalYear._id)}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
                 >
                   Edit
@@ -655,15 +565,9 @@ const EditPreFinalYear: React.FC = () => {
 
                 <Button
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
                   className="mx-2"
                   color="danger"
                   onClick={() => handleDeleteMember(member.id)}
-=======
-                  className='mx-2'
-                  color='danger'
-                  onClick={() => handleDeletePreFinalYear(PreFinalYear._id)}
->>>>>>> Stashed changes
 =======
                   className='mx-2'
                   color='danger'
@@ -677,7 +581,6 @@ const EditPreFinalYear: React.FC = () => {
           ))}
         </ul>
       </Card>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
       <Modal
@@ -698,8 +601,6 @@ const EditPreFinalYear: React.FC = () => {
               onChange={(e) =>
                 setTeamMemberData((prevData) => ({
 =======
-=======
->>>>>>> Stashed changes
       <Modal
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
@@ -715,16 +616,12 @@ const EditPreFinalYear: React.FC = () => {
               value={PreFinalYearData.name}
               onChange={(e) =>
                 setPreFinalYearData((prevData) => ({
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
                   ...prevData,
                   name: e.target.value,
                 }))
               }
             />
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             <Input
               isRequired
@@ -748,8 +645,6 @@ const EditPreFinalYear: React.FC = () => {
               onChange={(e) =>
                 setTeamMemberData((prevData) => ({
 =======
-=======
->>>>>>> Stashed changes
 
             <Input
               autoFocus
@@ -758,9 +653,6 @@ const EditPreFinalYear: React.FC = () => {
               value={PreFinalYearData.EmailID}
               onChange={(e) =>
                 setPreFinalYearData((prevData) => ({
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
                   ...prevData,
                   EmailID: e.target.value,
@@ -768,7 +660,6 @@ const EditPreFinalYear: React.FC = () => {
               }
             />
             <Input
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
               isRequired
               label="Designation"
@@ -778,17 +669,12 @@ const EditPreFinalYear: React.FC = () => {
               onChange={(e) =>
                 setTeamMemberData((prevData) => ({
 =======
-=======
->>>>>>> Stashed changes
               autoFocus
               label='Designation'
               placeholder='Enter the Designation'
               value={PreFinalYearData.designation}
               onChange={(e) =>
                 setPreFinalYearData((prevData) => ({
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
                   ...prevData,
                   designation: e.target.value,
@@ -796,11 +682,8 @@ const EditPreFinalYear: React.FC = () => {
               }
             />
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           </ModalBody>
 =======
-=======
->>>>>>> Stashed changes
             <Input
               autoFocus
               label='LinkedIn Link'
@@ -866,9 +749,6 @@ const EditPreFinalYear: React.FC = () => {
               Save Changes
             </Button>
           </ModalFooter>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
         </ModalContent>
       </Modal>

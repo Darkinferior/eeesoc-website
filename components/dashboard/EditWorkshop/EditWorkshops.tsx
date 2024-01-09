@@ -1,12 +1,8 @@
 // EditWorkshops.tsx
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-=======
-import React, { useState, useEffect, ChangeEvent } from "react";
->>>>>>> Stashed changes
 =======
 import React, { useState, useEffect, ChangeEvent } from "react";
 >>>>>>> Stashed changes
@@ -18,7 +14,6 @@ import {
   ModalFooter,
   Button,
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   useDisclosure,
   Checkbox,
   Image,
@@ -29,16 +24,11 @@ import {
   CardHeader,
 } from '@nextui-org/react';
 =======
-=======
->>>>>>> Stashed changes
   Input,
   Textarea,
   Card,
   CardHeader,
 } from "@nextui-org/react";
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 
 interface Workshop {
@@ -56,22 +46,16 @@ interface WorkshopData {
 
 const EditWorkshops: React.FC = () => {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   const router = useRouter();
   const [workshops, setWorkshops] = useState<Workshop[]>([]);
   const [workshopData, setWorkshopData] = useState<WorkshopData>({
     title: '',
     content: '',
 =======
-=======
->>>>>>> Stashed changes
   const [workshops, setWorkshops] = useState<Workshop[]>([]);
   const [workshopData, setWorkshopData] = useState<WorkshopData>({
     title: "",
     content: "",
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     cardImage: null,
   });
@@ -92,11 +76,7 @@ const EditWorkshops: React.FC = () => {
       ...prevData,
       [name]:
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
-=======
-        type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
->>>>>>> Stashed changes
 =======
         type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
 >>>>>>> Stashed changes
@@ -112,15 +92,9 @@ const EditWorkshops: React.FC = () => {
     try {
       const response = await fetch(
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         'http://localhost:3000/api/admin/workshops/addWorkshop',
         {
           method: 'POST',
-=======
-        "http://localhost:3000/api/admin/workshops/addWorkshop",
-        {
-          method: "POST",
->>>>>>> Stashed changes
 =======
         "http://localhost:3000/api/admin/workshops/addWorkshop",
         {
@@ -135,7 +109,6 @@ const EditWorkshops: React.FC = () => {
 
         setWorkshopData({
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           title: '',
           content: '',
           cardImage: null,
@@ -146,8 +119,6 @@ const EditWorkshops: React.FC = () => {
     } catch (error) {
       console.error('Error adding workshop:', error);
 =======
-=======
->>>>>>> Stashed changes
           title: "",
           content: "",
           cardImage: null,
@@ -157,9 +128,6 @@ const EditWorkshops: React.FC = () => {
       }
     } catch (error) {
       console.error("Error adding workshop:", error);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     }
   };
@@ -175,11 +143,7 @@ const EditWorkshops: React.FC = () => {
         `http://localhost:3000/api/admin/workshops/updateWorkshop?id=${id}`,
         {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           method: 'PATCH',
-=======
-          method: "PATCH",
->>>>>>> Stashed changes
 =======
           method: "PATCH",
 >>>>>>> Stashed changes
@@ -192,13 +156,8 @@ const EditWorkshops: React.FC = () => {
 
         setWorkshopData({
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           title: '',
           content: '',
-=======
-          title: "",
-          content: "",
->>>>>>> Stashed changes
 =======
           title: "",
           content: "",
@@ -210,21 +169,15 @@ const EditWorkshops: React.FC = () => {
         setEditWorkshopId(null);
       } else {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         console.error('Failed to edit workshop');
       }
     } catch (error) {
       console.error('Error editing workshop:', error);
 =======
-=======
->>>>>>> Stashed changes
         console.error("Failed to edit workshop");
       }
     } catch (error) {
       console.error("Error editing workshop:", error);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     }
   };
@@ -232,11 +185,7 @@ const EditWorkshops: React.FC = () => {
   const fetchWorkshops = async () => {
     try {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       const response = await fetch('http://localhost:3000/api/workshops');
-=======
-      const response = await fetch("http://localhost:3000/api/workshops");
->>>>>>> Stashed changes
 =======
       const response = await fetch("http://localhost:3000/api/workshops");
 >>>>>>> Stashed changes
@@ -246,7 +195,6 @@ const EditWorkshops: React.FC = () => {
           setWorkshops(data.result);
         } else {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           console.error('Workshops data is not an array:', data);
         }
       } else {
@@ -255,8 +203,6 @@ const EditWorkshops: React.FC = () => {
     } catch (error) {
       console.error('Error fetching workshops:', error);
 =======
-=======
->>>>>>> Stashed changes
           console.error("Workshops data is not an array:", data);
         }
       } else {
@@ -264,9 +210,6 @@ const EditWorkshops: React.FC = () => {
       }
     } catch (error) {
       console.error("Error fetching workshops:", error);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     }
   };
@@ -276,11 +219,7 @@ const EditWorkshops: React.FC = () => {
 
     if (!workshopToEdit) {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       console.error('Workshop not found for editing');
-=======
-      console.error("Workshop not found for editing");
->>>>>>> Stashed changes
 =======
       console.error("Workshop not found for editing");
 >>>>>>> Stashed changes
@@ -309,11 +248,7 @@ const EditWorkshops: React.FC = () => {
         `http://localhost:3000/api/admin/workshops/deleteWorkshop?id=${id}`,
         {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           method: 'DELETE',
-=======
-          method: "DELETE",
->>>>>>> Stashed changes
 =======
           method: "DELETE",
 >>>>>>> Stashed changes
@@ -324,21 +259,15 @@ const EditWorkshops: React.FC = () => {
         fetchWorkshops();
       } else {
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         console.error('Failed to delete workshop');
       }
     } catch (error) {
       console.error('Error deleting workshop:', error);
 =======
-=======
->>>>>>> Stashed changes
         console.error("Failed to delete workshop");
       }
     } catch (error) {
       console.error("Error deleting workshop:", error);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     }
   };
@@ -346,13 +275,8 @@ const EditWorkshops: React.FC = () => {
   return (
     <div>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       <Card isBlurred className="mt-4 mb-4">
         <CardHeader className="items-center text-center justify-center text-xl font-bold">
-=======
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
->>>>>>> Stashed changes
 =======
       <Card isBlurred className='mt-4 mb-4'>
         <CardHeader className='items-center text-center justify-center text-xl font-bold'>
@@ -362,7 +286,6 @@ const EditWorkshops: React.FC = () => {
 
         <form onSubmit={handleAddWorkshop}>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
           <div className="mt-4 mb-4">
             <Input
               isRequired
@@ -370,23 +293,17 @@ const EditWorkshops: React.FC = () => {
               name="title"
               label="Enter Workshop Title"
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <Input
               isRequired
               type='text'
               name='title'
               label='Enter Workshop Title'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onChange={handleInputChange}
               required
             />
           </div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <div className="mt-4 mb-4">
             <Textarea
@@ -394,22 +311,16 @@ const EditWorkshops: React.FC = () => {
               name="content"
               label="Enter Workshop Content"
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <Textarea
               isRequired
               name='content'
               label='Enter Workshop Content'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onChange={handleInputChange}
               required
             />
           </div>
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           <div className="mt-4 mb-4">
             <div className="mb-2">Upload Workshop Image (Required)</div>
@@ -436,8 +347,6 @@ const EditWorkshops: React.FC = () => {
                 <Button
                   className="mx-2"
 =======
-=======
->>>>>>> Stashed changes
           <div className='mt-4 mb-4'>
             <div className='mb-2'>Upload Workshop Image (Required)</div>
             <Input
@@ -462,9 +371,6 @@ const EditWorkshops: React.FC = () => {
               <div className='flex'>
                 <Button
                   className='mx-2'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
                   onClick={() => openModalForEdit(workshop._id)}
                 >
@@ -473,13 +379,8 @@ const EditWorkshops: React.FC = () => {
 
                 <Button
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
                   className="mx-2"
                   color="danger"
-=======
-                  className='mx-2'
-                  color='danger'
->>>>>>> Stashed changes
 =======
                   className='mx-2'
                   color='danger'
@@ -497,21 +398,15 @@ const EditWorkshops: React.FC = () => {
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         placement="top-center"
       >
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">
 =======
-=======
->>>>>>> Stashed changes
         placement='top-center'
       >
         <ModalContent>
           <ModalHeader className='flex flex-col gap-1'>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
             Edit Workshop
           </ModalHeader>
@@ -519,13 +414,8 @@ const EditWorkshops: React.FC = () => {
             <Input
               autoFocus
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
               label="Title"
               placeholder="Enter the workshop title"
-=======
-              label='Title'
-              placeholder='Enter the workshop title'
->>>>>>> Stashed changes
 =======
               label='Title'
               placeholder='Enter the workshop title'
@@ -540,13 +430,8 @@ const EditWorkshops: React.FC = () => {
             />
             <Textarea
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
               label="Content"
               placeholder="Enter the workshop content"
-=======
-              label='Content'
-              placeholder='Enter the workshop content'
->>>>>>> Stashed changes
 =======
               label='Content'
               placeholder='Enter the workshop content'
@@ -562,15 +447,9 @@ const EditWorkshops: React.FC = () => {
             <Input
               isRequired
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
               label="Image"
               type="file"
               placeholder="Enter the workshop image"
-=======
-              label='Image'
-              type='file'
-              placeholder='Enter the workshop image'
->>>>>>> Stashed changes
 =======
               label='Image'
               type='file'
@@ -586,23 +465,17 @@ const EditWorkshops: React.FC = () => {
           </ModalBody>
           <ModalFooter>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
             <Button color="danger" variant="flat" onClick={closeModal}>
               Close
             </Button>
             <Button
               color="primary"
 =======
-=======
->>>>>>> Stashed changes
             <Button color='danger' variant='flat' onClick={closeModal}>
               Close
             </Button>
             <Button
               color='primary'
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
               onClick={() => handleEditWorkshop(editWorkshopId!)}
             >
@@ -611,11 +484,7 @@ const EditWorkshops: React.FC = () => {
           </ModalFooter>
         </ModalContent>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       </Modal>{' '}
-=======
-      </Modal>{" "}
->>>>>>> Stashed changes
 =======
       </Modal>{" "}
 >>>>>>> Stashed changes
