@@ -9,11 +9,6 @@ import { connectToDb } from "@/lib/dbConnection/connect"
 import { uploadImageToCloudinary } from '@/lib/cloudinary/generateImageUrl';
 
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
-  api_key: process.env.CLOUDINARY_API_KEY as string,
-  api_secret: process.env.CLOUDINARY_API_SECRET as string
-});
 
 export async function POST(request: Request): Promise<NextResponse> {
 
@@ -21,16 +16,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     await connectToDb();
     const data = await request.formData();
 
-  try {
-    await connectToDb();
-    const data = await request.formData();
-
-    const name = data.get('name')?.toString();
-    const workplace = data.get('workplace')?.toString();
-    const position = data.get('position')?.toString();
-    const linkedinUrl = data.get('linkedinUrl')?.toString();
-    const year = data.get('year')?.toString()
-    const image = data.get('image')
     const name = data.get('name')?.toString();
     const workplace = data.get('workplace')?.toString();
     const position = data.get('position')?.toString();
@@ -39,9 +24,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     const image = data.get('image')
 
 
-    if (!image) {
-      return NextResponse.json({ "msg": "no file found (check for 'image' key in body)", success: false });
-    }
     if (!image) {
       return NextResponse.json({ "msg": "no file found (check for 'image' key in body)", success: false });
     }
@@ -81,31 +63,6 @@ export async function POST(request: Request): Promise<NextResponse> {
         });
         await newDocument.save();
       }
-      if (existingDocument) {
-        existingDocument.alumni.push({
-          name: name,
-          workplace: workplace,
-          linkedinUrl: linkedinUrl,
-          image: path,
-          position: position
-        });
-        await existingDocument.save();
-      }
-      else {
-        const newDocument = new Alumni({
-          year: year,
-          alumni: [
-            {
-              name: name,
-              workplace: workplace,
-              linkedinUrl: linkedinUrl,
-              image: path,
-              position: position
-            },
-          ],
-        });
-        await newDocument.save();
-      }
 
 
       return NextResponse.json({ "msg": "alumni added successfully", success: true });
@@ -117,15 +74,5 @@ export async function POST(request: Request): Promise<NextResponse> {
     console.error("Error processing request:", error);
     return NextResponse.json({ "msg": "Internal server error", success: false });
   }
-      return NextResponse.json({ "msg": "alumni added successfully", success: true });
-    } else {
-      return NextResponse.json({ "msg": "couldn't add alumni", success: false });
-    }
-  }
-  catch (error) {
-    console.error("Error processing request:", error);
-    return NextResponse.json({ "msg": "Internal server error", success: false });
-  }
 
-}
 }
