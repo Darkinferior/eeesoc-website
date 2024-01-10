@@ -3,8 +3,6 @@
 // necessary data inputs from the form = []
 // optional data inputs from the form = [ name, linkedInUrl, EmailID, designation, facebookUrl, instagramUrl, image]
 
-<<<<<<< Updated upstream
-
 import { NextResponse } from 'next/server';
 import { ExecutiveBodyFinalYear } from "@/lib/models/executiveBodyFinalYear"
 import { connectToDb } from "@/lib/dbConnection/connect"

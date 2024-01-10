@@ -1,9 +1,7 @@
-// necessary query parameters = [ id ]
+// necessary query parameters = []
 // optional query parameters = []
-// necessary data inputs from the form = []
-// optional data inputs from the form = [ name, linkedInUrl, EmailID, designation, facebookUrl, instagramUrl, image]
-
-<<<<<<< Updated upstream
+// necessary data inputs from the form = [ name, linkedInUrl, EmailID, designation, image]
+// optional data inputs from the form = [facebookUrl, instagramUrl]
 
 import { NextResponse } from 'next/server';
 import {  ExecutiveBodyPreFinalYear } from "@/lib/models/executiveBodyPreFinalYear"
