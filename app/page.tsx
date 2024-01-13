@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { button as buttonStyles } from '@nextui-org/theme';
-import { Link, Image } from '@nextui-org/react';
+import { Link, Spinner, Image } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
 import AboutPage from './about/page';
 import { Reveal } from '@/components/Reveal';
@@ -27,6 +27,7 @@ export default function Home() {
     title: '',
     formLink: '',
   });
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +41,7 @@ export default function Home() {
       };
 
       try {
+        setLoading(true);
         const responseResult = await fetch(
           '/api/events/result',
           requestOptions
@@ -71,6 +73,8 @@ export default function Home() {
         }
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -111,15 +115,24 @@ export default function Home() {
           <div className="flex gap-3">
             <Reveal>
               <Link
+                isExternal
                 className={`${buttonStyles({
                   variant: 'shadow',
                   radius: 'full',
                 })} bg-gradient-to-tr from-cyan-500 to-blue-500 text-white shadow-lg`}
-                href={register.formLink}
+                href={
+                  register.formLink !== '/'
+                    ? register.formLink
+                    : siteConfig.links.instagram
+                }
               >
-                {register.title.toLowerCase() !== 'title'
-                  ? register.title
-                  : 'Recruitment'}
+                {loading ? (
+                  <Spinner />
+                ) : register.title.toLowerCase() !== 'title' ? (
+                  register.title
+                ) : (
+                  'Recruitment'
+                )}
               </Link>
             </Reveal>
             <Reveal>
@@ -130,14 +143,16 @@ export default function Home() {
                   radius: 'full',
                 })}
                 href={
-                  result.link !== '/'
-                    ? result.link
-                    : siteConfig.navItems[1].href
+                  result.link !== '/' ? result.link : siteConfig.links.instagram
                 }
               >
-                {result.title.toLowerCase() !== 'title'
-                  ? result.title
-                  : 'SMP Results'}
+                {loading ? (
+                  <Spinner />
+                ) : result.title.toLowerCase() !== 'title' ? (
+                  result.title
+                ) : (
+                  'Results'
+                )}
               </Link>
             </Reveal>
           </div>
@@ -145,11 +160,11 @@ export default function Home() {
         <ShuffleGrid />
       </section>
 
-      <section className="mt-32 mb-32 text-center" id="about">
+      <section className="mt-32 text-center " id="about">
         <TypeAnimationComponent text="Electrifying the Future, One Connection at a Time" />
       </section>
 
-      <section className="my-32 text-center" id="about">
+      <section className="mb-32 text-center" id="about">
         <AboutPage />
       </section>
       <section className="flex flex-col items-center gap-4 mt-8 mb-16">
