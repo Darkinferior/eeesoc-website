@@ -1,5 +1,5 @@
 import options from '@/lib/admin/auth';
-import { Link } from '@nextui-org/link';
+import { Button, Link } from '@nextui-org/react';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { button as buttonStyles } from '@nextui-org/theme';
@@ -27,27 +27,29 @@ export default async function DashboardLayout({
   }
 
   return (
-    <section className="items-center justify-center gap-4 py-8 md:py-10">
-      <div className="absolute right-10 top-[65px]">
+    <>
+      <div className="mb-4 w-2/12">
         {session && (
-          <Link
+          <Button
+            fullWidth
             href="/api/auth/signout"
-            className={`${buttonStyles({
-              variant: 'shadow',
-              radius: 'full',
-            })} bg-gradient-to-tr from-rose-500 to-red-500 w-fit h-7`}
+            as={Link}
+            color="danger"
+            variant="shadow"
           >
             Log Out
-          </Link>
+          </Button>
         )}
       </div>
-      <div className="text-center justify-center">
-        {session?.user?.role === 'admin' ? (
-          children
-        ) : (
-          <h3>You don't have the permissions to visit this site.</h3>
-        )}
-      </div>
-    </section>
+      <section className="items-center justify-center gap-4">
+        <div className="text-center justify-center">
+          {session?.user?.role === 'admin' ? (
+            children
+          ) : (
+            <h3>You don't have the permissions to visit this site.</h3>
+          )}
+        </div>
+      </section>
+    </>
   );
 }

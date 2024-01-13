@@ -90,27 +90,47 @@ const squareData = [
   },
 ];
 
-const generateSquares = () => {
-  return shuffle(squareData).map((sq: Square) => (
-    <motion.div
-      key={sq.id}
-      layout
-      transition={{ duration: 1.5, type: 'spring' }}
-      className="w-full h-full"
-      style={{
-        backgroundImage: `url(${sq.src})`,
-        backgroundSize: 'cover',
-      }}
-    ></motion.div>
-  ));
-};
+// const generateSquares = () => {
+//   return shuffle(squareData).map((sq: Square) => (
+//     <motion.div
+//       key={sq.id}
+//       layout
+//       transition={{ duration: 1.5, type: 'spring' }}
+//       className="w-full h-full"
+//       style={{
+//         backgroundImage: `url(${sq.src})`,
+//         backgroundSize: 'cover',
+//       }}
+//     ></motion.div>
+//   ));
+// };
 
 const ShuffleGrid = () => {
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
-  const [squares, setSquares] = useState(generateSquares());
+  const [squares, setSquares] = useState([]);
 
   useEffect(() => {
-    shuffleSquares();
+    const generateSquares = () => {
+      return shuffle(squareData).map((sq: Square) => (
+        <motion.div
+          key={sq.id}
+          layout
+          transition={{ duration: 1.5, type: 'spring' }}
+          className="w-full h-full"
+          style={{
+            backgroundImage: `url(${sq.src})`,
+            backgroundSize: 'cover',
+          }}
+        ></motion.div>
+      ));
+    };
+
+    const shuffleSquares = () => {
+      setSquares(generateSquares());
+      timeoutRef.current = setTimeout(shuffleSquares, 3000);
+    };
+
+    shuffleSquares(); // Start the animation loop initially
 
     return () => {
       if (timeoutRef.current !== undefined) {
@@ -119,19 +139,9 @@ const ShuffleGrid = () => {
     };
   }, []);
 
-  const shuffleSquares = () => {
-    setSquares(generateSquares());
-
-    if (timeoutRef.current !== undefined) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(shuffleSquares, 3000);
-  };
-
   return (
     <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
-      {squares.map((sq: Square) => sq)}
+      {squares}
     </div>
   );
 };
