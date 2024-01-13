@@ -211,7 +211,7 @@ const EditSMP: React.FC = () => {
     const SMPToEdit = SMP.map((batchWiseSMP) => [
       batchWiseSMP.projects.filter((SMP: SMP) => SMP._id === id),
       batchWiseSMP.year,
-    ]).filter((SMP) => SMP.length > 0)[0];
+    ]).filter((SMP) => SMP[0].length > 0)[0];
 
     try {
       const url = `/api/admin/projectPrograms/SMP/deleteProject?year=${SMPToEdit[1]}&name=${SMPToEdit[0][0].name}`;
