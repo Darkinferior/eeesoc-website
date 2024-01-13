@@ -121,6 +121,7 @@ const EditInterviews: React.FC = () => {
     Object.entries(InterviewData).forEach(([key, value]) => {
       formData.append(key, value);
     });
+    console.log(InterviewData);
 
     try {
       const url = `/api/admin/interviewsAll/updateInterview?year=${InterviewToEdit[1]}&name=${InterviewToEdit[0][0].name}&company=${InterviewToEdit[0][0].company}`;
@@ -166,10 +167,10 @@ const EditInterviews: React.FC = () => {
     }
 
     setInterviewData({
-      name: InterviewToEdit[0].name,
-      company: InterviewToEdit[0].company,
-      mediumLink: InterviewToEdit[0].mediumLink,
-      image: InterviewToEdit[0].image,
+      name: InterviewToEdit[0][0].name,
+      company: InterviewToEdit[0][0].company,
+      mediumLink: InterviewToEdit[0][0].mediumLink,
+      image: InterviewToEdit[0][0].image,
       year: InterviewToEdit[1],
     });
 
@@ -365,10 +366,7 @@ const EditInterviews: React.FC = () => {
               onChange={(e) =>
                 setInterviewData((prevData) => ({
                   ...prevData,
-                  [e.target.name]:
-                    e.target.type === "file"
-                      ? (e.target as HTMLInputElement).files?.[0]
-                      : e.target.value,
+                  image: (e.target as HTMLInputElement).files?.[0] as File,
                 }))
               }
             />

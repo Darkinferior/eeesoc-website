@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react';
-
-const EditMentors = () => {
-  return <div>EditMentors</div>;
-=======
 // EditMentors.tsx
 
 import React, { useState, useEffect, ChangeEvent } from "react";
@@ -395,7 +389,6 @@ const EditMentors: React.FC = () => {
       </Modal>
     </div>
   );
->>>>>>> Stashed changes
 };
 
 export default EditMentors;

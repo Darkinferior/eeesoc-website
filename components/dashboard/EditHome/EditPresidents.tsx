@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react';
-
-const EditPresidents = () => {
-  return <div>EditPresidents</div>;
-=======
 // EditPresidents.tsx
 
 import React, { useState, useEffect, ChangeEvent } from "react";
@@ -279,7 +273,6 @@ const EditPresidents: React.FC = () => {
       </Modal>
     </div>
   );
->>>>>>> Stashed changes
 };
 
 export default EditPresidents;
