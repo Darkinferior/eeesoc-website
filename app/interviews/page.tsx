@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { title } from '@/components/primitives';
-import { useState, useEffect } from 'react';
-import InterviewCard from '@/components/interviews/InterviewCard';
-import { Spinner } from '@nextui-org/react';
+import { title } from "@/components/primitives";
+import { useState, useEffect } from "react";
+import InterviewCard from "@/components/interviews/InterviewCard";
+import { Spinner } from "@nextui-org/react";
 
 interface Interviews {
   _id: string;
@@ -18,9 +18,6 @@ interface ApiResponse {
   year: string;
   interviews: Interviews[];
 }
-const lastTwoDigits = (year: number) => {
-  return year % 100;
-};
 
 export default function InterviewsPage() {
   const [apiData, setApiData] = useState<ApiResponse[]>([]);
@@ -28,29 +25,29 @@ export default function InterviewsPage() {
   useEffect(() => {
     const fetchData = async () => {
       const myHeaders = new Headers();
-      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append("Content-Type", "application/json");
 
       const requestOptions: RequestInit = {
-        method: 'get',
+        method: "get",
         headers: myHeaders,
-        redirect: 'follow',
+        redirect: "follow",
       };
 
       try {
-        const response = await fetch('/api/interviewsAll', requestOptions);
+        const response = await fetch("/api/interviewsAll", requestOptions);
 
         if (response.ok) {
           const resultJson = await response.json();
           setApiData(resultJson.result);
         } else {
           console.error(
-            'Error fetching data:',
+            "Error fetching data:",
             response.status,
             response.statusText
           );
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -60,22 +57,23 @@ export default function InterviewsPage() {
   return (
     <div>
       <h1 className={title()}>Interviews</h1>
-      <div className="mt-16 ">
+      <div className='mt-16 '>
         {apiData !== null ? (
-          <div className="m-6">
+          <div className='m-6'>
             {apiData.map((yearWiseInterviews) => (
-              <div key={yearWiseInterviews._id} className="mt-8 mb-8">
-                <h3 className="font-bold text-4xl mb-8">
-                  K&apos;{lastTwoDigits(parseInt(yearWiseInterviews.year))}
+              <div key={yearWiseInterviews._id}>
+                <h3 className='font-semibold text-3xl mb-2'>
+                  {yearWiseInterviews.year}
                 </h3>
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
                   {yearWiseInterviews.interviews.map(
                     (interview: Interviews) => (
                       <InterviewCard
                         key={interview._id}
-                        title={interview.company}
-                        link={interview.mediumLink ? interview.mediumLink : ''}
-                        image={interview.image ? interview.image : ''}
+                        name={interview.name}
+                        company={interview.company}
+                        link={interview.mediumLink ? interview.mediumLink : ""}
+                        image={interview.image ? interview.image : ""}
                       />
                     )
                   )}
@@ -84,7 +82,7 @@ export default function InterviewsPage() {
             ))}
           </div>
         ) : (
-          <Spinner size="lg" className="mt-32" />
+          <Spinner size='lg' className='mt-32' />
         )}
       </div>
     </div>

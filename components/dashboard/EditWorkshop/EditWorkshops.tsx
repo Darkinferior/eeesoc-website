@@ -91,6 +91,7 @@ const EditWorkshops: React.FC = () => {
     try {
       const response = await fetch(
         `/api/admin/workshops/updateWorkshop?id=${id}`,
+        `/api/admin/workshops/updateWorkshop?id=${id}`,
         {
           method: 'PATCH',
           body: formData,
@@ -146,6 +147,7 @@ const EditWorkshops: React.FC = () => {
       title: workshopToEdit.title,
       content: workshopToEdit.content,
       cardImage: workshopToEdit.cardImage,
+      cardImage: workshopToEdit.cardImage,
     });
 
     setEditWorkshopId(id);
@@ -161,6 +163,7 @@ const EditWorkshops: React.FC = () => {
   const handleDeleteWorkshop = async (id: string) => {
     try {
       const response = await fetch(
+        `/api/admin/workshops/deleteWorkshop?id=${id}`,
         `/api/admin/workshops/deleteWorkshop?id=${id}`,
         {
           method: 'DELETE',
@@ -287,6 +290,7 @@ const EditWorkshops: React.FC = () => {
                 setWorkshopData((prevData) => ({
                   ...prevData,
                   cardImage: e.target.files?.[0],
+                  cardImage: e.target.files?.[0],
                 }))
               }
             />
@@ -303,6 +307,7 @@ const EditWorkshops: React.FC = () => {
             </Button>
           </ModalFooter>
         </ModalContent>
+      </Modal>
       </Modal>
     </div>
   );
