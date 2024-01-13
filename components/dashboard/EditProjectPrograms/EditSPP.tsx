@@ -211,7 +211,7 @@ const EditSPP: React.FC = () => {
     const SPPToEdit = SPP.map((batchWiseSPP) => [
       batchWiseSPP.projects.filter((SPP: SPP) => SPP._id === id),
       batchWiseSPP.year,
-    ]).filter((SPP) => SPP.length > 0)[0];
+    ]).filter((SPP) => SPP[0].length > 0)[0];
 
     try {
       const url = `/api/admin/projectPrograms/SPP/deleteProject?year=${SPPToEdit[1]}&name=${SPPToEdit[0][0].name}`;
