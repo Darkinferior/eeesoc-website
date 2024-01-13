@@ -387,10 +387,7 @@ const EditAlumni: React.FC = () => {
               onChange={(e) =>
                 setAlumniData((prevData) => ({
                   ...prevData,
-                  [e.target.name]:
-                    e.target.type === "file"
-                      ? (e.target as HTMLInputElement).files?.[0]
-                      : e.target.value,
+                  image: (e.target as HTMLInputElement).files?.[0] as File,
                 }))
               }
             />
