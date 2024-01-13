@@ -32,6 +32,7 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<EventsIcon />}
+            style={{ marginTop: '20px', marginBottom: '20px' }}
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               EVENTS
@@ -52,6 +53,7 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<SocialMediaIcon />}
+            style={{ marginTop: '20px', marginBottom: '20px' }}
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               SOCIAL MEDIA
@@ -72,6 +74,7 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<PublicityIcon />}
+            style={{ marginTop: '20px', marginBottom: '20px' }}
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               PUBLICITY
@@ -95,6 +98,7 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<AchievementsIcon />}
+            style={{ marginTop: '20px', marginBottom: '20px' }}
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               ACHIEVEMENTS
@@ -115,6 +119,7 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<CollegeFestsIcon />}
+            style={{ marginTop: '20px', marginBottom: '20px' }}
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               COLLEGE FESTS
@@ -141,6 +146,7 @@ const VertialTimeline = () => {
             contentArrowStyle={{ borderRight: '7px solid rgb(33, 150, 243)' }}
             iconStyle={{ ...gradientStyle }}
             icon={<OfficialWearIcon />}
+            style={{ marginTop: '20px', marginBottom: '20px' }}
           >
             <h1 className="vertical-timeline-element-title font-bold text-lg">
               OFFICIAL WEAR

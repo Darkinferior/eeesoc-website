@@ -1,6 +1,6 @@
 // EditWorkshops.tsx
 
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
   ModalContent,
@@ -12,7 +12,7 @@ import {
   Textarea,
   Card,
   CardHeader,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 
 interface Workshop {
   _id: string;
@@ -30,8 +30,8 @@ interface WorkshopData {
 const EditWorkshops: React.FC = () => {
   const [workshops, setWorkshops] = useState<Workshop[]>([]);
   const [workshopData, setWorkshopData] = useState<WorkshopData>({
-    title: "",
-    content: "",
+    title: '',
+    content: '',
     cardImage: null,
   });
 
@@ -50,7 +50,7 @@ const EditWorkshops: React.FC = () => {
     setWorkshopData((prevData) => ({
       ...prevData,
       [name]:
-        type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
+        type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
     }));
   };
 
@@ -61,8 +61,8 @@ const EditWorkshops: React.FC = () => {
     });
 
     try {
-      const response = await fetch("/api/admin/workshops/addWorkshop", {
-        method: "POST",
+      const response = await fetch('/api/admin/workshops/addWorkshop', {
+        method: 'POST',
         body: formData,
       });
 
@@ -70,15 +70,15 @@ const EditWorkshops: React.FC = () => {
         fetchWorkshops();
 
         setWorkshopData({
-          title: "",
-          content: "",
+          title: '',
+          content: '',
           cardImage: null,
         });
       } else {
-        console.error("Failed to add workshop");
+        console.error('Failed to add workshop');
       }
     } catch (error) {
-      console.error("Error adding workshop:", error);
+      console.error('Error adding workshop:', error);
     }
   };
 
@@ -91,8 +91,9 @@ const EditWorkshops: React.FC = () => {
     try {
       const response = await fetch(
         `/api/admin/workshops/updateWorkshop?id=${id}`,
+        `/api/admin/workshops/updateWorkshop?id=${id}`,
         {
-          method: "PATCH",
+          method: 'PATCH',
           body: formData,
         }
       );
@@ -101,36 +102,36 @@ const EditWorkshops: React.FC = () => {
         fetchWorkshops();
 
         setWorkshopData({
-          title: "",
-          content: "",
+          title: '',
+          content: '',
           cardImage: null,
         });
 
         setIsModalOpen(false);
         setEditWorkshopId(null);
       } else {
-        console.error("Failed to edit workshop");
+        console.error('Failed to edit workshop');
       }
     } catch (error) {
-      console.error("Error editing workshop:", error);
+      console.error('Error editing workshop:', error);
     }
   };
 
   const fetchWorkshops = async () => {
     try {
-      const response = await fetch("/api/workshops");
+      const response = await fetch('/api/workshops');
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.result)) {
           setWorkshops(data.result);
         } else {
-          console.error("Workshops data is not an array:", data);
+          console.error('Workshops data is not an array:', data);
         }
       } else {
-        console.error("Failed to fetch workshops");
+        console.error('Failed to fetch workshops');
       }
     } catch (error) {
-      console.error("Error fetching workshops:", error);
+      console.error('Error fetching workshops:', error);
     }
   };
 
@@ -138,13 +139,14 @@ const EditWorkshops: React.FC = () => {
     const workshopToEdit = workshops.find((workshop) => workshop._id === id);
 
     if (!workshopToEdit) {
-      console.error("Workshop not found for editing");
+      console.error('Workshop not found for editing');
       return;
     }
 
     setWorkshopData({
       title: workshopToEdit.title,
       content: workshopToEdit.content,
+      cardImage: workshopToEdit.cardImage,
       cardImage: workshopToEdit.cardImage,
     });
 
@@ -162,80 +164,81 @@ const EditWorkshops: React.FC = () => {
     try {
       const response = await fetch(
         `/api/admin/workshops/deleteWorkshop?id=${id}`,
+        `/api/admin/workshops/deleteWorkshop?id=${id}`,
         {
-          method: "DELETE",
+          method: 'DELETE',
         }
       );
 
       if (response.ok) {
         fetchWorkshops();
       } else {
-        console.error("Failed to delete workshop");
+        console.error('Failed to delete workshop');
       }
     } catch (error) {
-      console.error("Error deleting workshop:", error);
+      console.error('Error deleting workshop:', error);
     }
   };
 
   return (
     <div>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Add Workshop
         </CardHeader>
 
         <form onSubmit={handleAddWorkshop}>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='title'
-              label='Enter Workshop Title'
+              type="text"
+              name="title"
+              label="Enter Workshop Title"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Textarea
               isRequired
-              name='content'
-              label='Enter Workshop Content'
+              name="content"
+              label="Enter Workshop Content"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
-            <div className='mb-2'>Upload Workshop Image (Required)</div>
+          <div className="mt-4 mb-4">
+            <div className="mb-2">Upload Workshop Image (Required)</div>
             <Input
               isRequired
-              type='file'
-              name='contentImage'
+              type="file"
+              name="contentImage"
               onChange={handleInputChange}
-              accept='image/*'
+              accept="image/*"
             />
           </div>
-          <Button type='submit'>Add Workshop</Button>
+          <Button type="submit">Add Workshop</Button>
         </form>
       </Card>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Edit Existing Workshops
         </CardHeader>
-        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
+        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
           {workshops.map((workshop) => (
-            <li className='mx-4 mt-4 mb-4' key={workshop._id}>
+            <li className="mx-4 mt-4 mb-4" key={workshop._id}>
               <div>{workshop.title}</div>
-              <div className='flex'>
+              <div className="flex">
                 <Button
-                  className='mx-2'
+                  className="mx-2"
                   onClick={() => openModalForEdit(workshop._id)}
                 >
                   Edit
                 </Button>
 
                 <Button
-                  className='mx-2'
-                  color='danger'
+                  className="mx-2"
+                  color="danger"
                   onClick={() => handleDeleteWorkshop(workshop._id)}
                 >
                   Delete
@@ -248,17 +251,17 @@ const EditWorkshops: React.FC = () => {
       <Modal
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement='top-center'
+        placement="top-center"
       >
         <ModalContent>
-          <ModalHeader className='flex flex-col gap-1'>
+          <ModalHeader className="flex flex-col gap-1">
             Edit Workshop
           </ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label='Title'
-              placeholder='Enter the workshop title'
+              label="Title"
+              placeholder="Enter the workshop title"
               value={workshopData.title}
               onChange={(e) =>
                 setWorkshopData((prevData) => ({
@@ -268,8 +271,8 @@ const EditWorkshops: React.FC = () => {
               }
             />
             <Textarea
-              label='Content'
-              placeholder='Enter the workshop content'
+              label="Content"
+              placeholder="Enter the workshop content"
               value={workshopData.content}
               onChange={(e) =>
                 setWorkshopData((prevData) => ({
@@ -280,29 +283,31 @@ const EditWorkshops: React.FC = () => {
             />
             <Input
               isRequired
-              label='Image'
-              type='file'
-              placeholder='Enter the workshop image'
+              label="Image"
+              type="file"
+              placeholder="Enter the workshop image"
               onChange={(e) =>
                 setWorkshopData((prevData) => ({
                   ...prevData,
+                  cardImage: e.target.files?.[0],
                   cardImage: e.target.files?.[0],
                 }))
               }
             />
           </ModalBody>
           <ModalFooter>
-            <Button color='danger' variant='flat' onClick={closeModal}>
+            <Button color="danger" variant="flat" onClick={closeModal}>
               Close
             </Button>
             <Button
-              color='primary'
+              color="primary"
               onClick={() => handleEditWorkshop(editWorkshopId!)}
             >
               Save Changes
             </Button>
           </ModalFooter>
         </ModalContent>
+      </Modal>
       </Modal>
     </div>
   );
