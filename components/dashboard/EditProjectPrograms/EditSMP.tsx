@@ -81,7 +81,7 @@ const EditSMP: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.ProjectList)) {
-          setSMP(data.ProjectList[0].yearWiseProjects);
+          setSMP(data.ProjectList[1].yearWiseProjects);
         } else {
           console.error('SMP data is not an array:', data);
         }
