@@ -10,6 +10,8 @@ import {
   Card,
   CardHeader,
 } from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface President {
   _id: string;
@@ -76,16 +78,18 @@ const EditPresidents: React.FC = () => {
 
       if (response.ok) {
         fetchPresident();
-
         setPresidentData({
           name: '',
           tenure: '',
         });
+        toast.success('President added successfully');
       } else {
         console.error('Failed to add president');
+        toast.error('Failed to add president');
       }
     } catch (error) {
       console.error('Error adding president:', error);
+      toast.error('Error adding president');
     }
   };
 
@@ -110,11 +114,14 @@ const EditPresidents: React.FC = () => {
         });
         setIsModalOpen(false);
         setEditpresidentId(null);
+        toast.success('President edited successfully');
       } else {
         console.error('Failed to edit president');
+        toast.error('Failed to edit president');
       }
     } catch (error) {
       console.error('Error editing president:', error);
+      toast.error('Error editing president');
     }
   };
 
@@ -124,6 +131,7 @@ const EditPresidents: React.FC = () => {
     );
     if (!presidentToEdit) {
       console.error('president not found for editing');
+      toast.error('President not found for editing');
       return;
     }
     setPresidentData({
@@ -152,11 +160,14 @@ const EditPresidents: React.FC = () => {
       });
       if (response.ok) {
         fetchPresident();
+        toast.success('President deleted successfully');
       } else {
         console.error('Failed to delete president');
+        toast.error('Failed to delete president');
       }
     } catch (error) {
       console.error('Error deleting president:', error);
+      toast.error('Error deleting president');
     }
   };
 
@@ -269,6 +280,7 @@ const EditPresidents: React.FC = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };
