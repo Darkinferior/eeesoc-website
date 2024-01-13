@@ -17,7 +17,12 @@ export const PresidentCard = () => {
       try {
         const response = await fetch('/api/presidents');
         const data = await response.json();
-        setPresidents(data.result.slice(0, 8) as President[]);
+        const sortedData = data.result.sort(
+          (a: any, b: any) =>
+            parseInt(b.tenure.split('-')[0]) - parseInt(a.tenure.split('-')[0])
+        );
+
+        setPresidents(sortedData.slice(0, 8) as President[]);
       } catch (error: any) {
         console.error('Error fetching presidents:', error.message);
       }

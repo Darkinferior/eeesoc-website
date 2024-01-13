@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { button as buttonStyles } from '@nextui-org/theme';
-import { Link, Spinner, Image } from '@nextui-org/react';
+import { Link, Image } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
 import AboutPage from './about/page';
 import { Reveal } from '@/components/Reveal';
@@ -79,7 +79,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="font-josephin w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mt-10 mx-auto justify-start">
+      <section className="font-josephin w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-4 mx-auto justify-start">
         <div>
           <div className="flex gap-4 mt-4 mb-4">
             <Image

@@ -1,6 +1,6 @@
 // EditSMP.tsx
 
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
   ModalContent,
@@ -12,7 +12,7 @@ import {
   Card,
   CardHeader,
   Textarea,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 
 interface SMP {
   _id: string;
@@ -37,15 +37,15 @@ interface SMPData {
 const EditSMP: React.FC = () => {
   const [SMP, setSMP] = useState<any[]>([]);
   const [projectData, setProjectData] = useState<Project>({
-    _id: "",
-    name: "",
-    title: "",
-    description: "",
-    reportLink: "",
+    _id: '',
+    name: '',
+    title: '',
+    description: '',
+    reportLink: '',
     image: null,
   });
   const [SMPData, setSMPData] = useState<SMPData>({
-    year: "",
+    year: '',
     projects: [],
   });
 
@@ -61,7 +61,7 @@ const EditSMP: React.FC = () => {
   ) => {
     const { name, value, type } = e.target;
 
-    if (name === "year") {
+    if (name === 'year') {
       setSMPData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -70,26 +70,26 @@ const EditSMP: React.FC = () => {
       setProjectData((prevData) => ({
         ...prevData,
         [name]:
-          type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
+          type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
       }));
     }
   };
 
   const fetchSMPData = async () => {
     try {
-      const response = await fetch("/api/projects");
+      const response = await fetch('/api/projects');
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.ProjectList)) {
           setSMP(data.ProjectList[0].yearWiseProjects);
         } else {
-          console.error("SMP data is not an array:", data);
+          console.error('SMP data is not an array:', data);
         }
       } else {
-        console.error("Failed to fetch SMP");
+        console.error('Failed to fetch SMP');
       }
     } catch (error) {
-      console.error("Error fetching SMP:", error);
+      console.error('Error fetching SMP:', error);
     }
   };
 
@@ -104,9 +104,9 @@ const EditSMP: React.FC = () => {
 
     try {
       const response = await fetch(
-        "/api/admin/projectPrograms/SMP/addProject",
+        '/api/admin/projectPrograms/SMP/addProject',
         {
-          method: "POST",
+          method: 'POST',
           body: formData,
         }
       );
@@ -115,22 +115,22 @@ const EditSMP: React.FC = () => {
         fetchSMPData();
 
         setSMPData({
-          year: "",
+          year: '',
           projects: [],
         });
         setProjectData({
-          _id: "",
-          name: "",
-          title: "",
-          description: "",
-          reportLink: "",
+          _id: '',
+          name: '',
+          title: '',
+          description: '',
+          reportLink: '',
           image: null,
         });
       } else {
-        console.error("Failed to add SMP");
+        console.error('Failed to add SMP');
       }
     } catch (error) {
-      console.error("Error adding SMP:", error);
+      console.error('Error adding SMP:', error);
     }
   };
 
@@ -151,7 +151,7 @@ const EditSMP: React.FC = () => {
     try {
       const url = `/api/admin/projectPrograms/SMP/updateProject?year=${SMPToEdit[1]}&name=${SMPToEdit[0][0].name}`;
       const response = await fetch(url, {
-        method: "PATCH",
+        method: 'PATCH',
         body: formData,
       });
 
@@ -159,25 +159,25 @@ const EditSMP: React.FC = () => {
         fetchSMPData();
 
         setSMPData({
-          year: "",
+          year: '',
           projects: [],
         });
         setProjectData({
-          _id: "",
-          name: "",
-          title: "",
-          description: "",
-          reportLink: "",
+          _id: '',
+          name: '',
+          title: '',
+          description: '',
+          reportLink: '',
           image: null,
         });
 
         setIsModalOpen(false);
         setEditSMPId(null);
       } else {
-        console.error("Failed to edit SMP");
+        console.error('Failed to edit SMP');
       }
     } catch (error) {
-      console.error("Error editing SMP:", error);
+      console.error('Error editing SMP:', error);
     }
   };
 
@@ -188,7 +188,7 @@ const EditSMP: React.FC = () => {
     ]).filter((SMP) => SMP.length > 0)[0];
 
     if (!SMPToEdit) {
-      console.error("SMP not found for editing");
+      console.error('SMP not found for editing');
       return;
     }
 
@@ -216,111 +216,110 @@ const EditSMP: React.FC = () => {
     try {
       const url = `/api/admin/projectPrograms/SMP/deleteProject?year=${SMPToEdit[1]}&name=${SMPToEdit[0][0].name}`;
       const response = await fetch(url, {
-        method: "DELETE",
+        method: 'DELETE',
       });
 
       if (response.ok) {
         fetchSMPData();
       } else {
-        console.error("Failed to delete SMP");
+        console.error('Failed to delete SMP');
       }
     } catch (error) {
-      console.error("Error deleting SMP:", error);
+      console.error('Error deleting SMP:', error);
     }
   };
 
   return (
     <div>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Add SMP Projects
         </CardHeader>
 
         <form onSubmit={handleAddSMP}>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='name'
-              label='Enter Project Name'
+              type="text"
+              name="name"
+              label="Enter Project Name"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='title'
-              label='Enter SMP Title'
+              type="text"
+              name="title"
+              label="Enter SMP Title"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
-              isRequired
-              type='text'
-              name='reportLink'
-              label='Enter SMP Report Link'
+              type="text"
+              name="reportLink"
+              label="Enter SMP Report Link"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='year'
-              label='Enter SMP Year'
+              type="text"
+              name="year"
+              label="Enter SMP Year"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Textarea
               isRequired
-              type='text'
-              name='description'
-              label='Enter SMP Description'
+              type="text"
+              name="description"
+              label="Enter SMP Description"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
-            <div className='mb-2'>Upload Project Image (Required)</div>
+          <div className="mt-4 mb-4">
+            <div className="mb-2">Upload Project Image (Required)</div>
             <Input
               isRequired
-              type='file'
-              name='image'
+              type="file"
+              name="image"
               onChange={handleInputChange}
-              accept='image/*'
+              accept="image/*"
             />
           </div>
-          <Button type='submit'>Add SMP</Button>
+          <Button type="submit">Add SMP</Button>
         </form>
       </Card>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Edit Existing SMP Project
         </CardHeader>
-        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
+        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
           {SMP.map((batchWiseSMP) => {
             return batchWiseSMP.projects.map((project: Project) => (
-              <li className='mx-4 mt-4 mb-4' key={project._id}>
-                <div className='capitalize'>{project.name.toLowerCase()}</div>
-                <div className='text-semibold'>{batchWiseSMP.year}</div>
-                <div className='flex'>
+              <li className="mx-4 mt-4 mb-4" key={project._id}>
+                <div className="capitalize">{project.name.toLowerCase()}</div>
+                <div className="text-semibold">{batchWiseSMP.year}</div>
+                <div className="flex">
                   <Button
-                    className='mx-2'
+                    className="mx-2"
                     onClick={() => openModalForEdit(project._id)}
                   >
                     Edit
                   </Button>
 
                   <Button
-                    className='mx-2'
-                    color='danger'
+                    className="mx-2"
+                    color="danger"
                     onClick={() => handleDeleteSMP(project._id)}
                   >
                     Delete
@@ -334,15 +333,15 @@ const EditSMP: React.FC = () => {
       <Modal
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement='top-center'
+        placement="top-center"
       >
         <ModalContent>
-          <ModalHeader className='flex flex-col gap-1'>Edit SMP</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Edit SMP</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label='Name'
-              placeholder='Enter the SMP Name'
+              label="Name"
+              placeholder="Enter the SMP Name"
               value={projectData.name}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -354,8 +353,8 @@ const EditSMP: React.FC = () => {
 
             <Input
               autoFocus
-              label='Title'
-              placeholder='Enter the SMP Title'
+              label="Title"
+              placeholder="Enter the SMP Title"
               value={projectData.title}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -366,8 +365,8 @@ const EditSMP: React.FC = () => {
             />
             <Input
               autoFocus
-              label='Report Link'
-              placeholder='Enter the SMP Report Link'
+              label="Report Link"
+              placeholder="Enter the SMP Report Link"
               value={projectData.reportLink}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -378,8 +377,8 @@ const EditSMP: React.FC = () => {
             />
             <Textarea
               autoFocus
-              label='Description'
-              placeholder='Enter the SMP Description'
+              label="Description"
+              placeholder="Enter the SMP Description"
               value={projectData.description}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -390,8 +389,8 @@ const EditSMP: React.FC = () => {
             />
             <Input
               autoFocus
-              label='Year'
-              placeholder='Enter the SMP Year'
+              label="Year"
+              placeholder="Enter the SMP Year"
               value={SMPData.year}
               onChange={(e) =>
                 setSMPData((prevData) => ({
@@ -402,14 +401,14 @@ const EditSMP: React.FC = () => {
             />
             <Input
               isRequired
-              label='Image'
-              type='file'
-              placeholder='Enter the Project image'
+              label="Image"
+              type="file"
+              placeholder="Enter the Project image"
               onChange={(e) =>
                 setProjectData((prevData) => ({
                   ...prevData,
                   [e.target.name]:
-                    e.target.type === "file"
+                    e.target.type === 'file'
                       ? (e.target as HTMLInputElement).files?.[0]
                       : e.target.value,
                 }))
@@ -417,11 +416,11 @@ const EditSMP: React.FC = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button color='danger' variant='flat' onClick={closeModal}>
+            <Button color="danger" variant="flat" onClick={closeModal}>
               Close
             </Button>
             <Button
-              color='primary'
+              color="primary"
               onClick={() => handleEditSMP(editSMPId as string)}
             >
               Save Changes

@@ -1,6 +1,6 @@
 // EditSPP.tsx
 
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
   ModalContent,
@@ -12,7 +12,7 @@ import {
   Card,
   CardHeader,
   Textarea,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 
 interface SPP {
   _id: string;
@@ -37,15 +37,15 @@ interface SPPData {
 const EditSPP: React.FC = () => {
   const [SPP, setSPP] = useState<any[]>([]);
   const [projectData, setProjectData] = useState<Project>({
-    _id: "",
-    name: "",
-    title: "",
-    description: "",
-    reportLink: "",
+    _id: '',
+    name: '',
+    title: '',
+    description: '',
+    reportLink: '',
     image: null,
   });
   const [SPPData, setSPPData] = useState<SPPData>({
-    year: "",
+    year: '',
     projects: [],
   });
 
@@ -61,7 +61,7 @@ const EditSPP: React.FC = () => {
   ) => {
     const { name, value, type } = e.target;
 
-    if (name === "year") {
+    if (name === 'year') {
       setSPPData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -70,26 +70,26 @@ const EditSPP: React.FC = () => {
       setProjectData((prevData) => ({
         ...prevData,
         [name]:
-          type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
+          type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
       }));
     }
   };
 
   const fetchSPPData = async () => {
     try {
-      const response = await fetch("/api/projects");
+      const response = await fetch('/api/projects');
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.ProjectList)) {
           setSPP(data.ProjectList[1].yearWiseProjects);
         } else {
-          console.error("SPP data is not an array:", data);
+          console.error('SPP data is not an array:', data);
         }
       } else {
-        console.error("Failed to fetch SPP");
+        console.error('Failed to fetch SPP');
       }
     } catch (error) {
-      console.error("Error fetching SPP:", error);
+      console.error('Error fetching SPP:', error);
     }
   };
 
@@ -104,9 +104,9 @@ const EditSPP: React.FC = () => {
 
     try {
       const response = await fetch(
-        "/api/admin/projectPrograms/SPP/addProject",
+        '/api/admin/projectPrograms/SPP/addProject',
         {
-          method: "POST",
+          method: 'POST',
           body: formData,
         }
       );
@@ -115,22 +115,22 @@ const EditSPP: React.FC = () => {
         fetchSPPData();
 
         setSPPData({
-          year: "",
+          year: '',
           projects: [],
         });
         setProjectData({
-          _id: "",
-          name: "",
-          title: "",
-          description: "",
-          reportLink: "",
+          _id: '',
+          name: '',
+          title: '',
+          description: '',
+          reportLink: '',
           image: null,
         });
       } else {
-        console.error("Failed to add SPP");
+        console.error('Failed to add SPP');
       }
     } catch (error) {
-      console.error("Error adding SPP:", error);
+      console.error('Error adding SPP:', error);
     }
   };
 
@@ -151,7 +151,7 @@ const EditSPP: React.FC = () => {
     try {
       const url = `/api/admin/projectPrograms/SPP/updateProject?year=${SPPToEdit[1]}&name=${SPPToEdit[0][0].name}`;
       const response = await fetch(url, {
-        method: "PATCH",
+        method: 'PATCH',
         body: formData,
       });
 
@@ -159,25 +159,25 @@ const EditSPP: React.FC = () => {
         fetchSPPData();
 
         setSPPData({
-          year: "",
+          year: '',
           projects: [],
         });
         setProjectData({
-          _id: "",
-          name: "",
-          title: "",
-          description: "",
-          reportLink: "",
+          _id: '',
+          name: '',
+          title: '',
+          description: '',
+          reportLink: '',
           image: null,
         });
 
         setIsModalOpen(false);
         setEditSPPId(null);
       } else {
-        console.error("Failed to edit SPP");
+        console.error('Failed to edit SPP');
       }
     } catch (error) {
-      console.error("Error editing SPP:", error);
+      console.error('Error editing SPP:', error);
     }
   };
 
@@ -188,7 +188,7 @@ const EditSPP: React.FC = () => {
     ]).filter((SPP) => SPP.length > 0)[0];
 
     if (!SPPToEdit) {
-      console.error("SPP not found for editing");
+      console.error('SPP not found for editing');
       return;
     }
 
@@ -216,111 +216,110 @@ const EditSPP: React.FC = () => {
     try {
       const url = `/api/admin/projectPrograms/SPP/deleteProject?year=${SPPToEdit[1]}&name=${SPPToEdit[0][0].name}`;
       const response = await fetch(url, {
-        method: "DELETE",
+        method: 'DELETE',
       });
 
       if (response.ok) {
         fetchSPPData();
       } else {
-        console.error("Failed to delete SPP");
+        console.error('Failed to delete SPP');
       }
     } catch (error) {
-      console.error("Error deleting SPP:", error);
+      console.error('Error deleting SPP:', error);
     }
   };
 
   return (
     <div>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Add SPP Projects
         </CardHeader>
 
         <form onSubmit={handleAddSPP}>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='name'
-              label='Enter Project Name'
+              type="text"
+              name="name"
+              label="Enter Project Name"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='title'
-              label='Enter SPP Title'
+              type="text"
+              name="title"
+              label="Enter SPP Title"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
-              isRequired
-              type='text'
-              name='reportLink'
-              label='Enter SPP Report Link'
+              type="text"
+              name="reportLink"
+              label="Enter SPP Report Link"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='year'
-              label='Enter SPP Year'
+              type="text"
+              name="year"
+              label="Enter SPP Year"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Textarea
               isRequired
-              type='text'
-              name='description'
-              label='Enter SPP Description'
+              type="text"
+              name="description"
+              label="Enter SPP Description"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
-            <div className='mb-2'>Upload Project Image (Required)</div>
+          <div className="mt-4 mb-4">
+            <div className="mb-2">Upload Project Image (Required)</div>
             <Input
               isRequired
-              type='file'
-              name='image'
+              type="file"
+              name="image"
               onChange={handleInputChange}
-              accept='image/*'
+              accept="image/*"
             />
           </div>
-          <Button type='submit'>Add SPP</Button>
+          <Button type="submit">Add SPP</Button>
         </form>
       </Card>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Edit Existing SPP Project
         </CardHeader>
-        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
+        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
           {SPP.map((batchWiseSPP) => {
             return batchWiseSPP.projects.map((project: Project) => (
-              <li className='mx-4 mt-4 mb-4' key={project._id}>
-                <div className='capitalize'>{project.name.toLowerCase()}</div>
-                <div className='text-semibold'>{batchWiseSPP.year}</div>
-                <div className='flex'>
+              <li className="mx-4 mt-4 mb-4" key={project._id}>
+                <div className="capitalize">{project.name.toLowerCase()}</div>
+                <div className="text-semibold">{batchWiseSPP.year}</div>
+                <div className="flex">
                   <Button
-                    className='mx-2'
+                    className="mx-2"
                     onClick={() => openModalForEdit(project._id)}
                   >
                     Edit
                   </Button>
 
                   <Button
-                    className='mx-2'
-                    color='danger'
+                    className="mx-2"
+                    color="danger"
                     onClick={() => handleDeleteSPP(project._id)}
                   >
                     Delete
@@ -334,15 +333,15 @@ const EditSPP: React.FC = () => {
       <Modal
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement='top-center'
+        placement="top-center"
       >
         <ModalContent>
-          <ModalHeader className='flex flex-col gap-1'>Edit SPP</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Edit SPP</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label='Name'
-              placeholder='Enter the SPP Name'
+              label="Name"
+              placeholder="Enter the SPP Name"
               value={projectData.name}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -354,8 +353,8 @@ const EditSPP: React.FC = () => {
 
             <Input
               autoFocus
-              label='Title'
-              placeholder='Enter the SPP Title'
+              label="Title"
+              placeholder="Enter the SPP Title"
               value={projectData.title}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -366,8 +365,8 @@ const EditSPP: React.FC = () => {
             />
             <Input
               autoFocus
-              label='Report Link'
-              placeholder='Enter the SPP Report Link'
+              label="Report Link"
+              placeholder="Enter the SPP Report Link"
               value={projectData.reportLink}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -378,8 +377,8 @@ const EditSPP: React.FC = () => {
             />
             <Textarea
               autoFocus
-              label='Description'
-              placeholder='Enter the SPP Description'
+              label="Description"
+              placeholder="Enter the SPP Description"
               value={projectData.description}
               onChange={(e) =>
                 setProjectData((prevData) => ({
@@ -390,8 +389,8 @@ const EditSPP: React.FC = () => {
             />
             <Input
               autoFocus
-              label='Year'
-              placeholder='Enter the SPP Year'
+              label="Year"
+              placeholder="Enter the SPP Year"
               value={SPPData.year}
               onChange={(e) =>
                 setSPPData((prevData) => ({
@@ -402,14 +401,14 @@ const EditSPP: React.FC = () => {
             />
             <Input
               isRequired
-              label='Image'
-              type='file'
-              placeholder='Enter the Project image'
+              label="Image"
+              type="file"
+              placeholder="Enter the Project image"
               onChange={(e) =>
                 setProjectData((prevData) => ({
                   ...prevData,
                   [e.target.name]:
-                    e.target.type === "file"
+                    e.target.type === 'file'
                       ? (e.target as HTMLInputElement).files?.[0]
                       : e.target.value,
                 }))
@@ -417,11 +416,11 @@ const EditSPP: React.FC = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button color='danger' variant='flat' onClick={closeModal}>
+            <Button color="danger" variant="flat" onClick={closeModal}>
               Close
             </Button>
             <Button
-              color='primary'
+              color="primary"
               onClick={() => handleEditSPP(editSPPId as string)}
             >
               Save Changes

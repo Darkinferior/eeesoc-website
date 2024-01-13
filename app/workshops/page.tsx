@@ -14,7 +14,6 @@ export default function WorkshopPage() {
     fetch('/api/workshops')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setWorkshopsList(data.result);
         setLoading(false);
       })
