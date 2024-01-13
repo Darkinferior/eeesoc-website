@@ -35,7 +35,7 @@ const AlumniCard: React.FC<AlumniCardProps> = ({ senior, year }) => {
             className={`${styles.contentDetails} sm-hidden rounded xl:flex flex-col justify-center z-10 ${styles.fadeInBottom}`}
           >
             <h3>{senior.name}</h3>
-            <p>{senior.workplace ?? `${year - 4} PASS OUT`}</p>
+            <p>{senior.workplace ?? `${year + 4} PASS OUT`}</p>
             <p>{senior?.position}</p>
           </div>
         </div>
