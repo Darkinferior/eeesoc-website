@@ -81,7 +81,7 @@ const EditSPP: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.ProjectList)) {
-          setSPP(data.ProjectList[1].yearWiseProjects);
+          setSPP(data.ProjectList[0].yearWiseProjects);
         } else {
           console.error("SPP data is not an array:", data);
         }
