@@ -18,13 +18,13 @@ interface Workshop {
   _id: string;
   title: string;
   content: string;
-  cardImage: File | null;
+  contentImage: File | null;
 }
 
 interface WorkshopData {
   title: string;
   content: string;
-  cardImage: File | null;
+  contentImage: File | null;
 }
 
 const EditWorkshops: React.FC = () => {
@@ -32,7 +32,7 @@ const EditWorkshops: React.FC = () => {
   const [workshopData, setWorkshopData] = useState<WorkshopData>({
     title: "",
     content: "",
-    cardImage: null,
+    contentImage: null,
   });
 
   const [editWorkshopId, setEditWorkshopId] = useState<string | null>(null);
@@ -72,7 +72,7 @@ const EditWorkshops: React.FC = () => {
         setWorkshopData({
           title: "",
           content: "",
-          cardImage: null,
+          contentImage: null,
         });
       } else {
         console.error("Failed to add workshop");
@@ -103,7 +103,7 @@ const EditWorkshops: React.FC = () => {
         setWorkshopData({
           title: "",
           content: "",
-          cardImage: null,
+          contentImage: null,
         });
 
         setIsModalOpen(false);
@@ -145,7 +145,7 @@ const EditWorkshops: React.FC = () => {
     setWorkshopData({
       title: workshopToEdit.title,
       content: workshopToEdit.content,
-      cardImage: workshopToEdit.cardImage as File,
+      contentImage: workshopToEdit.contentImage as File,
     });
 
     setEditWorkshopId(id);
@@ -286,7 +286,7 @@ const EditWorkshops: React.FC = () => {
               onChange={(e) =>
                 setWorkshopData((prevData) => ({
                   ...prevData,
-                  cardImage: e.target.files?.[0] as File,
+                  contentImage: e.target.files?.[0] as File,
                 }))
               }
             />
