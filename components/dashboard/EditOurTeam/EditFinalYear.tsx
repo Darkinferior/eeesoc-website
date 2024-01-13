@@ -1,6 +1,4 @@
-// EditFinalYear.tsx
-
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
   ModalContent,
@@ -11,7 +9,9 @@ import {
   Input,
   Card,
   CardHeader,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface FinalYear {
   _id: string;
@@ -37,12 +37,12 @@ interface FinalYearData {
 const EditFinalYear: React.FC = () => {
   const [FinalYears, setFinalYears] = useState<any[]>([]);
   const [FinalYearData, setFinalYearData] = useState<FinalYearData>({
-    name: "",
-    EmailID: "",
-    designation: "",
-    linkedinUrl: "",
-    facebookUrl: "",
-    instagramUrl: "",
+    name: '',
+    EmailID: '',
+    designation: '',
+    linkedinUrl: '',
+    facebookUrl: '',
+    instagramUrl: '',
     image: null,
   });
 
@@ -61,13 +61,13 @@ const EditFinalYear: React.FC = () => {
     setFinalYearData((prevData) => ({
       ...prevData,
       [name]:
-        type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
+        type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
     }));
   };
 
   const fetchFinalYears = async () => {
     try {
-      const response = await fetch("/api/executiveBody");
+      const response = await fetch('/api/executiveBody');
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.k20)) {
@@ -91,9 +91,9 @@ const EditFinalYear: React.FC = () => {
 
     try {
       const response = await fetch(
-        "/api/admin/executiveBody/finalYear/addMember",
+        '/api/admin/executiveBody/finalYear/addMember',
         {
-          method: "POST",
+          method: 'POST',
           body: formData,
         }
       );
@@ -102,19 +102,23 @@ const EditFinalYear: React.FC = () => {
         fetchFinalYears();
 
         setFinalYearData({
-          name: "",
-          EmailID: "",
-          designation: "",
-          linkedinUrl: "",
-          facebookUrl: "",
-          instagramUrl: "",
+          name: '',
+          EmailID: '',
+          designation: '',
+          linkedinUrl: '',
+          facebookUrl: '',
+          instagramUrl: '',
           image: null,
         });
+
+        toast.success('Final Year Executive Body member added successfully');
       } else {
-        console.error("Failed to add FinalYear");
+        //console.error('Failed to add FinalYear');
+        toast.error('Failed to add Final Year Executive Body member');
       }
     } catch (error) {
-      console.error("Error adding FinalYear:", error);
+      //console.error('Error adding FinalYear:', error);
+      toast.error('Error adding Final Year Executive Body member');
     }
   };
 
@@ -127,7 +131,7 @@ const EditFinalYear: React.FC = () => {
     try {
       const url = `/api/admin/executiveBody/finalYear/updateMember?id=${id}`;
       const response = await fetch(url, {
-        method: "PATCH",
+        method: 'PATCH',
         body: formData,
       });
 
@@ -135,22 +139,26 @@ const EditFinalYear: React.FC = () => {
         fetchFinalYears();
 
         setFinalYearData({
-          name: "",
-          EmailID: "",
-          designation: "",
-          linkedinUrl: "",
-          facebookUrl: "",
-          instagramUrl: "",
+          name: '',
+          EmailID: '',
+          designation: '',
+          linkedinUrl: '',
+          facebookUrl: '',
+          instagramUrl: '',
           image: null,
         });
 
         setIsModalOpen(false);
         setEditFinalYearId(null);
+
+        toast.success('Final Year Executive Body member updated successfully');
       } else {
-        console.error("Failed to edit FinalYear");
+        //console.error('Failed to edit FinalYear');
+        toast.error('Failed to edit Final Year Executive Body member');
       }
     } catch (error) {
-      console.error("Error editing FinalYear:", error);
+      //console.error('Error editing FinalYear:', error);
+      toast.error('Error editing Final Year Executive Body member');
     }
   };
 
@@ -160,7 +168,7 @@ const EditFinalYear: React.FC = () => {
     );
 
     if (!FinalYearToEdit) {
-      console.error("FinalYear not found for editing");
+      console.error('FinalYear not found for editing');
       return;
     }
 
@@ -187,118 +195,124 @@ const EditFinalYear: React.FC = () => {
     try {
       const url = `/api/admin/executiveBody/finalYear/deleteMember?id=${id}`;
       const response = await fetch(url, {
-        method: "DELETE",
+        method: 'DELETE',
       });
 
       if (response.ok) {
         fetchFinalYears();
+        toast.success('Final Year Executive Body member deleted successfully');
       } else {
-        console.error("Failed to delete FinalYear");
+        //console.error('Failed to delete FinalYear');
+        toast.error('Failed to delete Final Year Executive Body member');
       }
     } catch (error) {
-      console.error("Error deleting FinalYear:", error);
+      //console.error('Error deleting FinalYear:', error);
+      toast.error('Error deleting Final Year Executive Body member');
     }
   };
 
   return (
     <div>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Add Final Year Executive Body
         </CardHeader>
-        <form onSubmit={handleAddFinalYear}>
-          <div className='mt-4 mb-4'>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddFinalYear();
+          }}
+        >
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='name'
-              label='Enter Name'
+              type="text"
+              name="name"
+              label="Enter Name"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='EmailID'
-              label='Enter Email ID'
+              type="text"
+              name="EmailID"
+              label="Enter Email ID"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='designation'
-              label='Enter Designation'
+              type="text"
+              name="designation"
+              label="Enter Designation"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='linkedinUrl'
-              label='Enter LinkedIn Url'
+              type="text"
+              name="linkedinUrl"
+              label="Enter LinkedIn Url"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
-              isRequired
-              type='text'
-              name='facebookUrl'
-              label='Enter Facebook Url'
+              type="text"
+              name="facebookUrl"
+              label="Enter Facebook Url"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
-              isRequired
-              type='text'
-              name='instagramUrl'
-              label='Enter Instagram Url'
+              type="text"
+              name="instagramUrl"
+              label="Enter Instagram Url"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
-            <div className='mb-2'>Upload Image (Required)</div>
+          <div className="mt-4 mb-4">
+            <div className="mb-2">Upload Image (Required)</div>
             <Input
               isRequired
-              type='file'
-              name='image'
+              type="file"
+              name="image"
               onChange={handleInputChange}
-              accept='image/*'
+              accept="image/*"
             />
           </div>
-          <Button type='submit'>Add</Button>
+          <Button type="submit">Add</Button>
         </form>
       </Card>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Edit Existing Final Year Executive Body
         </CardHeader>
-        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
+        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
           {FinalYears.map((FinalYear: FinalYear) => (
-            <li className='mx-4 mt-4 mb-4' key={FinalYear._id}>
-              <div className='capitalize'>{FinalYear.name.toLowerCase()}</div>
-              <div className='flex'>
+            <li className="mx-4 mt-4 mb-4" key={FinalYear._id}>
+              <div className="capitalize">{FinalYear.name.toLowerCase()}</div>
+              <div className="flex">
                 <Button
-                  className='mx-2'
+                  className="mx-2"
                   onClick={() => openModalForEdit(FinalYear._id)}
                 >
                   Edit
                 </Button>
 
                 <Button
-                  className='mx-2'
-                  color='danger'
+                  className="mx-2"
+                  color="danger"
                   onClick={() => handleDeleteFinalYear(FinalYear._id)}
                 >
                   Delete
@@ -309,17 +323,18 @@ const EditFinalYear: React.FC = () => {
         </ul>
       </Card>
       <Modal
+        size="2xl"
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement='top-center'
+        placement="top-center"
       >
         <ModalContent>
-          <ModalHeader className='flex flex-col gap-1'>Edit</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Edit</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label='Name'
-              placeholder='Enter the Name'
+              label="Name"
+              placeholder="Enter the Name"
               value={FinalYearData.name}
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
@@ -331,8 +346,8 @@ const EditFinalYear: React.FC = () => {
 
             <Input
               autoFocus
-              label='EmailID'
-              placeholder='Enter the Email ID'
+              label="EmailID"
+              placeholder="Enter the Email ID"
               value={FinalYearData.EmailID}
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
@@ -343,8 +358,8 @@ const EditFinalYear: React.FC = () => {
             />
             <Input
               autoFocus
-              label='Designation'
-              placeholder='Enter the Designation'
+              label="Designation"
+              placeholder="Enter the Designation"
               value={FinalYearData.designation}
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
@@ -355,8 +370,8 @@ const EditFinalYear: React.FC = () => {
             />
             <Input
               autoFocus
-              label='LinkedIn Link'
-              placeholder='Enter the LinkedIn Link'
+              label="LinkedIn Link"
+              placeholder="Enter the LinkedIn Link"
               value={FinalYearData.linkedinUrl}
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
@@ -367,8 +382,8 @@ const EditFinalYear: React.FC = () => {
             />
             <Input
               autoFocus
-              label='Facebook Link'
-              placeholder='Enter the Facebook Link'
+              label="Facebook Link"
+              placeholder="Enter the Facebook Link"
               value={FinalYearData.facebookUrl}
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
@@ -379,8 +394,8 @@ const EditFinalYear: React.FC = () => {
             />
             <Input
               autoFocus
-              label='instagramUrl'
-              placeholder='Enter the Instagram Url'
+              label="instagramUrl"
+              placeholder="Enter the Instagram Url"
               value={FinalYearData.instagramUrl}
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
@@ -391,9 +406,9 @@ const EditFinalYear: React.FC = () => {
             />
             <Input
               isRequired
-              label='Image'
-              type='file'
-              placeholder='Enter the FinalYear image'
+              label="Image"
+              type="file"
+              placeholder="Enter the FinalYear image"
               onChange={(e) =>
                 setFinalYearData((prevData) => ({
                   ...prevData,
@@ -403,11 +418,11 @@ const EditFinalYear: React.FC = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button color='danger' variant='flat' onClick={closeModal}>
+            <Button color="danger" variant="flat" onClick={closeModal}>
               Close
             </Button>
             <Button
-              color='primary'
+              color="primary"
               onClick={() => handleEditFinalYear(editFinalYearId as string)}
             >
               Save Changes
@@ -415,6 +430,7 @@ const EditFinalYear: React.FC = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };
