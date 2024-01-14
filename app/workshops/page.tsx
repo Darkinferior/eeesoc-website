@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { title } from '@/components/primitives';
 import WorkshopItem from '@/components/workshop/WorkshopItem';
 import { Fragment } from 'react';
-import { Spinner } from '@nextui-org/react';
-import { Divider } from '@nextui-org/divider';
+import { Spinner, Divider } from '@nextui-org/react';
 import { Reveal } from '@/components/Reveal';
 
 export default function WorkshopPage() {
@@ -12,10 +11,9 @@ export default function WorkshopPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/workshops')
+    fetch('/api/workshops')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setWorkshopsList(data.result);
         setLoading(false);
       })
@@ -30,15 +28,18 @@ export default function WorkshopPage() {
       <section>
         <h1 className={title()}>Workshops</h1>
         <Reveal>
-          <p className="mt-4 justify-center items-center text-lg">
-            The society aims in imparting branch-specific technical knowledge to
-            the students of EEE. We conduct various workshops related to various
-            fields of Electrical Engineering such as MATLAB, SIMULINK, Machine
-            Learning, and Image processing workshop.
+          <p className="mt-4 justify-center items-center text-lg text-justify">
+            As part of the society&apos;s mission, students of the EEE
+            department and enthusiasts will be given branch-specific technical
+            knowledge. A variety of workshops are conducted on MATLAB,
+            Micro-controllers like Arduino and Raspberry Pi Pico, Basic of AI &
+            ML, PCB Design and Power Converter Design and many more. Thus,
+            providing a deeper understanding of Electrical and Electronic
+            Engineering.
           </p>
         </Reveal>
       </section>
-      <Divider className="mt-8" />
+      <Divider className="mt-8 h-1 bg-gradient-to-r from-cyan-500 to-blue-500" />
 
       <div className="flex flex-col gap-5 pb-20">
         {loading ? (
@@ -49,7 +50,9 @@ export default function WorkshopPage() {
               <Fragment key={workshop._id}>
                 <WorkshopItem index={index} workshop={workshop} />
 
-                {index !== workshopsList.length - 1 && <Divider />}
+                {index !== workshopsList.length - 1 && (
+                  <Divider className="h-1 bg-gradient-to-r from-cyan-500 to-blue-500" />
+                )}
               </Fragment>
             ))}
           </div>

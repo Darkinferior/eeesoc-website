@@ -37,7 +37,7 @@ const AlumniCards: React.FC<AlumniCardsProps> = ({ batchWiseAlumni }) => {
         <div className="flex flex-wrap items-center justify-center w-full">
           {batchWiseAlumni.alumni.map((senior) => (
             <AlumniCard
-              key={batchWiseAlumni._id}
+              key={senior._id}
               senior={senior}
               year={batchWiseAlumni.year}
             />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
   ModalContent,
@@ -6,52 +6,53 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
-  Checkbox,
   Input,
-  Textarea,
   Card,
   CardHeader,
 } from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-interface TeamMember {
-  id: string;
+interface PreFinalYear {
+  _id: string;
   name: string;
-  linkedInUrl: string;
   EmailID: string;
   designation: string;
+  linkedinUrl: string;
   facebookUrl: string;
   instagramUrl: string;
   image: string;
 }
 
-interface TeamMemberData {
+interface PreFinalYearData {
   name: string;
-  linkedInUrl: string;
   EmailID: string;
   designation: string;
+  linkedinUrl: string;
   facebookUrl: string;
   instagramUrl: string;
   image: File | null;
 }
 
 const EditPreFinalYear: React.FC = () => {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [teamMemberData, setTeamMemberData] = useState<TeamMemberData>({
+  const [PreFinalYears, setPreFinalYears] = useState<any[]>([]);
+  const [PreFinalYearData, setPreFinalYearData] = useState<PreFinalYearData>({
     name: '',
-    linkedInUrl: '',
     EmailID: '',
     designation: '',
+    linkedinUrl: '',
     facebookUrl: '',
     instagramUrl: '',
     image: null,
   });
 
-  const [editMemberId, setEditMemberId] = useState<string | null>(null);
+  const [editPreFinalYearId, setEditPreFinalYearId] = useState<string | null>(
+    null
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchTeamMembers();
+    fetchPreFinalYears();
   }, []);
 
   const handleInputChange = (
@@ -59,22 +60,40 @@ const EditPreFinalYear: React.FC = () => {
   ) => {
     const { name, value, type } = e.target;
 
-    setTeamMemberData((prevData) => ({
+    setPreFinalYearData((prevData) => ({
       ...prevData,
       [name]:
         type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
     }));
   };
 
-  const handleAddMember = async () => {
+  const fetchPreFinalYears = async () => {
+    try {
+      const response = await fetch('/api/executiveBody');
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data.k21)) {
+          setPreFinalYears(data.k21);
+        } else {
+          console.error("Pre Final Years' data is not an array:", data);
+        }
+      } else {
+        console.error("Failed to fetch Pre Final Years' data");
+      }
+    } catch (error) {
+      console.error("Error fetching Pre Final Years' data:", error);
+    }
+  };
+
+  const handleAddPreFinalYear = async () => {
     const formData = new FormData();
-    Object.entries(teamMemberData).forEach(([key, value]) => {
+    Object.entries(PreFinalYearData).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
     try {
       const response = await fetch(
-        'http://localhost:3000/api/admin/executiveBody/preFinalYear/addMember',
+        '/api/admin/executiveBody/preFinalYear/addMember',
         {
           method: 'POST',
           body: formData,
@@ -82,127 +101,121 @@ const EditPreFinalYear: React.FC = () => {
       );
 
       if (response.ok) {
-        fetchTeamMembers();
+        fetchPreFinalYears();
 
-        setTeamMemberData({
+        setPreFinalYearData({
           name: '',
-          linkedInUrl: '',
           EmailID: '',
           designation: '',
+          linkedinUrl: '',
           facebookUrl: '',
           instagramUrl: '',
           image: null,
         });
+
+        toast.success(
+          'Pre Final Year Executive Body member added successfully'
+        );
       } else {
-        console.error('Failed to add team member');
+        // console.error('Failed to add Pre Final Year');
+        toast.error('Failed to add Pre Final Year Executive Body member');
       }
     } catch (error) {
-      console.error('Error adding team member:', error);
+      //console.error('Error adding Pre Final Year:', error);
+      toast.error('Error adding Pre Final Year Executive Body member');
     }
   };
 
-  const handleEditMember = async (id: string) => {
+  const handleEditPreFinalYear = async (id: string) => {
     const formData = new FormData();
-    Object.entries(teamMemberData).forEach(([key, value]) => {
+    Object.entries(PreFinalYearData).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/admin/executiveBody/preFinalYear/updateMember?id=${id}`,
-        {
-          method: 'PATCH',
-          body: formData,
-        }
-      );
+      const url = `/api/admin/executiveBody/preFinalYear/updateMember?id=${id}`;
+      const response = await fetch(url, {
+        method: 'PATCH',
+        body: formData,
+      });
 
       if (response.ok) {
-        fetchTeamMembers();
+        fetchPreFinalYears();
 
-        setTeamMemberData({
+        setPreFinalYearData({
           name: '',
-          linkedInUrl: '',
           EmailID: '',
           designation: '',
+          linkedinUrl: '',
           facebookUrl: '',
           instagramUrl: '',
           image: null,
         });
 
         setIsModalOpen(false);
-        setEditMemberId(null);
-      } else {
-        console.error('Failed to edit team member');
-      }
-    } catch (error) {
-      console.error('Error editing team member:', error);
-    }
-  };
+        setEditPreFinalYearId(null);
 
-  const fetchTeamMembers = async () => {
-    try {
-      const response = await fetch(
-        'http://localhost:3000/api/executiveBody?year=k21'
-      );
-      if (response.ok) {
-        const data = await response.json();
-        if (Array.isArray(data.result)) {
-          setTeamMembers(data.result);
-        } else {
-          console.error('Team members data is not an array:', data);
-        }
+        toast.success(
+          'Pre Final Year Executive Body member updated successfully'
+        );
       } else {
-        console.error('Failed to fetch team members');
+        //console.error('Failed to edit PreFinalYear');
+        toast.error('Failed to edit Pre Final Year Executive Body member');
       }
     } catch (error) {
-      console.error('Error fetching team members:', error);
+      //.error('Error editing PreFinalYear:', error);
+      toast.error('Error editing Pre Final Year Executive Body member');
     }
   };
 
   const openModalForEdit = (id: string) => {
-    const memberToEdit = teamMembers.find((member) => member.id === id);
+    const PreFinalYearToEdit = PreFinalYears.find(
+      (PreFinalYear) => PreFinalYear._id === id
+    );
 
-    if (!memberToEdit) {
-      console.error('Team member not found for editing');
+    if (!PreFinalYearToEdit) {
+      console.error('PreFinalYear not found for editing');
       return;
     }
 
-    setTeamMemberData({
-      name: memberToEdit.name,
-      linkedInUrl: memberToEdit.linkedInUrl,
-      EmailID: memberToEdit.EmailID,
-      designation: memberToEdit.designation,
-      facebookUrl: memberToEdit.facebookUrl,
-      instagramUrl: memberToEdit.instagramUrl,
-      image: null, // Assuming image should not be edited in this example
+    setPreFinalYearData({
+      name: PreFinalYearToEdit.name,
+      EmailID: PreFinalYearToEdit.EmailID,
+      designation: PreFinalYearToEdit.designation,
+      linkedinUrl: PreFinalYearToEdit.linkedinUrl,
+      facebookUrl: PreFinalYearToEdit.facebookUrl,
+      instagramUrl: PreFinalYearToEdit.instagramUrl,
+      image: PreFinalYearToEdit.image,
     });
 
-    setEditMemberId(id);
-
+    setEditPreFinalYearId(id);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setEditMemberId(null);
+    setEditPreFinalYearId(null);
   };
 
-  const handleDeleteMember = async (id: string) => {
+  const handleDeletePreFinalYear = async (id: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/admin/executiveBody/preFinalYear/deleteMember?id=${id}`,
-        {
-          method: 'DELETE',
-        }
-      );
+      const url = `/api/admin/executiveBody/preFinalYear/deleteMember?id=${id}`;
+      const response = await fetch(url, {
+        method: 'DELETE',
+      });
 
       if (response.ok) {
-        fetchTeamMembers();
+        fetchPreFinalYears();
+        toast.success(
+          'Pre Final Year Executive Body member deleted successfully'
+        );
       } else {
-        console.error('Failed to delete team member');
+        //console.error('Failed to delete PreFinalYear');
+        toast.error('Failed to delete Pre Final Year Executive Body member');
       }
     } catch (error) {
-      console.error('Error deleting team member:', error);
+      //console.error('Error deleting PreFinalYear:', error);
+      toast.error('Error deleting Pre Final Year Executive Body member');
     }
   };
 
@@ -210,26 +223,20 @@ const EditPreFinalYear: React.FC = () => {
     <div>
       <Card isBlurred className="mt-4 mb-4">
         <CardHeader className="items-center text-center justify-center text-xl font-bold">
-          Add Team Member
+          Add Pre Final Year Executive Body
         </CardHeader>
-
-        <form onSubmit={handleAddMember}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddPreFinalYear();
+          }}
+        >
           <div className="mt-4 mb-4">
             <Input
               isRequired
               type="text"
               name="name"
-              label="Enter Member Name"
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="mt-4 mb-4">
-            <Input
-              isRequired
-              type="text"
-              name="linkedInUrl"
-              label="Enter LinkedIn URL"
+              label="Enter Name"
               onChange={handleInputChange}
               required
             />
@@ -254,9 +261,36 @@ const EditPreFinalYear: React.FC = () => {
               required
             />
           </div>
-
           <div className="mt-4 mb-4">
-            <div className="mb-2">Upload Member Image (Required)</div>
+            <Input
+              isRequired
+              type="text"
+              name="linkedinUrl"
+              label="Enter LinkedIn Url"
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="mt-4 mb-4">
+            <Input
+              type="text"
+              name="facebookUrl"
+              label="Enter Facebook Url"
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="mt-4 mb-4">
+            <Input
+              type="text"
+              name="instagramUrl"
+              label="Enter Instagram Url"
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="mt-4 mb-4">
+            <div className="mb-2">Upload Image (Required)</div>
             <Input
               isRequired
               type="file"
@@ -265,22 +299,23 @@ const EditPreFinalYear: React.FC = () => {
               accept="image/*"
             />
           </div>
-          <Button type="submit">Add Member</Button>
+          <Button type="submit">Add</Button>
         </form>
       </Card>
-
       <Card isBlurred className="mt-4 mb-4">
         <CardHeader className="items-center text-center justify-center text-xl font-bold">
-          Edit Existing Team Members
+          Edit Existing Pre Final Year Executive Body
         </CardHeader>
         <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
-          {teamMembers.map((member) => (
-            <li className="mx-4 mt-4 mb-4" key={member.id}>
-              <div>{member.name}</div>
+          {PreFinalYears.map((PreFinalYear: PreFinalYear) => (
+            <li className="mx-4 mt-4 mb-4" key={PreFinalYear._id}>
+              <div className="capitalize">
+                {PreFinalYear.name.toLowerCase()}
+              </div>
               <div className="flex">
                 <Button
                   className="mx-2"
-                  onClick={() => openModalForEdit(member.id)}
+                  onClick={() => openModalForEdit(PreFinalYear._id)}
                 >
                   Edit
                 </Button>
@@ -288,7 +323,7 @@ const EditPreFinalYear: React.FC = () => {
                 <Button
                   className="mx-2"
                   color="danger"
-                  onClick={() => handleDeleteMember(member.id)}
+                  onClick={() => handleDeletePreFinalYear(PreFinalYear._id)}
                 >
                   Delete
                 </Button>
@@ -297,71 +332,117 @@ const EditPreFinalYear: React.FC = () => {
           ))}
         </ul>
       </Card>
-
       <Modal
+        size="2xl"
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
         placement="top-center"
       >
         <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">
-            Edit Team Member
-          </ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Edit</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
               label="Name"
-              placeholder="Enter the member name"
-              value={teamMemberData.name}
+              placeholder="Enter the Name"
+              value={PreFinalYearData.name}
               onChange={(e) =>
-                setTeamMemberData((prevData) => ({
+                setPreFinalYearData((prevData) => ({
                   ...prevData,
                   name: e.target.value,
                 }))
               }
             />
+
             <Input
-              isRequired
-              label="LinkedIn URL"
-              type="text"
-              placeholder="Enter the LinkedIn URL"
-              value={teamMemberData.linkedInUrl}
-              onChange={(e) =>
-                setTeamMemberData((prevData) => ({
-                  ...prevData,
-                  linkedInUrl: e.target.value,
-                }))
-              }
-            />
-            <Input
-              isRequired
-              label="Email ID"
-              type="text"
+              autoFocus
+              label="EmailID"
               placeholder="Enter the Email ID"
-              value={teamMemberData.EmailID}
+              value={PreFinalYearData.EmailID}
               onChange={(e) =>
-                setTeamMemberData((prevData) => ({
+                setPreFinalYearData((prevData) => ({
                   ...prevData,
                   EmailID: e.target.value,
                 }))
               }
             />
             <Input
-              isRequired
+              autoFocus
               label="Designation"
-              type="text"
-              placeholder="Enter the designation"
-              value={teamMemberData.designation}
+              placeholder="Enter the Designation"
+              value={PreFinalYearData.designation}
               onChange={(e) =>
-                setTeamMemberData((prevData) => ({
+                setPreFinalYearData((prevData) => ({
                   ...prevData,
                   designation: e.target.value,
                 }))
               }
             />
+            <Input
+              autoFocus
+              label="LinkedIn Link"
+              placeholder="Enter the LinkedIn Link"
+              value={PreFinalYearData.linkedinUrl}
+              onChange={(e) =>
+                setPreFinalYearData((prevData) => ({
+                  ...prevData,
+                  linkedinUrl: e.target.value,
+                }))
+              }
+            />
+            <Input
+              autoFocus
+              label="Facebook Link"
+              placeholder="Enter the Facebook Link"
+              value={PreFinalYearData.facebookUrl}
+              onChange={(e) =>
+                setPreFinalYearData((prevData) => ({
+                  ...prevData,
+                  facebookUrl: e.target.value,
+                }))
+              }
+            />
+            <Input
+              autoFocus
+              label="instagramUrl"
+              placeholder="Enter the Instagram Url"
+              value={PreFinalYearData.instagramUrl}
+              onChange={(e) =>
+                setPreFinalYearData((prevData) => ({
+                  ...prevData,
+                  instagramUrl: e.target.value,
+                }))
+              }
+            />
+            <Input
+              isRequired
+              label="Image"
+              type="file"
+              placeholder="Enter the PreFinalYear image"
+              onChange={(e) =>
+                setPreFinalYearData((prevData) => ({
+                  ...prevData,
+                  image: (e.target as HTMLInputElement).files?.[0] as File,
+                }))
+              }
+            />
           </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="flat" onClick={closeModal}>
+              Close
+            </Button>
+            <Button
+              color="primary"
+              onClick={() =>
+                handleEditPreFinalYear(editPreFinalYearId as string)
+              }
+            >
+              Save Changes
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,6 +1,4 @@
-// EditPresidents.tsx
-
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
   ModalContent,
@@ -11,7 +9,9 @@ import {
   Input,
   Card,
   CardHeader,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface President {
   _id: string;
@@ -27,8 +27,8 @@ interface PresidentData {
 const EditPresidents: React.FC = () => {
   const [president, setPresident] = useState<any[]>([]);
   const [presidentData, setPresidentData] = useState<PresidentData>({
-    name: "",
-    tenure: "",
+    name: '',
+    tenure: '',
   });
 
   const [editpresidentId, setEditpresidentId] = useState<string | null>(null);
@@ -49,19 +49,19 @@ const EditPresidents: React.FC = () => {
 
   const fetchPresident = async () => {
     try {
-      const response = await fetch("/api/presidents");
+      const response = await fetch('/api/presidents');
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.result)) {
           setPresident(data.result);
         } else {
-          console.error("President data is not an array:", data);
+          console.error('President data is not an array:', data);
         }
       } else {
-        console.error("Failed to fetch president");
+        console.error('Failed to fetch president');
       }
     } catch (error) {
-      console.error("Error fetching president:", error);
+      console.error('Error fetching president:', error);
     }
   };
 
@@ -71,23 +71,25 @@ const EditPresidents: React.FC = () => {
       formData.append(key, value);
     });
     try {
-      const response = await fetch("/api/admin/presidents/addPresident", {
-        method: "POST",
+      const response = await fetch('/api/admin/presidents/addPresident', {
+        method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
         fetchPresident();
-
         setPresidentData({
-          name: "",
-          tenure: "",
+          name: '',
+          tenure: '',
         });
+        toast.success('President added successfully');
       } else {
-        console.error("Failed to add president");
+        //console.error('Failed to add president');
+        toast.error('Failed to add president');
       }
     } catch (error) {
-      console.error("Error adding president:", error);
+      //console.error('Error adding president:', error);
+      toast.error('Error adding president');
     }
   };
 
@@ -100,23 +102,26 @@ const EditPresidents: React.FC = () => {
       const url = `/api/admin/presidents/updatePresident?id=${id}`;
 
       const response = await fetch(url, {
-        method: "PATCH",
+        method: 'PATCH',
         body: formData,
       });
 
       if (response.ok) {
         fetchPresident();
         setPresidentData({
-          name: "",
-          tenure: "",
+          name: '',
+          tenure: '',
         });
         setIsModalOpen(false);
         setEditpresidentId(null);
+        toast.success('President edited successfully');
       } else {
-        console.error("Failed to edit president");
+        //console.error('Failed to edit president');
+        toast.error('Failed to edit president');
       }
     } catch (error) {
-      console.error("Error editing president:", error);
+      //console.error('Error editing president:', error);
+      toast.error('Error editing president');
     }
   };
 
@@ -125,7 +130,8 @@ const EditPresidents: React.FC = () => {
       (eachPresidentData) => eachPresidentData._id === id
     );
     if (!presidentToEdit) {
-      console.error("president not found for editing");
+      //console.error('president not found for editing');
+      toast.error('President not found for editing');
       return;
     }
     setPresidentData({
@@ -150,70 +156,73 @@ const EditPresidents: React.FC = () => {
       const url = `/api/admin/presidents/deletePresident?id=${id}`;
 
       const response = await fetch(url, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       if (response.ok) {
         fetchPresident();
+        toast.success('President deleted successfully');
       } else {
-        console.error("Failed to delete president");
+        //console.error('Failed to delete president');
+        toast.error('Failed to delete president');
       }
     } catch (error) {
-      console.error("Error deleting president:", error);
+      //console.error('Error deleting president:', error);
+      toast.error('Error deleting president');
     }
   };
 
   return (
     <div>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Add President
         </CardHeader>
 
         <form onSubmit={handleAddpresident}>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='name'
-              label='Enter President Name'
+              type="text"
+              name="name"
+              label="Enter President Name"
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
               isRequired
-              type='text'
-              name='tenure'
-              label='Enter President Tenure (start-end)'
+              type="text"
+              name="tenure"
+              label="Enter President Tenure (start-end)"
               onChange={handleInputChange}
               required
             />
           </div>
-          <Button type='submit'>Add President</Button>
+          <Button type="submit">Add President</Button>
         </form>
       </Card>
-      <Card isBlurred className='mt-4 mb-4'>
-        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
           Edit Existing President
         </CardHeader>
-        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
+        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
           {president.map((eachPresidentData: President) => (
-            <li className='mx-4 mt-4 mb-4' key={eachPresidentData._id}>
-              <div className='capitalize'>
+            <li className="mx-4 mt-4 mb-4" key={eachPresidentData._id}>
+              <div className="capitalize">
                 {eachPresidentData.name.toLowerCase()}
               </div>
-              <div className='flex'>
+              <div className="flex">
                 <Button
-                  className='mx-2'
+                  className="mx-2"
                   onClick={() => openModalForEdit(eachPresidentData._id)}
                 >
                   Edit
                 </Button>
 
                 <Button
-                  className='mx-2'
-                  color='danger'
+                  className="mx-2"
+                  color="danger"
                   onClick={() => handleDeletepresident(eachPresidentData._id)}
                 >
                   Delete
@@ -226,17 +235,17 @@ const EditPresidents: React.FC = () => {
       <Modal
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement='top-center'
+        placement="top-center"
       >
         <ModalContent>
-          <ModalHeader className='flex flex-col gap-1'>
+          <ModalHeader className="flex flex-col gap-1">
             Edit President
           </ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label='name'
-              placeholder='Enter the President Name'
+              label="name"
+              placeholder="Enter the President Name"
               value={presidentData.name}
               onChange={(e) =>
                 setPresidentData((prevData) => ({
@@ -247,8 +256,8 @@ const EditPresidents: React.FC = () => {
             />
             <Input
               autoFocus
-              label='tenure'
-              placeholder='Enter the President Tenure (start-end)'
+              label="tenure"
+              placeholder="Enter the President Tenure (start-end)"
               value={presidentData.tenure}
               onChange={(e) =>
                 setPresidentData((prevData) => ({
@@ -259,11 +268,11 @@ const EditPresidents: React.FC = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button color='danger' variant='flat' onClick={closeModal}>
+            <Button color="danger" variant="flat" onClick={closeModal}>
               Close
             </Button>
             <Button
-              color='primary'
+              color="primary"
               onClick={() => handleEditpresident(editpresidentId as string)}
             >
               Save Changes
@@ -271,6 +280,7 @@ const EditPresidents: React.FC = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };

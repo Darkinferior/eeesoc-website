@@ -1,25 +1,46 @@
 'use client';
-import React from 'react';
-import './CompanySlider.css'; // Import the CSS file
+import './CompanySlider.css';
 import { Image } from '@nextui-org/image';
 
 function CompanySlider() {
   const row1: string[] = [
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/1024px-Microsoft_logo_%282012%29.svg.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/b2bd91d7b87b2181ca45.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6591cdc0702b32310306.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3b7d9f4b073deb6a9b74.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3cd767dea94a85078ca4.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/a2b3c3709ffedce2a22a.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808962/placements/siemens.svg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808962/placements/nvidia.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808961/placements/tata_steel.svg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808961/placements/british_telecom.jpg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808961/placements/futurefirst.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808961/placements/truminds.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808961/placements/pwc.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808960/placements/amadeus.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808960/placements/tata_motors.jpg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808960/placements/GlobalLogic-Logo.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808959/placements/increff.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808960/placements/fastenal.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808959/placements/kpmg.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808960/placements/tata_autocomp.jpg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808959/placements/Visa-Logo.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808959/placements/microsoft.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808959/placements/nxp.png',
   ];
 
   const row2: string[] = [
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/9dd55e54b5a28658bf4e.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/0384060dcbf73b6a707c.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/35e044b3354aaa0caed5.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/f50ae7cbf6cc805bdadc.png',
-    'https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808958/placements/synopsis.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808958/placements/amazon.webp',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808958/placements/deloitte.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808958/placements/addverb.jpg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808958/placements/hcl.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808957/placements/bajaj.webp',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808951/placements/accenture.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808931/placements/zs.svg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808922/placements/ibm.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808923/placements/infinion.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/box8.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/samsung.svg',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/cypress.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/jsw.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/tata_power.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/oracle.png',
+    'https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704808921/placements/maruti_suzuki.png',
   ];
 
   return (
@@ -35,9 +56,9 @@ function CompanySlider() {
                 <Image
                   radius="none"
                   isBlurred
-                  height={400}
                   src={el}
                   alt="company-image"
+                  className="aspect-video"
                 />
               </div>
             ))}
@@ -51,9 +72,9 @@ function CompanySlider() {
                 <Image
                   radius="none"
                   isBlurred
-                  height={400}
                   src={el}
                   alt="company-image"
+                  className="aspect-video"
                 />
               </div>
             ))}
@@ -69,9 +90,9 @@ function CompanySlider() {
                 <Image
                   radius="none"
                   isBlurred
-                  height={400}
                   src={el}
                   alt="company-image"
+                  className="aspect-video"
                 />
               </div>
             ))}
@@ -85,9 +106,9 @@ function CompanySlider() {
                 <Image
                   radius="none"
                   isBlurred
-                  height={400}
                   src={el}
                   alt="company-image"
+                  className="aspect-video"
                 />
               </div>
             ))}

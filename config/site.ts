@@ -71,6 +71,10 @@ export const siteConfig = {
       label: 'CONTACT US',
       href: '/contact',
     },
+    {
+      label: 'SPONSOR US',
+      href: '/sponsor',
+    },
   ],
   links: {
     email: 'mailto:eeesoc@bitmesra.ac.in',

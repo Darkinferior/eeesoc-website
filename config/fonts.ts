@@ -1,4 +1,3 @@
-//font.ts
 import {
   Montserrat as FontMono,
   Josefin_Sans as FontSans,

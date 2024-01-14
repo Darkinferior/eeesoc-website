@@ -1,12 +1,17 @@
+'use client';
 import { title } from '@/components/primitives';
-import React from 'react';
-import { Card, CardBody, Link, Slider } from '@nextui-org/react';
-import { Image } from '@nextui-org/react';
-import { Button } from '@nextui-org/react';
-import { Divider } from '@nextui-org/react';
+import {
+  Card,
+  CardBody,
+  Link,
+  Image,
+  Button,
+  Divider,
+} from '@nextui-org/react';
 import CompanySlider from '@/components/sponsor/CompanySlider';
 import { siteConfig } from '@/config/site';
 import { Reveal } from '@/components/Reveal';
+import VertialTimeline from '@/components/sponsor/VertialTimeline';
 
 const SponsorPage = () => {
   return (
@@ -26,7 +31,7 @@ const SponsorPage = () => {
                 className="object-cover aspect-video"
                 height="100%"
                 shadow="md"
-                src="https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?q=80&w=1832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819237/sponsor-us/sponsor.jpg"
                 width="100%"
               />
             </div>
@@ -35,17 +40,17 @@ const SponsorPage = () => {
               <div className="flex flex-col gap-0">
                 <Reveal>
                   <p className="text-lg text-justify">
-                    Established in 2013 The Electrical & Electronics (EEE)
-                    Society of Birla Institute of Technology (BIT) Mesra is a
-                    student organization that aims to promote the study and
-                    application and technical growth and overall development of
-                    the students of BIT Mesra. The society has a strong track
-                    record of organising events and workshops, and has a
-                    membership of over 1,000 students. 1,000 students.of BIT
-                    Mesra. The society has a strong track record of organising
-                    events and workshops, and has a mof BIT Mesra. The society
-                    has a strong track record of organising events and
-                    workshops, and has a membership of over
+                    The Electrical & Electronics (EEE) Society of Birla
+                    Institute of Technology (BIT) Mesra is a student
+                    organization that aims to promote the study and application
+                    and technical growth and overall development of the students
+                    of BIT Mesra. The society has a strong track record of
+                    organizing events and workshops, and has a membership of
+                    over 1,000 students. Having a sponsorship with EEESoc allows
+                    our sponsors to increase their Brand Visibility by
+                    participating in several institutional events such as
+                    Bitotsav and Pantheon. Also, we highlight our sponsors on
+                    our official merch, events and workshops.
                   </p>
                 </Reveal>
               </div>
@@ -73,21 +78,36 @@ const SponsorPage = () => {
           </Reveal>
         </div>
         <Reveal>
-          <p className="text-justify mt-8 text-lg ">
-            Having a sponsorship with EEESoc allows our sponsors to increase
-            their Brand Visibility by participating in several institutional
-            events such as Bitotsav and Pantheon. We highlight our sponsors on
-            our official merch. We promote our sponsors by publicizing them
-            through various Newsletters, Brochure, Social Media, pamphlets, etc.
-            EEESoc serves as a talent pool for the brightest minds in electrical
-            and electronic engineering. Sponsoring us provides your organization
-            with direct access to a network of motivated and skilled individuals
-            who could be the future leaders of the industry. We display our
-            sponsors&apos; brand at events and workshops, demonstrating their
-            commitment to education and innovation. Your sponsorship helps
-            EEESoc continue its mission of empowering students and contributing
-            to the growth of the electrical and electronic engineering field.
-          </p>
+          <div className="text-justify mt-8 text-lg ">
+            <li className="my-4">
+              <strong>To tap into the latest research and innovations:</strong>{' '}
+              The EEE Society is known for its active research and innovation
+              culture. By collaborating with our Society, companies can gain
+              access to the latest research and innovations in the field of
+              engineering.
+            </li>
+            <li className="my-4">
+              <strong>To build brand awareness and goodwill:</strong> A
+              collaboration with the EEE Society can help companies build brand
+              awareness and goodwill among the engineering community.
+            </li>
+            <li className="my-4">
+              <strong>Access to a talented pool of students:</strong> EEESoc
+              serves as a talent pool for the brightest minds in electrical and
+              electronic engineering. Sponsoring us provides your organization
+              with direct access to a network of motivated and skilled
+              individuals who could be the future leaders of the industry.
+            </li>
+            <li className="my-4">
+              <strong>Opportunity to give back to the community:</strong> By
+              collaborating with the EEE Society, companies can give back to the
+              engineering community and help to develop the next generation of
+              engineers. Through a dynamic partnership with our Society,
+              forward-thinking companies can play a pivotal role in nurturing
+              student potential and contributing to the cultivation of a highly
+              skilled and exceptionally qualified workforce.
+            </li>
+          </div>
         </Reveal>
       </div>
       <Divider className="my-4 h-1 bg-cyan-500" />
@@ -100,7 +120,18 @@ const SponsorPage = () => {
             </h1>
           </Reveal>
         </div>
-        <CompanySlider />
+        <div
+          className="xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-md max-w-md overflow-hidden"
+          style={{
+            maskImage:
+              'linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 10%, hsl(0 0% 0% / 1) 90%, hsl(0 0% 0% / 0)',
+          }}
+        >
+          <CompanySlider />
+        </div>
+      </div>
+      <div className="mt-8 mb-8">
+        <VertialTimeline />
       </div>
     </div>
   );

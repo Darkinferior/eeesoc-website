@@ -1,9 +1,7 @@
-import Image from 'next/image';
-import { IconEmail, LocationIcon } from './icons';
-import { Link } from '@nextui-org/link';
-import { Divider } from '@nextui-org/react';
+import { IconEmail } from './icons';
+import { Link, Divider, Image } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
-import { Reveal } from './Reveal';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -17,7 +15,6 @@ export default function Footer() {
             <h3 className="mb-4 text-xl font-bold">Find us here</h3>
 
             <address className="flex gap-1">
-              <LocationIcon className="ml-4" />{' '}
               <Link
                 color="foreground"
                 href={siteConfig.links.location}
@@ -35,7 +32,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center justify-center gap-6 mb-4 col-span-1 mx-8 sm:mx-4 lg:mx-auto">
             <Image
-              src="/bit-mesra-logo.png"
+              src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819982/logos/bit-mesra-logo.png"
               alt="bit logo"
               width={75}
               height={75}
@@ -47,7 +44,7 @@ export default function Footer() {
               </h1>
             </div>
             <Image
-              src="/eeesoc-logo.png"
+              src="https://res.cloudinary.com/dnni24ave/image/upload/w_1000/q_auto/f_auto/v1704819764/logos/eeesoc-logo.png"
               alt="eeesoc logo"
               width={75}
               height={75}

@@ -1,14 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { title } from '@/components/primitives';
-
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
+import { Card, CardHeader } from '@nextui-org/card';
 import { MentorCard } from '../../components/aboutpage/MentorCard';
 import { PresidentCard } from '../../components/aboutpage/PresidentCard';
 import { HowItBegan } from '../../components/aboutpage/HowItBegan';
 import { AboutDescription } from '../../components/aboutpage/AboutDescription';
 import { MotiveCard } from '../../components/aboutpage/MotiveCard';
-import { Reveal } from '@/components/Reveal';
 
 interface Mentor {
   _id: string;
@@ -25,21 +23,21 @@ export default function AboutPage() {
   const [mentors, setMentors] = useState<Mentor[]>([]);
 
   const academicBulletPoints = [
-    'Project Programs for first and second year students',
-    'EEESoc Sessions',
-    'Workshops',
+    'To instill practical knowledge in students',
+    'To creatively apply knowledge in real-life situations',
+    'To provide one to one mentorship for doubt solving',
   ];
 
   const personalBulletPoints = [
-    'Interviews of final year students',
-    'Pantheon & Bitotsav Events',
-    'Induction programs for new batches',
+    'To conduct fun and learning events during Pantheon and Bitotsav',
+    'Personal Development by taking interviews of final year students',
+    'To organize an induction program for new batches and interact with them',
   ];
 
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/mentors');
+        const response = await fetch('/api/mentors');
         const data = await response.json();
         setMentors(data.result as Mentor[]);
       } catch (error: any) {
@@ -63,7 +61,7 @@ export default function AboutPage() {
   ));
   return (
     <div>
-      <h1 className={title()}>About.</h1>
+      <h1 className={title()}>About</h1>
 
       <AboutDescription />
 
