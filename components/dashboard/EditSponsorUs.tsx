@@ -1,7 +1,7 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
-import { Button, Input, Card, Textarea } from "@nextui-org/react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { Button, Input, Card, CardHeader, Textarea } from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface CardData {
   content: string;
@@ -10,7 +10,7 @@ interface CardData {
 
 const EditSponsor: React.FC = () => {
   const [CardData, setCardData] = useState<CardData>({
-    content: "",
+    content: '',
     image: null,
   });
 
@@ -28,22 +28,22 @@ const EditSponsor: React.FC = () => {
     setCardData((prevData) => ({
       ...prevData,
       [name]:
-        type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
+        type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
     }));
   };
 
   const fetchCardData = async () => {
     try {
-      const response = await fetch("/api/sponsorUs");
+      const response = await fetch('/api/sponsorUs');
       if (response.ok) {
         const data = await response.json();
         setCardData(data.data[0]);
         setEditCardId(data.data[0]._id);
       } else {
-        console.error("Failed to fetch Card");
+        console.error('Failed to fetch Card');
       }
     } catch (error) {
-      console.error("Error fetching Card:", error);
+      console.error('Error fetching Card:', error);
     }
   };
 
@@ -56,61 +56,65 @@ const EditSponsor: React.FC = () => {
     try {
       const url = `/api/admin/sponsorUs?id=${id}`;
       const response = await fetch(url, {
-        method: "PUT",
+        method: 'PUT',
         body: formData,
       });
 
       if (response.ok) {
         fetchCardData();
         setCardData({
-          content: "",
+          content: '',
           image: null,
         });
         setEditCardId(null);
-        toast.success("Card data saved successfully");
+        toast.success('Card data saved successfully');
       } else {
-        toast.error("Failed to edit Card data");
+        toast.error('Failed to edit Card data');
       }
     } catch (error) {
-      toast.error("Error editing Card data");
+      toast.error('Error editing Card data');
     }
   };
 
   return (
     <div>
-      <h1 className='flex items-center justify-center font-bold text-3xl'>
-        Card Data
-      </h1>
-      <Card isBlurred className='mt-4 mb-4'>
+      <Card isBlurred className="mt-4 mb-4">
+        <CardHeader className="items-center text-center justify-center text-xl font-bold">
+          Card Data
+        </CardHeader>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handlePutCard(editCardId as string);
           }}
         >
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Textarea
+              fullWidth={true}
               isRequired
-              type='text'
-              name='content'
-              label='Enter Content'
+              size="lg"
+              type="text"
+              name="content"
+              label="Enter Content"
               value={CardData.content}
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className='mt-4 mb-4'>
+          <div className="mt-4 mb-4">
             <Input
+              size="lg"
               isRequired
-              type='file'
-              name='image'
+              type="file"
+              name="image"
               onChange={handleInputChange}
               required
-              accept='image/*'
+              accept="image/*"
             />
           </div>
 
-          <Button type='submit'>Save</Button>
+          <Button type="submit">Save</Button>
         </form>
       </Card>
       <ToastContainer />
