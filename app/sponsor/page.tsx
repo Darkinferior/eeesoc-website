@@ -8,6 +8,7 @@ import {
   Image,
   Button,
   Divider,
+  Spinner,
 } from '@nextui-org/react';
 import CompanySlider from '@/components/sponsor/CompanySlider';
 import { siteConfig } from '@/config/site';
@@ -22,6 +23,7 @@ interface SponsorData {
 }
 
 const SponsorPage = () => {
+  const [loading, setLoading] = useState(true);
   const [sponsorData, setSponsorData] = useState<SponsorData | null>(null);
 
   useEffect(() => {
@@ -35,11 +37,17 @@ const SponsorPage = () => {
         }
       } catch (error) {
         console.error('Error fetching sponsor data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  if (loading) {
+    return <Spinner size="lg" />;
+  }
 
   return (
     <div>
