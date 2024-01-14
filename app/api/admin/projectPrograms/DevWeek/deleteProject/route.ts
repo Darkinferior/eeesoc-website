@@ -31,7 +31,12 @@ export async function DELETE(request: Request): Promise<NextResponse> {
                 const projectArray = existingDocument.yearWiseProjects[yearIndex].projects
                 const nameIndex = projectArray.findIndex((item: { name: String }) => item.name === projectName)
                 if (nameIndex !== -1) {
-                    projectArray.splice(nameIndex, 1)
+                    if (projectArray.length === 1) {
+                        existingDocument.yearWiseProjects.splice(yearIndex, 1);
+                    }
+                    else {
+                        projectArray.splice(nameIndex, 1)
+                    }
                     await existingDocument.save();
                     return NextResponse.json({ "msg": "project deleted successfully", success: true });
                 }
