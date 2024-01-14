@@ -106,6 +106,7 @@ const EditSponsor: React.FC = () => {
               name='image'
               onChange={handleInputChange}
               required
+              accept='image/*'
             />
           </div>
 
