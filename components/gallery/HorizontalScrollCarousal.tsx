@@ -68,7 +68,7 @@ const Card: React.FC<CardProps> = ({ card }) => {
   return (
     <div
       key={card.id}
-      className="group relative h-[450px] w-[450px] overflow-hidden bg-neutral-200"
+      className="group relative h-[450px] w-[600px] overflow-hidden bg-neutral-200"
     >
       <div
         style={{
