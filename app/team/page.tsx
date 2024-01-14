@@ -19,6 +19,7 @@ export default function TeamPage() {
       try {
         const response = await fetch(`/api/executiveBody?year=${year}`);
         const data = await response.json();
+        //console.log(data.result);
         return data.result as Member[];
       } catch (error: any) {
         console.error(
