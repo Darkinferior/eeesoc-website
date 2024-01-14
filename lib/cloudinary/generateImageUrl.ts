@@ -14,7 +14,7 @@ export async function uploadImageToCloudinary(image: File, folder: string): Prom
         const buffer = Buffer.from(byteData);
 
         cloudinary.uploader.upload_stream(
-            { folder: folder, quality: 70, progressive: true, fetch_format: "auto" }, 
+            { folder: folder, quality: 70, progressive: true, fetch_format: "auto", timeout: 60000, }, 
             async (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
                 if (error) {
                     console.error('Error uploading image:', error);
