@@ -1,6 +1,6 @@
+
 import { UploadApiResponse, UploadApiErrorResponse } from 'cloudinary';
 import { v2 as cloudinary } from 'cloudinary';
-
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
@@ -9,14 +9,13 @@ cloudinary.config({
 });
 
 export async function uploadImageToCloudinary(image: File, folder: string): Promise<string> {
-
     return new Promise<string>(async (resolve, reject) => {
         const byteData = await image.arrayBuffer();
         const buffer = Buffer.from(byteData);
 
         cloudinary.uploader.upload_stream(
-            { folder: folder },  
-            (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+            { folder: folder, quality: 70, progressive: true, fetch_format: "auto" }, 
+            async (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
                 if (error) {
                     console.error('Error uploading image:', error);
                     reject(error);
