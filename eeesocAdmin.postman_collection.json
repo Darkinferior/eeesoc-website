@@ -1348,6 +1348,247 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "eventRegister",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "formLink",
+							"value": "formLink",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/events/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"events",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eventResult",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "link",
+							"value": "link",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/events/result",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"events",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addImageGallery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/gallery/addImage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"gallery",
+						"addImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteImageGallery",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/gallery/deleteImage?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"gallery",
+						"deleteImage"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateImageGallery",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/gallery/updateImage?id=id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"gallery",
+						"updateImage"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSponserUsDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/sponserUs/getSponserUsDetails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"sponserUs",
+						"getSponserUsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSponserUsCard",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "image.png"
+						},
+						{
+							"key": "content",
+							"value": "content",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/sponserUs/updateSponserUsCard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"sponserUs",
+						"updateSponserUsCard"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

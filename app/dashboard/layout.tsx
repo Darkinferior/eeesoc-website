@@ -2,7 +2,6 @@ import options from '@/lib/admin/auth';
 import { Button, Link } from '@nextui-org/react';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import { button as buttonStyles } from '@nextui-org/theme';
 
 interface User {
   name: string | null;
@@ -46,7 +45,7 @@ export default async function DashboardLayout({
           {session?.user?.role === 'admin' ? (
             children
           ) : (
-            <h3>You don't have the permissions to visit this site.</h3>
+            <h3>You don&apos;t have the permissions to visit this site.</h3>
           )}
         </div>
       </section>

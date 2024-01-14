@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from "react";
 import {
   Modal,
   ModalContent,
@@ -9,9 +9,9 @@ import {
   Input,
   Card,
   CardHeader,
-} from '@nextui-org/react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+} from "@nextui-org/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Interview {
   _id: string;
@@ -33,10 +33,10 @@ interface InterviewData {
 const EditInterviews: React.FC = () => {
   const [interviews, setInterviews] = useState<any[]>([]);
   const [InterviewData, setInterviewData] = useState<InterviewData>({
-    name: '',
-    company: '',
-    mediumLink: '',
-    year: '',
+    name: "",
+    company: "",
+    mediumLink: "",
+    year: "",
     image: null,
   });
 
@@ -55,25 +55,25 @@ const EditInterviews: React.FC = () => {
     setInterviewData((prevData) => ({
       ...prevData,
       [name]:
-        type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
+        type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
     }));
   };
 
   const fetchInterviews = async () => {
     try {
-      const response = await fetch('/api/interviewsAll');
+      const response = await fetch("/api/interviewsAll");
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.result)) {
           setInterviews(data.result);
         } else {
-          console.error('Interviews data is not an array:', data);
+          console.error("Interviews data is not an array:", data);
         }
       } else {
-        console.error('Failed to fetch Interviews');
+        console.error("Failed to fetch Interviews");
       }
     } catch (error) {
-      console.error('Error fetching Interviews:', error);
+      console.error("Error fetching Interviews:", error);
     }
   };
 
@@ -83,8 +83,8 @@ const EditInterviews: React.FC = () => {
       formData.append(key, value);
     });
     try {
-      const response = await fetch('/api/admin/interviewsAll/addInterview', {
-        method: 'POST',
+      const response = await fetch("/api/admin/interviewsAll/addInterview", {
+        method: "POST",
         body: formData,
       });
 
@@ -92,21 +92,19 @@ const EditInterviews: React.FC = () => {
         fetchInterviews();
 
         setInterviewData({
-          name: '',
-          company: '',
-          mediumLink: '',
-          year: '',
+          name: "",
+          company: "",
+          mediumLink: "",
+          year: "",
           image: null,
         });
 
-        toast.success('Interview added successfully');
+        toast.success("Interview added successfully");
       } else {
-        //console.error('Failed to add Interview');
-        toast.error('Failed to add Interview');
+        toast.error("Failed to add Interview");
       }
     } catch (error) {
-      //console.error('Error adding Interview:', error);
-      toast.error('Error adding Interview');
+      toast.error("Error adding Interview");
     }
   };
 
@@ -128,7 +126,7 @@ const EditInterviews: React.FC = () => {
     try {
       const url = `/api/admin/interviewsAll/updateInterview?year=${InterviewToEdit[1]}&name=${InterviewToEdit[0][0].name}&company=${InterviewToEdit[0][0].company}`;
       const response = await fetch(url, {
-        method: 'PATCH',
+        method: "PATCH",
         body: formData,
       });
 
@@ -136,24 +134,22 @@ const EditInterviews: React.FC = () => {
         fetchInterviews();
 
         setInterviewData({
-          name: '',
-          company: '',
-          mediumLink: '',
-          year: '',
+          name: "",
+          company: "",
+          mediumLink: "",
+          year: "",
           image: null,
         });
 
         setIsModalOpen(false);
         setEditInterviewId(null);
 
-        toast.success('Interview updated successfully');
+        toast.success("Interview updated successfully");
       } else {
-        //console.error('Failed to edit Interview');
-        toast.error('Failed to edit Interview');
+        toast.error("Failed to edit Interview");
       }
     } catch (error) {
-      //console.error('Error editing Interview:', error);
-      toast.error('Error editing Interview');
+      toast.error("Error editing Interview");
     }
   };
 
@@ -168,7 +164,7 @@ const EditInterviews: React.FC = () => {
       .filter((Interview) => Interview[0].length > 0)[0];
 
     if (!InterviewToEdit) {
-      console.error('Interview not found for editing');
+      console.error("Interview not found for editing");
       return;
     }
 
@@ -201,116 +197,114 @@ const EditInterviews: React.FC = () => {
     try {
       const url = `/api/admin/interviewsAll/deleteInterview?year=${InterviewToEdit[1]}&name=${InterviewToEdit[0][0].name}&company=${InterviewToEdit[0][0].company}`;
       const response = await fetch(url, {
-        method: 'DELETE',
+        method: "DELETE",
       });
 
       if (response.ok) {
         fetchInterviews();
-        toast.success('Interview deleted successfully');
+        toast.success("Interview deleted successfully");
       } else {
-        //console.error('Failed to delete Interview');
-        toast.error('Failed to delete Interview');
+        toast.error("Failed to delete Interview");
       }
     } catch (error) {
-      //console.error('Error deleting Interview:', error);
-      toast.error('Error deleting Interview');
+      toast.error("Error deleting Interview");
     }
   };
 
   return (
     <div>
-      <Card isBlurred className="mt-4 mb-4">
-        <CardHeader className="items-center text-center justify-center text-xl font-bold">
+      <Card isBlurred className='mt-4 mb-4'>
+        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
           Add Interview
         </CardHeader>
 
         <form onSubmit={handleAddInterview}>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="name"
-              label="Enter Name"
+              type='text'
+              name='name'
+              label='Enter Name'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="position"
-              label="Enter Position"
+              type='text'
+              name='position'
+              label='Enter Position'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="company"
-              label="Enter Company"
+              type='text'
+              name='company'
+              label='Enter Company'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="mediumLink"
-              label="Enter Medium Url"
+              type='text'
+              name='mediumLink'
+              label='Enter Medium Url'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="year"
-              label="Enter Year"
+              type='text'
+              name='year'
+              label='Enter Year'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
-            <div className="mb-2">Upload Interview Image (Required)</div>
+          <div className='mt-4 mb-4'>
+            <div className='mb-2'>Upload Interview Image (Required)</div>
             <Input
               isRequired
-              type="file"
-              name="image"
+              type='file'
+              name='image'
               onChange={handleInputChange}
-              accept="image/*"
+              accept='image/*'
             />
           </div>
-          <Button type="submit">Add Interview</Button>
+          <Button type='submit'>Add Interview</Button>
         </form>
       </Card>
-      <Card isBlurred className="mt-4 mb-4">
-        <CardHeader className="items-center text-center justify-center text-xl font-bold">
+      <Card isBlurred className='mt-4 mb-4'>
+        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
           Edit Existing Interviews
         </CardHeader>
-        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
+        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
           {interviews.map((batchWiseInterview) => {
             return batchWiseInterview.interviews.map((Interview: Interview) => (
-              <li className="mx-4 mt-4 mb-4" key={Interview._id}>
-                <div className="capitalize">{Interview.name.toLowerCase()}</div>
-                <div className="text-semibold">
+              <li className='mx-4 mt-4 mb-4' key={Interview._id}>
+                <div className='capitalize'>{Interview.name.toLowerCase()}</div>
+                <div className='text-semibold'>
                   K&apos;{batchWiseInterview.year % 100}
                 </div>
-                <div className="flex">
+                <div className='flex'>
                   <Button
-                    className="mx-2"
+                    className='mx-2'
                     onClick={() => openModalForEdit(Interview._id)}
                   >
                     Edit
                   </Button>
 
                   <Button
-                    className="mx-2"
-                    color="danger"
+                    className='mx-2'
+                    color='danger'
                     onClick={() => handleDeleteInterview(Interview._id)}
                   >
                     Delete
@@ -322,20 +316,20 @@ const EditInterviews: React.FC = () => {
         </ul>
       </Card>
       <Modal
-        size="2xl"
+        size='2xl'
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement="top-center"
+        placement='top-center'
       >
         <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">
+          <ModalHeader className='flex flex-col gap-1'>
             Edit Interview
           </ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label="Name"
-              placeholder="Enter the Name"
+              label='Name'
+              placeholder='Enter the Name'
               value={InterviewData.name}
               onChange={(e) =>
                 setInterviewData((prevData) => ({
@@ -346,8 +340,8 @@ const EditInterviews: React.FC = () => {
             />
             <Input
               autoFocus
-              label="company"
-              placeholder="Enter the Company"
+              label='company'
+              placeholder='Enter the Company'
               value={InterviewData.company}
               onChange={(e) =>
                 setInterviewData((prevData) => ({
@@ -358,8 +352,8 @@ const EditInterviews: React.FC = () => {
             />
             <Input
               autoFocus
-              label="Medium Link"
-              placeholder="Enter the Medium Link"
+              label='Medium Link'
+              placeholder='Enter the Medium Link'
               value={InterviewData.mediumLink}
               onChange={(e) =>
                 setInterviewData((prevData) => ({
@@ -370,9 +364,10 @@ const EditInterviews: React.FC = () => {
             />
             <Input
               isRequired
-              label="Image"
-              type="file"
-              placeholder="Enter the image"
+              label='Image'
+              type='file'
+              placeholder='Enter the image'
+              accept='image/*'
               onChange={(e) =>
                 setInterviewData((prevData) => ({
                   ...prevData,
@@ -382,11 +377,11 @@ const EditInterviews: React.FC = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button color="danger" variant="flat" onClick={closeModal}>
+            <Button color='danger' variant='flat' onClick={closeModal}>
               Close
             </Button>
             <Button
-              color="primary"
+              color='primary'
               onClick={() => handleEditInterview(editInterviewId as string)}
             >
               Save Changes

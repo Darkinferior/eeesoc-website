@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from "react";
 import {
   Modal,
   ModalContent,
@@ -9,9 +9,9 @@ import {
   Input,
   Card,
   CardHeader,
-} from '@nextui-org/react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+} from "@nextui-org/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Mentor {
   _id: string;
@@ -35,11 +35,11 @@ interface MentorData {
 const EditMentors: React.FC = () => {
   const [Mentor, setMentor] = useState<any[]>([]);
   const [MentorData, setMentorData] = useState<MentorData>({
-    name: '',
-    designation: '',
-    department: '',
-    areasOfInterest: '',
-    profileLink: '',
+    name: "",
+    designation: "",
+    department: "",
+    areasOfInterest: "",
+    profileLink: "",
     image: null,
   });
 
@@ -58,25 +58,25 @@ const EditMentors: React.FC = () => {
     setMentorData((prevData) => ({
       ...prevData,
       [name]:
-        type === 'file' ? (e.target as HTMLInputElement).files?.[0] : value,
+        type === "file" ? (e.target as HTMLInputElement).files?.[0] : value,
     }));
   };
 
   const fetchMentor = async () => {
     try {
-      const response = await fetch('/api/mentors');
+      const response = await fetch("/api/mentors");
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data.result)) {
           setMentor(data.result);
         } else {
-          console.error('Mentor data is not an array:', data);
+          console.error("Mentor data is not an array:", data);
         }
       } else {
-        console.error('Failed to fetch Mentor');
+        console.error("Failed to fetch Mentor");
       }
     } catch (error) {
-      console.error('Error fetching Mentor:', error);
+      console.error("Error fetching Mentor:", error);
     }
   };
 
@@ -86,29 +86,27 @@ const EditMentors: React.FC = () => {
       formData.append(key, value);
     });
     try {
-      const response = await fetch('/api/admin/mentors/addMentor', {
-        method: 'POST',
+      const response = await fetch("/api/admin/mentors/addMentor", {
+        method: "POST",
         body: formData,
       });
 
       if (response.ok) {
         fetchMentor();
         setMentorData({
-          name: '',
-          designation: '',
-          department: '',
-          areasOfInterest: '',
-          profileLink: '',
+          name: "",
+          designation: "",
+          department: "",
+          areasOfInterest: "",
+          profileLink: "",
           image: null,
         });
-        toast.success('Mentor added successfully');
+        toast.success("Mentor added successfully");
       } else {
-        //console.error('Failed to add Mentor');
-        toast.error('Failed to add Mentor');
+        toast.error("Failed to add Mentor");
       }
     } catch (error) {
-      //console.error('Error adding Mentor:', error);
-      toast.error('Error adding Mentor');
+      toast.error("Error adding Mentor");
     }
   };
 
@@ -121,30 +119,28 @@ const EditMentors: React.FC = () => {
       const url = `/api/admin/mentors/updateMentor?id=${id}`;
 
       const response = await fetch(url, {
-        method: 'PATCH',
+        method: "PATCH",
         body: formData,
       });
 
       if (response.ok) {
         fetchMentor();
         setMentorData({
-          name: '',
-          department: '',
-          designation: '',
-          areasOfInterest: '',
-          profileLink: '',
+          name: "",
+          department: "",
+          designation: "",
+          areasOfInterest: "",
+          profileLink: "",
           image: null,
         });
         setIsModalOpen(false);
         setEditMentorId(null);
-        toast.success('Mentor edited successfully');
+        toast.success("Mentor edited successfully");
       } else {
-        //console.error('Failed to edit Mentor');
-        toast.error('Failed to edit Mentor');
+        toast.error("Failed to edit Mentor");
       }
     } catch (error) {
-      // console.error('Error editing Mentor:', error);
-      toast.error('Error editing Mentor');
+      toast.error("Error editing Mentor");
     }
   };
 
@@ -153,8 +149,7 @@ const EditMentors: React.FC = () => {
       (eachMentorData) => eachMentorData._id === id
     );
     if (!MentorToEdit) {
-      //console.error('Mentor not found for editing');
-      toast.error('Mentor not found for editing');
+      toast.error("Mentor not found for editing");
       return;
     }
     setMentorData({
@@ -183,75 +178,73 @@ const EditMentors: React.FC = () => {
       const url = `/api/admin/mentors/deleteMentor?id=${id}`;
 
       const response = await fetch(url, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       if (response.ok) {
         fetchMentor();
-        toast.success('Mentor deleted successfully');
+        toast.success("Mentor deleted successfully");
       } else {
-        // console.error('Failed to delete Mentor');
-        toast.error('Failed to delete Mentor');
+        toast.error("Failed to delete Mentor");
       }
     } catch (error) {
-      //console.error('Error deleting Mentor:', error);
-      toast.error('Error deleting Mentor');
+      toast.error("Error deleting Mentor");
     }
   };
 
   return (
     <div>
-      <Card isBlurred className="mt-4 mb-4">
-        <CardHeader className="items-center text-center justify-center text-xl font-bold">
+      <Card isBlurred className='mt-4 mb-4'>
+        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
           Add Mentor
         </CardHeader>
 
         <form onSubmit={handleAddMentor}>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="name"
-              label="Enter Mentor Name"
+              type='text'
+              name='name'
+              label='Enter Mentor Name'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="designation"
-              label="Enter Mentor Designation"
+              type='text'
+              name='designation'
+              label='Enter Mentor Designation'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="department"
-              label="Enter Mentor Department"
+              type='text'
+              name='department'
+              label='Enter Mentor Department'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="areasOfInterest"
-              label="Enter Mentor Areas of Interest (comma seperated)"
+              type='text'
+              name='areasOfInterest'
+              label='Enter Mentor Areas of Interest (comma seperated)'
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className="mt-4 mb-4">
+          <div className='mt-4 mb-4'>
             <Input
               isRequired
-              type="text"
-              name="profileLink"
-              label="Enter Mentor Profile Link"
+              type='text'
+              name='profileLink'
+              label='Enter Mentor Profile Link'
               onChange={handleInputChange}
               required
             />
@@ -259,36 +252,36 @@ const EditMentors: React.FC = () => {
           <div>
             <Input
               isRequired
-              type="file"
-              name="image"
+              type='file'
+              name='image'
               onChange={handleInputChange}
-              accept="image/*"
+              accept='image/*'
             />
           </div>
-          <Button type="submit">Add Mentor</Button>
+          <Button type='submit'>Add Mentor</Button>
         </form>
       </Card>
-      <Card isBlurred className="mt-4 mb-4">
-        <CardHeader className="items-center text-center justify-center text-xl font-bold">
+      <Card isBlurred className='mt-4 mb-4'>
+        <CardHeader className='items-center text-center justify-center text-xl font-bold'>
           Edit Existing Mentor
         </CardHeader>
-        <ul className="flex flex-wrap items-center justify-center text-center mt-4 mb-4">
+        <ul className='flex flex-wrap items-center justify-center text-center mt-4 mb-4'>
           {Mentor.map((eachMentorData: Mentor) => (
-            <li className="mx-4 mt-4 mb-4" key={eachMentorData._id}>
-              <div className="capitalize">
+            <li className='mx-4 mt-4 mb-4' key={eachMentorData._id}>
+              <div className='capitalize'>
                 {eachMentorData.name.toLowerCase()}
               </div>
-              <div className="flex">
+              <div className='flex'>
                 <Button
-                  className="mx-2"
+                  className='mx-2'
                   onClick={() => openModalForEdit(eachMentorData._id)}
                 >
                   Edit
                 </Button>
 
                 <Button
-                  className="mx-2"
-                  color="danger"
+                  className='mx-2'
+                  color='danger'
                   onClick={() => handleDeleteMentor(eachMentorData._id)}
                 >
                   Delete
@@ -301,15 +294,15 @@ const EditMentors: React.FC = () => {
       <Modal
         isOpen={isModalOpen}
         onOpenChange={() => setIsModalOpen(!isModalOpen)}
-        placement="top-center"
+        placement='top-center'
       >
         <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">Edit Mentor</ModalHeader>
+          <ModalHeader className='flex flex-col gap-1'>Edit Mentor</ModalHeader>
           <ModalBody>
             <Input
               autoFocus
-              label="Name"
-              placeholder="Enter the Mentor Name"
+              label='Name'
+              placeholder='Enter the Mentor Name'
               value={MentorData.name}
               onChange={(e) =>
                 setMentorData((prevData) => ({
@@ -320,8 +313,8 @@ const EditMentors: React.FC = () => {
             />
             <Input
               autoFocus
-              label="Designation"
-              placeholder="Enter the Mentor Designation"
+              label='Designation'
+              placeholder='Enter the Mentor Designation'
               value={MentorData.designation}
               onChange={(e) =>
                 setMentorData((prevData) => ({
@@ -332,8 +325,8 @@ const EditMentors: React.FC = () => {
             />
             <Input
               autoFocus
-              label="Department"
-              placeholder="Enter the Mentor Department"
+              label='Department'
+              placeholder='Enter the Mentor Department'
               value={MentorData.department}
               onChange={(e) =>
                 setMentorData((prevData) => ({
@@ -344,8 +337,8 @@ const EditMentors: React.FC = () => {
             />
             <Input
               autoFocus
-              label="Areas of Interest"
-              placeholder="Enter the Mentor Areas of Interest (comma seperated)"
+              label='Areas of Interest'
+              placeholder='Enter the Mentor Areas of Interest (comma seperated)'
               value={MentorData.areasOfInterest}
               onChange={(e) =>
                 setMentorData((prevData) => ({
@@ -356,8 +349,8 @@ const EditMentors: React.FC = () => {
             />
             <Input
               autoFocus
-              label="Profile Link"
-              placeholder="Enter the Mentor Profile Link"
+              label='Profile Link'
+              placeholder='Enter the Mentor Profile Link'
               value={MentorData.profileLink}
               onChange={(e) =>
                 setMentorData((prevData) => ({
@@ -368,9 +361,10 @@ const EditMentors: React.FC = () => {
             />
             <Input
               isRequired
-              label="Image"
-              type="file"
-              placeholder="Enter the Mentor Image"
+              label='Image'
+              type='file'
+              placeholder='Enter the Mentor Image'
+              accept='image/*'
               onChange={(e) =>
                 setMentorData((prevData) => ({
                   ...prevData,
@@ -380,11 +374,11 @@ const EditMentors: React.FC = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button color="danger" variant="flat" onClick={closeModal}>
+            <Button color='danger' variant='flat' onClick={closeModal}>
               Close
             </Button>
             <Button
-              color="primary"
+              color='primary'
               onClick={() => handleEditMentor(editMentorId as string)}
             >
               Save Changes
