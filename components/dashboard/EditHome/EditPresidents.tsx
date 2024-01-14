@@ -84,11 +84,11 @@ const EditPresidents: React.FC = () => {
         });
         toast.success('President added successfully');
       } else {
-        console.error('Failed to add president');
+        //console.error('Failed to add president');
         toast.error('Failed to add president');
       }
     } catch (error) {
-      console.error('Error adding president:', error);
+      //console.error('Error adding president:', error);
       toast.error('Error adding president');
     }
   };
@@ -116,11 +116,11 @@ const EditPresidents: React.FC = () => {
         setEditpresidentId(null);
         toast.success('President edited successfully');
       } else {
-        console.error('Failed to edit president');
+        //console.error('Failed to edit president');
         toast.error('Failed to edit president');
       }
     } catch (error) {
-      console.error('Error editing president:', error);
+      //console.error('Error editing president:', error);
       toast.error('Error editing president');
     }
   };
@@ -130,7 +130,7 @@ const EditPresidents: React.FC = () => {
       (eachPresidentData) => eachPresidentData._id === id
     );
     if (!presidentToEdit) {
-      console.error('president not found for editing');
+      //console.error('president not found for editing');
       toast.error('President not found for editing');
       return;
     }
@@ -162,11 +162,11 @@ const EditPresidents: React.FC = () => {
         fetchPresident();
         toast.success('President deleted successfully');
       } else {
-        console.error('Failed to delete president');
+        //console.error('Failed to delete president');
         toast.error('Failed to delete president');
       }
     } catch (error) {
-      console.error('Error deleting president:', error);
+      //console.error('Error deleting president:', error);
       toast.error('Error deleting president');
     }
   };

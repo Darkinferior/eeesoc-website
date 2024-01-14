@@ -1,5 +1,3 @@
-// EditMentors.tsx
-
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
   Modal,
@@ -12,6 +10,8 @@ import {
   Card,
   CardHeader,
 } from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Mentor {
   _id: string;
@@ -85,7 +85,6 @@ const EditMentors: React.FC = () => {
     Object.entries(MentorData).forEach(([key, value]) => {
       formData.append(key, value);
     });
-    console.log(MentorData, formData);
     try {
       const response = await fetch('/api/admin/mentors/addMentor', {
         method: 'POST',
@@ -94,7 +93,6 @@ const EditMentors: React.FC = () => {
 
       if (response.ok) {
         fetchMentor();
-
         setMentorData({
           name: '',
           designation: '',
@@ -103,11 +101,14 @@ const EditMentors: React.FC = () => {
           profileLink: '',
           image: null,
         });
+        toast.success('Mentor added successfully');
       } else {
-        console.error('Failed to add Mentor');
+        //console.error('Failed to add Mentor');
+        toast.error('Failed to add Mentor');
       }
     } catch (error) {
-      console.error('Error adding Mentor:', error);
+      //console.error('Error adding Mentor:', error);
+      toast.error('Error adding Mentor');
     }
   };
 
@@ -136,11 +137,14 @@ const EditMentors: React.FC = () => {
         });
         setIsModalOpen(false);
         setEditMentorId(null);
+        toast.success('Mentor edited successfully');
       } else {
-        console.error('Failed to edit Mentor');
+        //console.error('Failed to edit Mentor');
+        toast.error('Failed to edit Mentor');
       }
     } catch (error) {
-      console.error('Error editing Mentor:', error);
+      // console.error('Error editing Mentor:', error);
+      toast.error('Error editing Mentor');
     }
   };
 
@@ -149,7 +153,8 @@ const EditMentors: React.FC = () => {
       (eachMentorData) => eachMentorData._id === id
     );
     if (!MentorToEdit) {
-      console.error('Mentor not found for editing');
+      //console.error('Mentor not found for editing');
+      toast.error('Mentor not found for editing');
       return;
     }
     setMentorData({
@@ -182,11 +187,14 @@ const EditMentors: React.FC = () => {
       });
       if (response.ok) {
         fetchMentor();
+        toast.success('Mentor deleted successfully');
       } else {
-        console.error('Failed to delete Mentor');
+        // console.error('Failed to delete Mentor');
+        toast.error('Failed to delete Mentor');
       }
     } catch (error) {
-      console.error('Error deleting Mentor:', error);
+      //console.error('Error deleting Mentor:', error);
+      toast.error('Error deleting Mentor');
     }
   };
 
