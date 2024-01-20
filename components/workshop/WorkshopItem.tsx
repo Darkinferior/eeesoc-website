@@ -46,7 +46,7 @@ export default function WorkshopItem({ workshop, index }: Props) {
           alt={workshop.title}
           width={648}
           height={365}
-          className="object-contain mx-auto rounded aspect-video"
+          className="object-cover mx-auto rounded aspect-video"
         />
       </div>
     </div>

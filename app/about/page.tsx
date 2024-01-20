@@ -25,7 +25,7 @@ export default function AboutPage() {
   const academicBulletPoints = [
     'To instill practical knowledge in students',
     'To creatively apply knowledge in real-life situations',
-    'To provide one to one mentorship for doubt solving',
+    'To provide one to one mentorship for problem solving',
   ];
 
   const personalBulletPoints = [

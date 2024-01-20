@@ -30,7 +30,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
           />
         </CardHeader>
         <CardBody className="overflow-visible py-2 items-center text-center">
-          <Link isExternal href={linkedinUrl} color="foreground">
+          <Link isExternal showAnchorIcon href={linkedinUrl} color="foreground">
             <Reveal>
               <h4 className="font-bold text-xl">{name}</h4>
             </Reveal>

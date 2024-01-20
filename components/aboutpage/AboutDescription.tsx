@@ -33,7 +33,7 @@ export const AboutDescription = () => {
                     2013 with a vision to cultivate innovation, collaboration,
                     and excellence in the realm of electrical and electronic
                     engineering, EEESoc has been dedicated to advancing these
-                    principles over the years, EEESoc is a dynamic community
+                    principles over the years. EEESoc is a dynamic community
                     that brings together students, faculty, and industry
                     professionals passionate about advancing technology and
                     shaping the future. EEESoc organizes practical workshops,
