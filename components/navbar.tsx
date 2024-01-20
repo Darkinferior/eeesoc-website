@@ -5,7 +5,6 @@ import {
   NavbarContent,
   NavbarMenu,
   NavbarMenuToggle,
-  NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
   Button,
@@ -30,6 +29,7 @@ import Image from 'next/image';
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -40,21 +40,15 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar maxWidth="xl" className="fixed" isMenuOpen={isMenuOpen}>
+      <NextLink className="flex justify-start items-center" href="/">
+        <Image
+          src="/eeesoc-logo.png"
+          alt="EEESoc Logo"
+          width={50}
+          height={50}
+        />
+      </NextLink>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 w-auto mr-8">
-          <NextLink
-            className="flex justify-start items-center gap-1 font-black text-2xl "
-            href="/"
-          >
-            <Image
-              src="/eeesoc-logo.png"
-              alt="EEESoc Logo"
-              width={30}
-              height={30}
-            />{' '}
-            EEESoc
-          </NextLink>
-        </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
@@ -72,10 +66,8 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-
       <NavbarContent
-        style={{ overflowX: 'hidden' }}
-        className="hidden lg:flex basis-1/5 sm:basis-full"
+        className="hidden overflow-auto lg:flex basis-1/5 sm:basis-full"
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
@@ -110,7 +102,7 @@ export const Navbar = () => {
         <NavbarItem>
           <Button
             as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
+            className="text-sm font-normal text-default-600 bg-default-100 "
             href="/sponsor"
             startContent={<HeartFilledIcon className="text-danger" />}
             variant="flat"

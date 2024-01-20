@@ -1,4 +1,4 @@
-import { Image } from '@nextui-org/react';
+import { Image, Link } from '@nextui-org/react';
 import styles from './Alumni.module.css';
 
 interface Alumni {
@@ -18,10 +18,11 @@ interface AlumniCardProps {
 const AlumniCard: React.FC<AlumniCardProps> = ({ senior, year }) => {
   return (
     <div className="w-full py-4 sm:w-1/2 xl:w-1/3">
-      <a
+      <Link
         href={senior.linkedinUrl ?? '#'}
         target="_blank"
         rel="noopener noreferrer"
+        isExternal
       >
         <div className={styles.content}>
           <Image
@@ -39,9 +40,18 @@ const AlumniCard: React.FC<AlumniCardProps> = ({ senior, year }) => {
             <p>{senior?.position}</p>
           </div>
         </div>
-      </a>
+      </Link>
       <div className={`text-center lg:hidden mt-3 ${styles.visibleDetails}`}>
-        <h4>{senior.name}</h4>
+        <h4>
+          <Link
+            href={senior.linkedinUrl}
+            showAnchorIcon
+            isExternal
+            color="foreground"
+          >
+            {senior.name}
+          </Link>
+        </h4>
         <h6 className="font-normal">
           {senior.workplace ?? `${year - 4} PASS OUT`}
         </h6>

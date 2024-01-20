@@ -113,48 +113,47 @@ export default function Home() {
             </h2>
           </Reveal>
           <div className="flex gap-3">
-            <Reveal>
-              <Link
-                isExternal
-                className={`${buttonStyles({
-                  variant: 'shadow',
-                  radius: 'full',
-                })} bg-gradient-to-tr from-cyan-500 to-blue-500 text-white shadow-lg`}
-                href={
-                  register.formLink !== '/'
-                    ? register.formLink
-                    : siteConfig.links.instagram
-                }
-              >
-                {loading ? (
-                  <Spinner />
-                ) : register.title.toLowerCase() !== 'title' ? (
-                  register.title
-                ) : (
-                  'Recruitment'
-                )}
-              </Link>
-            </Reveal>
-            <Reveal>
-              <Link
-                isExternal
-                className={buttonStyles({
-                  variant: 'bordered',
-                  radius: 'full',
-                })}
-                href={
-                  result.link !== '/' ? result.link : siteConfig.links.instagram
-                }
-              >
-                {loading ? (
-                  <Spinner />
-                ) : result.title.toLowerCase() !== 'title' ? (
-                  result.title
-                ) : (
-                  'Results'
-                )}
-              </Link>
-            </Reveal>
+            {register.formLink !== '/' && (
+              <Reveal>
+                <Link
+                  isExternal
+                  className={`${buttonStyles({
+                    variant: 'shadow',
+                    radius: 'full',
+                  })} bg-gradient-to-tr from-cyan-500 to-blue-500 text-white shadow-lg`}
+                  href={register.formLink}
+                >
+                  {loading ? (
+                    <Spinner />
+                  ) : register.title.toLowerCase() !== 'title' ? (
+                    register.title
+                  ) : (
+                    'Recruitment'
+                  )}
+                </Link>
+              </Reveal>
+            )}
+
+            {result.link !== '/' && (
+              <Reveal>
+                <Link
+                  isExternal
+                  className={buttonStyles({
+                    variant: 'bordered',
+                    radius: 'full',
+                  })}
+                  href={result.link}
+                >
+                  {loading ? (
+                    <Spinner />
+                  ) : result.title.toLowerCase() !== 'title' ? (
+                    result.title
+                  ) : (
+                    'Results'
+                  )}
+                </Link>
+              </Reveal>
+            )}
           </div>
         </div>
         <ShuffleGrid />
@@ -169,7 +168,7 @@ export default function Home() {
       </section>
       <section className="flex flex-col items-center gap-4 mt-8 mb-16">
         <Reveal>
-          <h1 className="text-2xl font-bold mb-8">In Collaboration with</h1>
+          <h1 className="text-2xl font-bold mb-8">Our Sponsors</h1>
         </Reveal>
         <Image
           isBlurred
