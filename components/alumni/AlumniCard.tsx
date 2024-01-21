@@ -30,7 +30,7 @@ const AlumniCard: React.FC<AlumniCardProps> = ({ senior, year }) => {
             alt={senior.name}
             height={375}
             width={375}
-            className="w-full rounded z-0"
+            className="w-full rounded z-0 aspect-square"
           />
           <div
             className={`${styles.contentDetails} sm-hidden rounded xl:flex flex-col justify-center z-10 ${styles.fadeInBottom}`}

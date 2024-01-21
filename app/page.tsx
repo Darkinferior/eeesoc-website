@@ -21,11 +21,11 @@ interface Register {
 export default function Home() {
   const [result, setResultData] = useState<Result>({
     title: '',
-    link: '',
+    link: '/',
   });
   const [register, setRegisterData] = useState<Register>({
     title: '',
-    formLink: '',
+    formLink: '/',
   });
   const [loading, setLoading] = useState<boolean>(true);
 
